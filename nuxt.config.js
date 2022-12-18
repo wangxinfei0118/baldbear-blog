@@ -5,14 +5,14 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: '秃头熊的个人博客',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      { hid: 'description', name: 'description', content: '秃头熊的前端知识库' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
   /*
@@ -45,6 +45,16 @@ export default {
   modules: [
     '@nuxtjs/axios',
   ],
+  axios: {
+    proxy: true,
+    prefix:'/api'
+  },
+  proxy: {
+    '/api':{
+      target: 'https://mock.apifox.cn/m1/2096471-0-default',
+      pathRewrite: {'^/api': ''}
+    }
+  },
   /*
   ** Build configuration
   */
