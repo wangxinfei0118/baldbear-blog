@@ -36,6 +36,11 @@ const actions = {
     window.location.href = `http://localhost:7000?redirectURL=${window.location.href}`
   },
 
+  // 退出登录
+  toLogout({commit}){
+    commit('resetUserState')
+    window.location.href = `http://localhost:7000/logout?redirectURL=${window.location.href}`
+  }
 }
 export default {
   state,
