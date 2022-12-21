@@ -8,11 +8,11 @@
         <el-col class="hidden-sm-and-down" :span="15" style="display: flex;justify-content: start;align-items: center;margin-left: 22px">
           <el-menu :default-active="'/'" class="menu" mode="horizontal" router>
             <el-menu-item index="/">首页</el-menu-item>
-            <el-menu-item index="/question">分类</el-menu-item>
-            <el-menu-item index="/label">生活</el-menu-item>
-            <el-menu-item index="/label">关于我</el-menu-item>
-            <el-menu-item index="/label">留言板</el-menu-item>
-            <el-menu-item index="/label">Hi,同学！</el-menu-item>
+            <el-menu-item index="/label">标签</el-menu-item>
+            <el-menu-item index="/life">生活</el-menu-item>
+            <el-menu-item index="/about">关于我</el-menu-item>
+            <el-menu-item index="/message">留言板</el-menu-item>
+            <el-menu-item index="/hi">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
         <el-col :xs="18" :span="5" style="display: flex;justify-content: end;align-items: center">
@@ -50,10 +50,10 @@ export default {
           // 新窗口打开
           // routeData = this.$router.resolve('/article/edit')
           // window.open(routeData.href,'_blank')
-          this.$router.push('/article/edit')
+          this.$router.push('/note/edit')
           break;
         case 'life':
-          this.$router.push('/question/edit')
+          this.$router.push('/life/edit')
           break;
         case 'user':
           this.$router.push('/user')
