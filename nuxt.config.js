@@ -44,6 +44,7 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
+    'cookie-universal-nuxt'
   ],
   axios: {
     proxy: true,
