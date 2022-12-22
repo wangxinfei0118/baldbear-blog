@@ -26,21 +26,23 @@
         <div class="text-large text-home-title" style="margin: 10px 0">我的笔记</div>
         <el-divider>记录学习中的每一步脚印</el-divider>
         <div class="note-box" style="width: 100%;display: flex;justify-content: space-between;flex-wrap: wrap">
-          <el-card shadow="hover" style="width: 280px;margin-bottom: 14px" :body-style="{ padding: '0px' }" v-for="i in 6" :key="i">
-            <img class="w-full h-36" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2Ftp09%2F210F2130512J47-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1674108919&t=9531c288f275ec1e9eb3fadc6a07a48d">
-            <div style="padding: 22px">
-              <div class="text-note-title font-semibold" style="margin-bottom: 10px">前端性能优化</div>
-              <div class="text-medium leading-22">
-                出来找大祭祀的价位较低啊我就带我基地啊我觉得价位较低啊我就带我基地啊我觉得
+          <nuxt-link :to="`/note/1`" target="_blank" v-for="i in 6" :key="i">
+            <el-card shadow="hover" style="width: 280px;margin-bottom: 14px" :body-style="{ padding: '0px' }">
+              <img class="w-full h-36" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2Ftp09%2F210F2130512J47-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1674108919&t=9531c288f275ec1e9eb3fadc6a07a48d">
+              <div style="padding: 22px">
+                <div class="text-note-title font-semibold" style="margin-bottom: 10px">前端性能优化</div>
+                <div class="text-medium leading-22">
+                  出来找大祭祀的价位较低啊我就带我基地啊我觉得价位较低啊我就带我基地啊我觉得
+                </div>
+                <div class="text-note-label text-small" style="margin: 18px 0 ">标签：项目优化</div>
+                <div class="flex text-small">
+                  <div class="w-3/5" >2022年12月18日</div>
+                  <div class="w-1/5" >110</div>
+                  <div class="w-1/5" >2000</div>
+                </div>
               </div>
-              <div class="text-note-label text-small" style="margin: 18px 0 ">标签：项目优化</div>
-              <div class="flex text-small">
-                <div class="w-3/5" >2022年12月18日</div>
-                <div class="w-1/5" >110</div>
-                <div class="w-1/5" >2000</div>
-              </div>
-            </div>
-          </el-card>
+            </el-card>
+          </nuxt-link>
           <div class="list" style="width: 280px;" v-for="item in (4 - 6 % 4)" :key="item" v-if="6 % 4 > 0"></div>
         </div>
         <el-button v-if="isMore" type="primary" :loading="loading" size="small" round @click="loadMore">{{ loading ? '加载中……' : '点击加载更多' }}</el-button>
