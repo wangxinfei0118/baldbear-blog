@@ -29,7 +29,7 @@ export default {
 .bg-img{
   width: 100%;
   height: 350px;
-  background-image: url("@/assets/2435.jpeg");
+  background-image: url("@/assets/2.jpeg");
   background-size: cover;
 }
 </style>
