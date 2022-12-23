@@ -50,6 +50,10 @@ import "assets/css/md/github-min.css";
 import "assets/css/md/github-markdown.css";
 
 export default {
+  // 校验路由参数合法性
+  validate ({ params }) {
+    return /^\d+$/.test(params.id)
+  },
 
   async asyncData({ params, app }) {
     // 获取笔记详情
