@@ -31,7 +31,26 @@
           <!-- 评论区 -->
           <div class="commentArea">
             <h2>评论区</h2>
+            <!-- 未登录 -->
+            <el-card v-if="!$store.state.userInfo">
+              <h4 >登录后参与交流、获取后续更新提醒</h4>
+              <div>
+                <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >登录</el-button>
+                <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
+              </div>
+            </el-card>
 
+            <el-card>
+              <!-- userId 当前登录用户id，userImage 当前登录用户头像，showComment 显示评论区
+              doSend 公共评论事件函数，doChidSend 回复评论事件函数, doRemove 删除 -->
+              <comment :userId="userId" :userImage="userImage"
+                       :authorId="data.userId"
+                       :showComment="$store.state.userInfo ? true : false"
+                       @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
+                       :commentList="commentList"
+              >
+              </comment>
+            </el-card>
           </div>
 
         </div>
@@ -48,11 +67,63 @@
 <script>
 import "assets/css/md/github-min.css";
 import "assets/css/md/github-markdown.css";
+import Comment from "@/components/common/Comment";
 
 export default {
+  components:{
+    Comment
+  },
   // 校验路由参数合法性
   validate ({ params }) {
     return /^\d+$/.test(params.id)
+  },
+
+  data(){
+    return {
+      // 当前登录用户id
+      userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
+      // 当前登录用户头像，
+      userImage: this.$store.state.userInfo && this.$store.state.userInfo.imageUrl
+    }
+  },
+  methods: {
+    doSend(content) {
+      // 提交评论：评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
+      this.doChildSend(content)
+    },
+
+    // 发布回复评论触发
+    doChildSend(content, parentId = -1) {
+      // 回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
+      console.log(`对父评论ID=${parentId} 发布的回复评论内容：${content}`)
+      const data = {
+        content,
+        parentId,
+        articleId: this.$route.params.id,
+        userId: this.userId,
+        userImage: this.userImage,
+        nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName,
+      }
+      this.$addComment(data).then(res =>{
+        if (res.code === 20000){
+          this.refreshComment()
+        }
+      })
+    },
+
+    // 删除评论
+    doRemove(id) {
+      console.log(`删除评论id${id}`)
+      this.$deleteCommentById(id).then(res =>{
+        this.refreshComment()
+      })
+    },
+
+    async refreshComment(){
+      const {data} = await this.$getCommentListByNoteId(this.$route.params.id)
+      this.commentList = data
+    },
+
   },
 
   async asyncData({ params, app }) {
@@ -69,8 +140,9 @@ export default {
       }
     }
 
+    const {data: commentList} = await app.$getCommentListByNoteId(params.id)
 
-    return {data}
+    return {data, commentList}
   }
 
 }
