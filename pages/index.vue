@@ -26,24 +26,24 @@
         <div class="text-large text-home-title" style="margin: 10px 0">我的笔记</div>
         <el-divider>记录学习中的每一步脚印</el-divider>
         <div class="note-box" style="width: 100%;display: flex;justify-content: space-between;flex-wrap: wrap">
-          <nuxt-link :to="`/note/1`" target="_blank" v-for="i in 6" :key="i">
+          <nuxt-link :to="`/note/1`" target="_blank" v-for="item in noteList" :key="item.id">
             <el-card shadow="hover" style="width: 280px;margin-bottom: 14px" :body-style="{ padding: '0px' }">
-              <img class="w-full h-36" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2Ftp09%2F210F2130512J47-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1674108919&t=9531c288f275ec1e9eb3fadc6a07a48d">
+              <img class="w-full h-36" :src="item.imageUrl">
               <div style="padding: 22px">
-                <div class="text-note-title font-semibold" style="margin-bottom: 10px">前端性能优化</div>
-                <div class="text-medium leading-22">
-                  出来找大祭祀的价位较低啊我就带我基地啊我觉得价位较低啊我就带我基地啊我觉得
+                <div class="text-note-title font-semibold" style="margin-bottom: 10px">{{ item.title }}</div>
+                <div class="summary text-medium leading-22">
+                  {{ item.summary }}
                 </div>
-                <div class="text-note-label text-small" style="margin: 18px 0 ">标签：项目优化</div>
+                <div class="text-note-label text-small" style="margin: 18px 0 ">标签：{{ item.label }}</div>
                 <div class="flex text-small">
-                  <div class="w-3/5" >2022年12月18日</div>
-                  <div class="w-1/5" >110</div>
-                  <div class="w-1/5" >2000</div>
+                  <div class="w-6/12"><i class="el-icon-time  text-blue-300"></i> {{ item.updateDate }}</div>
+                  <div class="w-3/12 text-right"><i class="el-icon-chat-line-round text-green-300"></i> {{ item.chatCount }}</div>
+                  <div class="w-3/12 text-right"><i class="el-icon-view text-yellow-300"></i> {{ item.viewCount }}</div>
                 </div>
               </div>
             </el-card>
           </nuxt-link>
-          <div class="list" style="width: 280px;" v-for="item in (4 - 6 % 4)" :key="item" v-if="6 % 4 > 0"></div>
+          <div class="list" style="width: 280px;" v-for="i in (4 - 6 % 4)" :key="i" v-if="6 % 4 > 0"></div>
         </div>
         <el-button v-if="isMore" type="primary" :loading="loading" size="small" round @click="loadMore">{{ loading ? '加载中……' : '点击加载更多' }}</el-button>
         <el-tag v-else type="danger">没有更多数据了……</el-tag>
@@ -110,5 +110,12 @@ export default {
   width: 78%;
   flex-direction: column;
   align-items: center;
+}
+.summary{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 </style>
