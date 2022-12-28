@@ -13,23 +13,58 @@
           </div>
         </div>
       </div>
+      <div style="width: 100%">
+        <div class="note-box">
+          <note-list :page="page" :list-data="noteList" @fetch-data="fetchData"></note-list>
+        </div>
+      </div>
     </div>
 </template>
 <script>
+import NoteList from '@/components/note/List'
 
 export default {
-
+  components:{
+    NoteList
+  },
   validate ({ params }) {
     return /^\d+$/.test(params.id)
+  },
+  methods: {
+    async fetchData(current){
+      this.page.current = current
+      const query = {...this.page, labelId: this.$route.params.id}
+      const res = await this.$getNoteList(query)
+      this.page.total = res.data.total
+      this.noteList = res.data.records
+
+    }
+  },
+
+  async asyncData({app,params}){
+    const page = {
+      total:0,
+      current:1,
+      size:20
+    }
+    const query = {...page, labelId: params.id}
+    const {data} = await app.$getNoteList(query)
+    page.total = data.total
+    return {page, noteList: data.records}
   }
 
 }
 </script>
 <style scoped>
+.note-box{
+  width: 60%;
+  margin: 0 auto;
+  background-color: rgba(181, 181, 181);
+}
 .bg-img{
   width: 100%;
   height: 350px;
-  background-image: url("@/assets/2.jpeg");
+  background-image: url("assets/detail-head.jpeg");
   background-size: cover;
 }
 </style>
