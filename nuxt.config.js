@@ -31,7 +31,8 @@ export default {
   */
   plugins: [
     '@/plugins/element-ui',
-    '@/api/note.js'
+    '@/api/note.js',
+    '@/api/common.js',
   ],
   /*
   ** Nuxt.js dev-modules
