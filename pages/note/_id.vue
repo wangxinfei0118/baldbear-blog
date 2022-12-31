@@ -18,10 +18,10 @@
         </div>
       </div>
     </div>
-    <el-row type="flex">
-      <el-col :xs="24" :sm="24" :md="18">
-        <div class="article-left">
-          <el-card>
+    <el-row type="flex" class="mx-auto" justify="space-between" style="width: 79%">
+      <el-col :xs="24" :sm="24" :md="17">
+        <div class="article-left mt-4">
+          <el-card shadow="never">
             <!-- 内容 -->
             <div class="article-content">
               <div class="markdown-body" v-html="data.htmlContent"></div>
@@ -29,18 +29,17 @@
           </el-card>
 
           <!-- 评论区 -->
-          <div class="commentArea">
-            <h2>评论区</h2>
-            <!-- 未登录 -->
-            <el-card v-if="!$store.state.userInfo">
-              <h4 >登录后参与交流、获取后续更新提醒</h4>
-              <div>
-                <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >登录</el-button>
-                <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
+          <div class="commentArea mt-4">
+            <el-card shadow="never">
+              <div class="font-semibold p-4">评论区</div>
+              <!-- 未登录 -->
+              <div v-if="!$store.state.userInfo" class="flex flex-col items-center">
+                <div class="text-medium">登录后参与交流、获取后续更新提醒</div>
+                <div class="mt-2">
+                  <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >登录</el-button>
+                  <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
+                </div>
               </div>
-            </el-card>
-
-            <el-card>
               <!-- userId 当前登录用户id，userImage 当前登录用户头像，showComment 显示评论区
               doSend 公共评论事件函数，doChidSend 回复评论事件函数, doRemove 删除 -->
               <comment :userId="userId" :userImage="userImage"
