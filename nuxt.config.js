@@ -25,6 +25,7 @@ export default {
   css: [
     'element-ui/lib/theme-chalk/index.css',
     'element-ui/lib/theme-chalk/display.css',
+    'mavon-editor/dist/css/index.css'
   ],
   /*
   ** Plugins to load before mounting the App
@@ -33,6 +34,7 @@ export default {
     '@/plugins/element-ui',
     '@/api/note.js',
     '@/api/common.js',
+    { src: '@/plugins/mavon-editor', mode: 'client' },
   ],
   /*
   ** Nuxt.js dev-modules
