@@ -104,7 +104,7 @@ export default {
 <style scoped>
 .label-main {
   height: 100vh;
-  background-image: url("assets/1.png");
+  background-image: url("@/assets/img/1.png");
   background-size: cover;
 }
 

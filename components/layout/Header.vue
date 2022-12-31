@@ -3,7 +3,7 @@
     <div class="nav">
       <el-row type="flex" justify="space-between" style="height: 100%">
         <el-col :span="4" style="display: flex;justify-content: center;align-items: center">
-          <img src="@/assets/logo.png" style="width: 180px">
+          <img src="@/assets/img/logo.png" style="width: 180px">
         </el-col>
         <el-col class="hidden-sm-and-down" :span="15" style="display: flex;justify-content: start;align-items: center;margin-left: 22px">
           <el-menu :default-active="'/'" class="menu" mode="horizontal" router>
