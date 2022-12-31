@@ -6,7 +6,7 @@
           <img src="@/assets/img/logo.png" style="width: 180px">
         </el-col>
         <el-col class="hidden-sm-and-down" :span="15" style="display: flex;justify-content: start;align-items: center;margin-left: 22px">
-          <el-menu :default-active="'/'" class="menu" mode="horizontal" router>
+          <el-menu :default-active="activeRoute" class="menu" mode="horizontal" router>
             <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="/label">标签</el-menu-item>
             <el-menu-item index="/life">生活</el-menu-item>
@@ -69,6 +69,15 @@ export default {
   computed:{
     userInfo(){
       return this.$store.state.userInfo
+    },
+    activeRoute(){
+      // 解决当访问子路由menu不选中的问题
+      let routePath = this.$route.matched[0].path || '/'
+      // 从第2个字符开始往后找是否存在 / , 有子路由，截取一级路由地址
+      if(routePath.indexOf('/', 1) !== -1) {
+        routePath = routePath.substring(0, routePath.indexOf('/', 1))
+      }
+      return routePath.indexOf('/note') !== -1 ? '/' : routePath
     }
   }
 }
