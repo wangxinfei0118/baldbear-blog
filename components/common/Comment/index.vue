@@ -66,7 +66,7 @@
 
 
     <!-- 显示评论内容区域 -->
-    <list :commentList="commentList" :userId="userId" :authorId="authorId" 
+    <list :commentList="commentList" :userId="userId" :authorId="authorId"
         :doChildSend="doChildSend" :doRemove="doRemove" :showComment="showComment"
         :emojiWidth="emojiWidth" :userImage="userImage"
         :placeholder="placeholder" :minRows="minRows" :maxRows="maxRows"
@@ -83,12 +83,15 @@ export default {
   components: { List },
   props: {
     userId: null, // 当前登录用户id
-    authorId: null, // 当前文章作者id
-    showUserImage: { // 公共评论输入框左侧是否显示头像
+    authorId: {
+      typ: String,
+      default:'1'
+    }, // 当前文章作者id
+    showUserImage: { // 输入框左侧是否显示头像
       type: Boolean,
       default: true
     },
-    showComment: { // 显示评价输入框
+    showComment: { // 显示输入框
       type: Boolean,
       default: true
     },
@@ -96,8 +99,8 @@ export default {
       type: String,
       default: "560px"
     },
-    userImage: {  // 当前登录用户头像
-      type: String, 
+    userImage: {
+      type: String,
       default: ""
     },
     placeholder: {
@@ -122,26 +125,7 @@ export default {
     },
     commentList: {
       type: Array,
-      default: () => [
-        {
-          id: '20',
-          userId: '1',
-          nickName: '小梦',
-          userImage: 'http://qzapp.qlogo.cn/qzapp/101483738/6637A2B6611592A44A7699D14E13F7F7/50',
-          content: "[害羞][害羞][害羞]<br/>",
-          createDate: "2019-9-23 17:36:02",
-          children: [
-            {
-              id: '30',
-              userId: '2',
-              userImage: 'http://qzapp.qlogo.cn/qzapp/101483738/6637A2B6611592A44A7699D14E13F7F7/50',
-              nickName: '梦学谷',
-              content: "真的就很棒！很Nice!",
-              createDate: "2019-9-23 17:45:26"
-            }
-          ]
-        }
-      ]
+      default: () => []
     },
     commentWidth: {
       type: String,
