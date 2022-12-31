@@ -58,8 +58,15 @@
 
       <!-- 右侧-->
       <el-col class="hidden-sm-and-down" :md="6">
-
+        <el-row>
+          <el-col>
+            <affix :offset="80">
+              <directory></directory>
+            </affix>
+          </el-col>
+        </el-row>
       </el-col>
+
     </el-row>
   </div>
 </template>
@@ -68,10 +75,14 @@
 import "assets/css/md/github-min.css";
 import "assets/css/md/github-markdown.css";
 import Comment from "@/components/common/Comment";
+import Affix from "@/components/common/Affix";
+import Directory from "@/components/common/Directory";
 
 export default {
   components:{
-    Comment
+    Comment,
+    Affix,
+    Directory
   },
   // 校验路由参数合法性
   validate ({ params }) {
@@ -153,7 +164,7 @@ export default {
 .bg-img{
   width: 100%;
   height: 350px;
-  background-image: url("assets/detail-head.jpeg");
+  background-image: url("assets/img/detail-head.jpeg");
   background-size: cover;
 }
 </style>
