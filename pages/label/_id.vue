@@ -58,8 +58,7 @@ export default {
 <style scoped>
 .note-box{
   width: 60%;
-  margin: 0 auto;
-  background-color: rgba(181, 181, 181);
+  @apply mb-4 mx-auto;
 }
 .bg-img{
   width: 100%;
