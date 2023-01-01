@@ -12,7 +12,7 @@
             <el-table-column>
                 <template slot-scope="scope">
                     <h2 class="title" style="margin-bottom: 5px">
-                        <nuxt-link :to="'/article/' + scope.row.id" target="_blank">
+                        <nuxt-link :to="'/note/' + scope.row.id" target="_blank">
                             {{ scope.row.title }}
                         </nuxt-link>
                     </h2>
