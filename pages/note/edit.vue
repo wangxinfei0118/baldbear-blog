@@ -1,6 +1,6 @@
 <template>
-  <div class="pt-20">
-    <el-form ref="formData" :rules="rules" :model="formData" label-width="100px" label-position="right">
+  <div class="pt-20 mb-4">
+    <el-form ref="formData" :rules="rules" :model="formData" label-width="100px" label-position="right" style="margin-right: 100px">
       <el-form-item label="标题:" prop="title" >
         <el-input v-model="formData.title" placeholder="请输入标题"
                   maxlength="50" show-word-limit/>
@@ -41,9 +41,10 @@
         <!-- 主体内容 -->
         <mavon-editor ref="md" v-model="formData.mdContent" @change="getMdHtml"  @imgAdd="uploadContentImg" @imgDel="delContentImg"></mavon-editor>
       </el-form-item>
-
-      <el-button type="primary" @click="submitForm('formData')">提交审核</el-button>
     </el-form>
+    <div class="flex justify-center">
+      <el-button type="primary" @click="submitForm('formData')">发布</el-button>
+    </div>
   </div>
 </template>
 
