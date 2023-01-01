@@ -5,28 +5,55 @@
         <div class="bg-img"></div>
         <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center">
           <div class="title" style="font-size: 32px;margin-bottom: 16px">
-            {{$route.query.name}}
+            向海风许愿，在山海相见
           </div>
           <div class="summary">
+            这里风遇山止，船到岸停。 这里的一切都有始有终，却能容纳所有不期而遇和久别重逢。
           </div>
         </div>
       </div>
     </div>
-    <el-card v-if="!$store.state.userInfo">
-      <h4 >登录后参与交流、获取后续更新提醒</h4>
-      <div>
-        <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >登录</el-button>
-        <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
-      </div>
-    </el-card>
-    <el-card>
-      <comment :userId="userId" :userImage="userImage"
-               :showComment="$store.state.userInfo ? true : false"
-               @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
-               :commentList="commentList"
-      >
-      </comment>
-    </el-card>
+    <el-row type="flex" class="mx-auto mt-4" justify="space-between" style="width: 79%">
+      <el-col :xs="24" :sm="24" :md="17">
+          <div class="commentArea">
+            <el-card shadow="never">
+              <!-- 未登录 -->
+              <div v-if="!$store.state.userInfo" class="flex flex-col items-center">
+                <div class="text-medium">Hi，登录后就可以来留言啦~</div>
+                <div class="mt-2">
+                  <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >去登录</el-button>
+                </div>
+              </div>
+              <comment :userId="userId" :userImage="userImage"
+                       :showComment="$store.state.userInfo ? true : false"
+                       @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
+                       :commentList="commentList"
+                       :isMessage="true"
+              >
+              </comment>
+            </el-card>
+          </div>
+
+      </el-col>
+
+      <!-- 右侧-->
+      <el-col class="hidden-sm-and-down" :md="6">
+        <el-row>
+          <el-col>
+            <el-card shadow="never">
+              <div class="text-medium text-note-title mb-2">小Tips：</div>
+              <div class="text-medium">
+                <div class="mb-2">有什么想和博主说的，或者想要交流的都可以留言</div>
+                <div class="mb-2">欢迎大家畅所欲言</div>
+                <div>记得文明交流哦~</div>
+                <div class="mt-2 text-notice">联系邮箱：wangxinfei0118@163.com</div>
+              </div>
+            </el-card>
+          </el-col>
+        </el-row>
+      </el-col>
+
+    </el-row>
   </div>
 </template>
 
@@ -44,14 +71,10 @@ export default {
   },
   methods: {
     doSend(content) {
-      // 提交评论：评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
       this.doChildSend(content)
     },
 
-    // 发布回复评论触发
     doChildSend(content, parentId = -1) {
-      // 回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
-      console.log(`对父评论ID=${parentId} 发布的回复评论内容：${content}`)
       const data = {
         content,
         parentId,
