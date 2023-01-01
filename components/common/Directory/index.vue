@@ -1,5 +1,5 @@
 <template>
-    <el-card class="box-card" >
+    <el-card class="box-card" shadow="never">
         <el-divider>目录</el-divider>
         <el-tree 
             style="height:300px; overflow-y:scroll"
