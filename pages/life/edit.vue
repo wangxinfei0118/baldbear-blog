@@ -24,6 +24,7 @@
 
 <script>
 export default {
+  middleware: 'auth',
   validate({ query }) {
     if (query.id) {
       // 必须是number类型
