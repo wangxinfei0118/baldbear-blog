@@ -1,6 +1,6 @@
 <template>
   <div class="hbl-fa">
-    
+
     <!-- 公共评论区域-->
     <div  v-if="showComment">
       <div class="hbl-comm">
@@ -41,7 +41,7 @@
                   </li>
                 </ul>
               </div>
-              
+
             </div>
 
             <div class="publish publish-btn">
@@ -51,20 +51,11 @@
           </div>
         </div>
       </div>
-      
-      <!-- 评论数 -->
-      <div class="comm">
-        <div class="com-rep com-title">
-          精彩评论
-          <span v-if="commentNum" class="com-span">({{commentNum}})</span>
-        </div>
-        <div class="reply"></div>
-      </div>
+
+
     </div>
 
-    
-
-
+    <div class="font-semibold p-4">{{ isMessage ? '全部留言' : '全部评论' }}</div>
     <!-- 显示评论内容区域 -->
     <list :commentList="commentList" :userId="userId" :authorId="authorId"
         :doChildSend="doChildSend" :doRemove="doRemove" :showComment="showComment"
@@ -82,6 +73,10 @@ export default {
   name: 'comment',
   components: { List },
   props: {
+    isMessage: {
+      type: Boolean,
+      default: false
+    },
     userId: null, // 当前登录用户id
     authorId: {
       typ: String,
@@ -975,11 +970,7 @@ div:focus {
   display: inline-block;
   vertical-align: top;
 }
-.com-title {
-  font-size: 20px;
-  margin: 5px 0 15px 2px;
-  font-weight: bold;
-}
+
 .com-span {
   font-size: 16px;
 }
@@ -1013,7 +1004,7 @@ div:focus {
   border-radius: 5px;
   padding: 3px 6px;
   font-size: 12px;
-  font-weight: 400px;
+  font-weight: 400;
 }
 .date {
   font-size: 12px;

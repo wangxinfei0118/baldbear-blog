@@ -5,35 +5,30 @@
       <div class="reply"></div>
       <!-- 一级评论 -->
       <div class="content">
-        <div class="comment-f">
+        <div class="comment-f mr-2">
           <el-avatar icon="el-icon-user-solid" :src="item.userImage" />
         </div>
 
         <div class="comment-f">
           <div>
             <!-- 作者 -->
-            <div class="nickname author">{{item.nickName}}</div>
+            <div class="nickname author font-medium">{{item.nickName}}</div>
             <div v-if="item.userId === authorId" class="icon author">{{label}}</div>
             <div class="date">{{item.createDate}}</div>
           </div>
         </div>
 
         <!-- 一级评论内容显示 -->
-        
+
         <div class="reply-content" >
-          <!-- @父评论作者名 只在子评价时才显示 -->
-          <div class="cc cc-to" v-if="parentName">
-            <!-- 回复内容区域显示所回复的人是哪个 @xxx -->
-            <a href="#">@{{parentName}}</a>
-          </div>
-          <div class="cc markdown-body" v-html="analyzeEmoji(item.content ? item.content : item.htmlContent)"></div>
+          <div class="cc markdown-body font-normal" style="font-size: 14px!important;color: #515767" v-html="analyzeEmoji(item.content ? item.content : item.htmlContent)"></div>
         </div>
-        
+
         <!-- 回复按钮 -->
         <div  class="reply-content reply-fa">
           <div class="reply-font" >
               <!-- <img src="./img/icon/reply.png" class="icon-reply" /> -->
-              <font v-if="userId && item.userId !== userId"  class="icon-reply icon-hf" @click="doReply(index)"> 
+              <font v-if="userId && item.userId !== userId"  class="icon-reply icon-hf" @click="doReply(index)">
                 <i class="el-icon-s-comment"></i>回复</font>
               <font v-if="item.userId === userId"  class="icon-reply icon-hf" @click="removeComment(item.id)">
                 <i class="el-icon-delete-solid"></i>删除</font>
@@ -86,17 +81,20 @@
             </div>
           </div>
         </div>
-        
+
       </div>
-      
+
       <!-- 子级评论 -->
-      <list v-if="item.children" :commentList="item.children" :parentName="item.nickName"
-          :userId="userId" :authorId="authorId" :doChildSend="doChildSend" :doRemove="doRemove"
-          :emojiWidth="emojiWidth" :userImage="userImage" :showComment="showComment"
-          :placeholder="placeholder" :minRows="minRows" :maxRows="maxRows"
-          :label="label" :commentWidth="commentWidth"
-      />
-      
+      <el-card v-if="item.children" shadow="never" class="ml-12">
+        <list class="-m-4"
+              :commentList="item.children" :parentName="item.nickName"
+              :userId="userId" :authorId="authorId" :doChildSend="doChildSend" :doRemove="doRemove"
+              :emojiWidth="emojiWidth" :userImage="userImage" :showComment="showComment"
+              :placeholder="placeholder" :minRows="minRows" :maxRows="maxRows"
+              :label="label" :commentWidth="commentWidth"
+        />
+      </el-card>
+
     </div>
   </div>
 </template>
@@ -120,7 +118,7 @@ export default {
       default: "560px"
     },
     userImage: {  // 当前登录用户头像
-      type: String, 
+      type: String,
       default: ""
     },
     placeholder: {
@@ -168,7 +166,7 @@ export default {
       type: String,
       default: "80%"
     },
-    
+
   },
   data() {
     return {
@@ -1026,9 +1024,6 @@ div:focus {
   padding: 40px;
 }
 
-.reply {
-  border-bottom: solid 1px #d9d9d9;
-}
 .content {
   margin-top: 20px;
   margin-bottom: 20px;
