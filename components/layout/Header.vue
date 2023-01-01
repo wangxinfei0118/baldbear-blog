@@ -12,7 +12,7 @@
             <el-menu-item index="/life">生活</el-menu-item>
             <el-menu-item index="/about">关于我</el-menu-item>
             <el-menu-item index="/message">留言板</el-menu-item>
-            <el-menu-item index="/hi">Hi,同学！</el-menu-item>
+            <el-menu-item @click="notOpen">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
         <el-col :xs="18" :span="5" style="display: flex;justify-content: end;align-items: center">
@@ -26,8 +26,8 @@
              <el-avatar :src="userInfo.imageUrl"></el-avatar>
             </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item command="note">写笔记</el-dropdown-item>
-                <el-dropdown-item command="life">写日常</el-dropdown-item>
+                <el-dropdown-item command="note" v-if="userInfo.uid == 1">写笔记</el-dropdown-item>
+                <el-dropdown-item command="life" v-if="userInfo.uid == 1">写日常</el-dropdown-item>
                 <el-dropdown-item command="user">个人资料</el-dropdown-item>
                 <el-dropdown-item command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
@@ -44,7 +44,6 @@ export default {
   name: "Header",
   methods:{
     handleCommand(command){
-      console.log(command)
       switch (command){
         case 'note':
           // 新窗口打开
@@ -64,6 +63,11 @@ export default {
         default:
           break;
       }
+    },
+    notOpen(){
+      this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
+        confirmButtonText: '确定',
+      });
     }
   },
   computed:{
@@ -112,7 +116,9 @@ export default {
 .el-menu-item.is-active{
   background-color: transparent;
   color: #fff;
+  border-bottom: 2px solid #ffffff;
 }
+
 .el-menu-item:not(.is-disabled):focus, .el-menu-item:not(.is-disabled):hover, .el-submenu .el-submenu__title:hover{
   background-color: transparent;
   color: #fff;
