@@ -21,7 +21,7 @@
       </div>
     </div>
     <el-divider></el-divider>
-    <div class="note w-full" >
+    <div class="note w-full mb-4" >
       <div style="width: 78%;margin: 0 auto;display: flex;flex-direction: column;align-items: center">
         <div class="text-large text-home-title" style="margin: 10px 0">我的笔记</div>
         <el-divider>记录学习中的每一步脚印</el-divider>
