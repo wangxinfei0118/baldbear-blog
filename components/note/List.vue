@@ -20,7 +20,6 @@
                       {{ scope.row.summary }}
                     </div>
                     <div class="info">
-                        <i class="el-icon-user"></i>{{ scope.row.nickName }} &nbsp;
                         <i class="el-icon-date"></i> {{ getDateFormat( scope.row.updateDate ) }}
                       <i class="el-icon-chat-line-round"></i> {{ scope.row.chatCount }}
                       <i class="el-icon-view"></i> {{ scope.row.viewCount }}
