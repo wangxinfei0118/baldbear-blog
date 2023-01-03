@@ -12,7 +12,7 @@
             <el-menu-item index="/life">生活</el-menu-item>
             <el-menu-item index="/about">关于我</el-menu-item>
             <el-menu-item index="/message">留言板</el-menu-item>
-            <el-menu-item @click="notOpen">Hi,同学！</el-menu-item>
+            <el-menu-item index="/hi" disabled @click="notOpen">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
         <el-col :xs="18" :span="5" style="display: flex;justify-content: end;align-items: center">
@@ -154,5 +154,8 @@ export default {
 .el-menu-item:not(.is-disabled):focus, .el-menu-item:not(.is-disabled):hover, .el-submenu .el-submenu__title:hover{
   background-color: transparent;
   color: #fff;
+}
+.el-menu-item.is-disabled{
+  opacity: 1
 }
 </style>
