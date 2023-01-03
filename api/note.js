@@ -27,4 +27,6 @@ export default({$axios}, inject) => {
   // 编辑笔记
   inject('editNote', data => $axios.$put( `/note/note`, data ))
 
+  // 删除笔记
+  inject('deleteNote', id => $axios.$delete( `/note/note/${id}`))
 }
