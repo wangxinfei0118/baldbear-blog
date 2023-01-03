@@ -34,6 +34,8 @@ export default {
     '@/plugins/element-ui',
     '@/api/note.js',
     '@/api/common.js',
+    '@/api/life.js',
+    '@/api/user.js',
     { src: '@/plugins/mavon-editor', mode: 'client' },
   ],
   /*
@@ -56,7 +58,7 @@ export default {
   },
   proxy: {
     '/api':{
-      target: 'https://mock.apifox.cn/m1/2096471-0-default',
+      target: 'https://www.fastmock.site/mock/7bd9f6a21e18a9c791fd338a1a007d59/baldbear-blog',
       pathRewrite: {'^/api': ''}
     }
   },
