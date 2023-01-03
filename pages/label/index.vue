@@ -1,20 +1,22 @@
 <template>
   <div class="label-main">
     <el-row :gutter="10">
-      <el-col v-for="(category, index) in data" :key="index" :xs="24" :sm="24" :md="6">
+      <el-col v-for="(category, index) in labelList" :key="index" :xs="24" :sm="24" :md="6">
         <el-card shadow="hover">
           <!-- 类别名 -->
           <div slot="header">
             <span>{{ category.name }}</span>
           </div>
           <!-- 类别下的标签 -->
-          <div>
-            <nuxt-link v-for="label in category.labelList" :key="label.id"
-                       :to="{path: `/label/${label.id}`, query: {name: label.name}}">
-              <el-tag size="small">
-                {{ label.name }}
-              </el-tag>
-            </nuxt-link>
+          <div class="flex justify-center w-full">
+            <div class="flex flex-wrap">
+              <nuxt-link v-for="label in category.labelList" :key="label.id" class="mb-2"
+                         :to="{path: `/label/${label.id}`, query: {name: label.name}}">
+                <el-tag size="small">
+                  {{ label.label }}
+                </el-tag>
+              </nuxt-link>
+            </div>
           </div>
         </el-card>
       </el-col>
@@ -25,78 +27,12 @@
 export default {
 
   async asyncData({app}) {
-
-    const data = [
-      {
-        id:1,
-        name:'前端基础',
-        labelList:[
-          {
-            id:10,
-            name: 'html'
-          },
-          {
-            id:11,
-            name: 'css'
-          },          {
-            id:12,
-            name: 'js'
-          }
-        ]
-      },
-      {
-        id:1,
-        name:'前端基础',
-        labelList:[
-          {
-            id:10,
-            name: 'html'
-          },
-          {
-            id:11,
-            name: 'css'
-          },          {
-            id:12,
-            name: 'js'
-          }
-        ]
-      },
-      {
-        id:1,
-        name:'前端基础',
-        labelList:[
-          {
-            id:10,
-            name: 'html'
-          },
-          {
-            id:11,
-            name: 'css'
-          },          {
-            id:12,
-            name: 'js'
-          }
-        ]
-      },
-      {
-        id:1,
-        name:'前端基础',
-        labelList:[
-          {
-            id:10,
-            name: 'html'
-          },
-          {
-            id:11,
-            name: 'css'
-          },          {
-            id:12,
-            name: 'js'
-          }
-        ]
-      },
-    ]
-    return {data}
+    const {data,code} = await app.$getCategoryAndLabel()
+    let labelList = []
+    if (code ===20000){
+      labelList = data
+    }
+    return {labelList}
   },
 
 }
