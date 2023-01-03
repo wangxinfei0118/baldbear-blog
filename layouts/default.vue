@@ -24,5 +24,7 @@ export default {
 }
 </script>
 <style scoped>
-
+.main{
+  min-height: calc(100vh - 80px);
+}
 </style>
