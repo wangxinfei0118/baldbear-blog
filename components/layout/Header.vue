@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div :class="isTransparent ? 'transparent header' : 'header'">
     <div class="nav">
       <el-row type="flex" justify="space-between" style="height: 100%">
         <el-col :span="4" style="display: flex;justify-content: center;align-items: center">
@@ -42,6 +42,11 @@
 <script>
 export default {
   name: "Header",
+  data(){
+    return{
+      isTransparent:true
+    }
+  },
   methods:{
     handleCommand(command){
       switch (command){
@@ -68,6 +73,15 @@ export default {
       this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
         confirmButtonText: '确定',
       });
+    },
+    handleScroll () {
+      const whiteList = ['/user','/note/edit','/life/edit']
+      if (window.scrollY >= 200 || whiteList.includes(this.$route.path)){
+        this.isTransparent = false
+      }
+      else {
+        this.isTransparent = true
+      }
     }
   },
   computed:{
@@ -83,6 +97,22 @@ export default {
       }
       return routePath.indexOf('/note') !== -1 ? '/' : routePath
     }
+  },
+  created () {
+    if (process.client) {
+      window.addEventListener('scroll', this.handleScroll);
+    }
+  },
+  mounted() {
+    this.handleScroll()
+  },
+  updated() {
+    this.handleScroll()
+  },
+  destroyed () {
+    if (process.client) {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
   }
 }
 </script>
@@ -92,12 +122,14 @@ export default {
   width: 100%;
   height: 62px;
   background-color: rgba(76, 76, 76,0.9);
-  box-shadow: 0 2px 2px #35495e;
   z-index: 9999;
   position: fixed;
 }
 .nav{
   height: 100%;
+}
+.transparent{
+  background-color: transparent !important;
 }
 .el-menu{
   background-color: transparent;
