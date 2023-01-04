@@ -2,7 +2,7 @@
   <!-- 主体内容 -->
   <div>
     <div class="background">
-      <img src="@/assets/img/background.png">
+      <img src="@/assets/img/background.png" class="right-top">
     </div>
     <div class="info w-full pt-6">
       <div class="info-box">
@@ -97,7 +97,7 @@ export default {
 .background{
   height: calc(100vh - 54px);
   width: 100%;
-
+  overflow: hidden;
 }
 .background img{
   object-fit: cover;
@@ -117,5 +117,18 @@ export default {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
+}
+.right-top {
+  animation: right-top 5s ease-out both;
+}
+@keyframes right-top {
+  0% {
+    transform: scale(1) translateY(0);
+    transform-origin: 50% 16%;
+  }
+  100% {
+    transform: scale(1.25) translateY(-15px);
+    transform-origin: top;
+  }
 }
 </style>
