@@ -1,26 +1,31 @@
 <template>
   <div class="label-main">
-    <el-row :gutter="10">
-      <el-col v-for="(category, index) in labelList" :key="index" :xs="24" :sm="24" :md="6">
-        <el-card shadow="hover">
-          <!-- 类别名 -->
-          <div slot="header">
-            <span>{{ category.name }}</span>
-          </div>
-          <!-- 类别下的标签 -->
-          <div class="flex justify-center w-full">
-            <div class="flex flex-wrap">
-              <nuxt-link v-for="label in category.labelList" :key="label.id" class="mb-2"
-                         :to="{path: `/label/${label.id}`, query: {name: label.name}}">
-                <el-tag size="small">
-                  {{ label.label }}
-                </el-tag>
-              </nuxt-link>
+    <div class="background">
+      <img src="@/assets/img/1.jpg" class="top-left">
+    </div>
+    <div class="absolute top-10 w-full">
+      <el-row :gutter="10">
+        <el-col v-for="(category, index) in labelList" :key="index" :xs="24" :sm="24" :md="6">
+          <el-card shadow="hover">
+            <!-- 类别名 -->
+            <div slot="header">
+              <span>{{ category.name }}</span>
             </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+            <!-- 类别下的标签 -->
+            <div class="flex justify-center w-full">
+              <div class="flex flex-wrap">
+                <nuxt-link v-for="label in category.labelList" :key="label.id" class="mb-2"
+                           :to="{path: `/label/${label.id}`, query: {name: label.name}}">
+                  <el-tag size="small">
+                    {{ label.label }}
+                  </el-tag>
+                </nuxt-link>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
   </div>
 </template>
 <script>
@@ -38,12 +43,26 @@ export default {
 }
 </script>
 <style scoped>
-.label-main {
-  height: 100vh;
-  background-image: url("@/assets/img/1.png");
-  background-size: cover;
+.background {
+  overflow: hidden;
 }
-
+.background img{
+  height: 100vh;
+  width: 100vw;
+}
+.top-left{
+  animation: top-left 8s ease-out both;
+}
+@keyframes top-left {
+  0% {
+    transform: scale(1.25);
+    transform-origin: 16% 16%;
+  }
+  100% {
+    transform: scale(1);
+    transform-origin: top left;
+  }
+}
 .el-row {
   width: 100%;
   padding: 96px 32px;
