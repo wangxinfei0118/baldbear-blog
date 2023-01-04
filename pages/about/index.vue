@@ -5,10 +5,10 @@
         <div class="bg-img"></div>
         <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center">
           <div class="title" style="font-size: 32px;margin-bottom: 16px">
-            这是标题这是标题
+            寂静生长，默然坚强
           </div>
           <div class="summary">
-            这是概要这是概要这是概要这是概要这是概要这是概要这是概要这是概要这是概要这是概要这是概要这是概要
+            走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@
         </el-col>
         <el-col :span="12">
           <div class="flex justify-around flex-wrap">
-            <el-card shadow="hover" style="height: 240px;width: 240px">
+            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
               <div>Vue</div>
               <div class="text-home-title text-medium h-28">熟悉vue及其相关生态，了解vue2内部原理，熟悉vue3组合式api及setup语法糖</div>
               <div class="img-box">
@@ -108,7 +108,7 @@
                 <img src="@/assets/img/pinia.svg">
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px">
+            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
               <div>H5C3</div>
               <div class="text-home-title text-medium h-28">掌握html5、css3，熟悉less、scss等预处理语言及tailwind、pxtorem等postcss插件的使用配置，掌握常用的前端页面布局</div>
               <div class="img-box">
@@ -117,7 +117,7 @@
                 <img src="@/assets/img/postcss.svg">
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px">
+            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
               <div>小程序</div>
               <div class="text-home-title text-medium h-28">熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历</div>
               <div class="img-box">
@@ -126,7 +126,7 @@
                 <img src="@/assets/img/uview.png">
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px">
+            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
               <div>node.js</div>
               <div class="text-home-title text-medium h-28">了解node.js，了解express能够使用express搭建服务器，处理数据并操作数据库，有开发npm包经历</div>
               <div class="img-box">
@@ -135,7 +135,7 @@
                 <img src="@/assets/img/express.png">
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px;margin-top: -360px">
+            <el-card shadow="hover" style="height: 240px;width: 240px;margin-top: -360px" class="scale-up-center">
               <div>前端工程化</div>
               <div class="text-home-title text-medium h-28">了解rollup和webpack打包工具，了解loader、plugin原理及常见性能优化，能基于webpack搭建脚手架</div>
               <div class="img-box">
@@ -177,5 +177,16 @@ export default {
 .img-box img{
   width: 64px;
   height: 64px;
+}
+.scale-up-center:hover{
+  animation: scale-up-center 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+@keyframes scale-up-center {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
 }
 </style>
