@@ -7,7 +7,7 @@
           <div class="title" style="font-size: 32px;margin-bottom: 16px">
             {{ data.title }}
           </div>
-          <div class="summary">
+          <div class="summary h-12">
             {{ data.summary }}
           </div>
           <div class="mt-2">
@@ -29,13 +29,12 @@
     <el-row type="flex" class="mx-auto" justify="space-between" style="width: 79%">
       <el-col :xs="24" :sm="24" :md="17">
         <div class="article-left mt-4">
-          <el-card shadow="never">
+          <el-card shadow="never" class="content-box">
             <!-- 内容 -->
             <div class="article-content">
               <div class="markdown-body" v-html="data.htmlContent"></div>
             </div>
           </el-card>
-
           <!-- 评论区 -->
           <div class="commentArea mt-4">
             <el-card shadow="never">
@@ -57,23 +56,23 @@
                        :commentList="commentList"
               >
               </comment>
+              <div class="empty">
+                <el-empty v-if="commentList.length === 0" description="暂无回复，快来抢沙发吧~"></el-empty>
+              </div>
             </el-card>
           </div>
-
         </div>
       </el-col>
-
       <!-- 右侧-->
       <el-col class="hidden-sm-and-down" :md="6">
         <el-row>
           <el-col>
-            <affix :offset="80">
+            <affix :offset="120">
               <directory></directory>
             </affix>
           </el-col>
         </el-row>
       </el-col>
-
     </el-row>
   </div>
 </template>
@@ -168,8 +167,6 @@ export default {
   async asyncData({ params, app }) {
     // 获取笔记详情
     const {data} = await app.$getNoteById(params.id)
-    data.htmlContent = '<h1><a id=\"vueelementadmin__0\"></a>vue-element-admin 概述</h1>\n<p><a href=\"https://panjiachen.github.io/vue-element-admin\" target=\"_blank\">vue-element-admin</a> 是一个后台前端解决方案，它基于 <a href=\"https://github.com/vuejs/vue\" target=\"_blank\">vue</a> 和 <a href=\"https://github.com/ElemeFE/element\" target=\"_blank\">element-ui</a>实现。它使用了最新的前端技术栈，内置了 i18n 国际化解决方案，动态路由，权限验证，提炼了典型的业务模型，提供了丰富的功能组件，它可以帮助你快速搭建企业级中后台产品原型。</p>\n<p><a href=\"https://panjiachen.github.io/vue-element-admin\" target=\"_blank\">vue-element-admin</a> 定位是后台集成方案，不太适合当基础模板来进行二次开发，因为本项目集成了很多你可能用不到的功能，会造成不少的代码冗余。</p>\n<p>官方还提供了一套基础模板 <a href=\"https://github.com/PanJiaChen/vue-admin-template\" target=\"_blank\">vue-admin-template</a> ，我们基于它进行二次开发，想要什么功能或者组件就去 <code>vue-element-admin</code> 那里复制过来。</p>\n<h2>参考：</h2>\n<ul>\n<li>\n<p>官方文档 ：https://panjiachen.gitee.io/vue-element-admin-site/zh/</p>\n</li>\n<li>\n<p><a href=\"https://github.com/PanJiaChen/vue-element-admin\" target=\"_blank\">vue-element-admin</a> 脚手架:</p>\n<p>在线预览：https://panjiachen.gitee.io/vue-element-admin</p>\n<p><code>gitee</code>  ：https://gitee.com/mirrors/vue-element-admin</p>\n<p><code>github</code> ：https://github.com/PanJiaChen/vue-element-admin</p>\n</li>\n<li>\n<p><a href=\"https://github.com/PanJiaChen/vue-admin-template\" target=\"_blank\">vue-admin-template</a> 脚手架:</p>\n<p>在线预览：https://panjiachen.gitee.io/vue-admin-template</p>\n<p><code>github</code> 源码：https://github.com/PanJiaChen/vue-admin-template</p>\n</li>\n</ul>\n<p>参考官网配置：<br /><a href="https://cli.vuejs.org/zh/guide/html-and-static-assets.html#public-%E6%96%87%E4%BB%B6%E5%A4%B9" target="_blank">https://cli.vuejs.org/zh/guid…</a></p><p>需要设置<code>BASE_URL</code></p><pre><div class="hljs"><code class="lang-js">data () {  <span class="hljs-keyword">return</span> {    <span class="hljs-attr">publicPath</span>: process.env.BASE_URL  }}</code></div></pre><p>然后</p><pre><div class="hljs"><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-name">img</span> <span class="hljs-attr">:src</span>=<span class="hljs-string">"`${publicPath}my-image.png`"</span>&gt;</span></code></div></pre><p><mark>特别强调</mark></p>'
-
     // 将文章id保存到cookie中并更新浏览数，判断cookie中是否由对应id，有则不继续更新
     if (!app.$cookies.get(`article-view-${params.id}`)){
       const {code} = await app.$updateNoteViewCount(params.id)
@@ -188,11 +185,13 @@ export default {
 </script>
 
 <style scoped>
-
 .bg-img{
   width: 100%;
   height: 350px;
   background-image: url("assets/img/detail-head.jpeg");
   background-size: cover;
+}
+::v-deep.content-box .el-card__body {
+  padding: 10px;
 }
 </style>
