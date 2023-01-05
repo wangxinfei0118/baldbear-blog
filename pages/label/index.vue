@@ -16,8 +16,8 @@
               <div class="flex flex-wrap">
                 <nuxt-link v-for="label in category.labelList" :key="label.id" class="mb-2"
                            :to="{path: `/label/${label.id}`, query: {name: label.name}}">
-                  <el-tag size="small">
-                    {{ label.label }}
+                  <el-tag size="small" effect="plain" color="rgba(240,255,255,0.4)" class="text-white">
+                    {{ label.name }}
                   </el-tag>
                 </nuxt-link>
               </div>
@@ -74,11 +74,8 @@ export default {
 
 .el-tag {
   margin-right: 5px;
-  font-size: 16px;
-}
-
-.el-tag:hover {
-  border-bottom: 1px solid #345DC2;
+  font-size: 14px;
+  color: #F5FFFA;
 }
 
 .el-card {
