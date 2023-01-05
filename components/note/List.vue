@@ -85,7 +85,7 @@ export default {
     margin-top: 30px
 }
 ::v-deep.el-table tr{
-  background-color: rgba(181, 181, 181);
+  background-color: rgba(181, 181, 181,0.3);
 }
 
 .label-list .count {
