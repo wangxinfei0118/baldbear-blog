@@ -46,7 +46,7 @@
           <div class="list" style="width: 280px;" v-for="i in (4 - 6 % 4)" v-if="6 % 4 > 0"></div>
         </div>
         <el-button v-if="isMore" type="primary" :loading="loading" size="small" round @click="loadMore">{{ loading ? '加载中……' : '点击加载更多' }}</el-button>
-        <el-tag v-else type="danger">没有更多数据了……</el-tag>
+        <el-tag v-else type="info">没有更多数据了……</el-tag>
       </div>
     </div>
   </div>
@@ -67,7 +67,7 @@ export default {
       this.loading = true
       this.page.current++
       const {data} = await this.$getNoteList(this.page)
-      if (data.records && data.records.length>0){
+      if (data.records && data.records.length>0 && this.noteList.length<this.page.total){
         this.isMore = true
         this.noteList = this.noteList.concat(data.records)
       }
@@ -81,6 +81,7 @@ export default {
 
     const page = {current: 1, size: 8}
     const { data } = await app.$getNoteList(page)
+    page.total = data.total
     return {page, noteList: data.records}
 
   },
