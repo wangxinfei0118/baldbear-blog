@@ -94,7 +94,11 @@ export default {
   validate ({ params }) {
     return /^\d+$/.test(params.id)
   },
-
+  head(){
+    return {
+      title: this.data.title
+    }
+  },
   data(){
     return {
       // 当前登录用户id
