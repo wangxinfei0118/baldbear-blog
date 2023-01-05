@@ -37,8 +37,7 @@ const actions = {
   },
 
   // 退出登录
-  toLogout({commit}){
-    commit('resetUserState')
+  toLogout(){
     window.location.href = `http://localhost:7000/logout?redirectURL=${window.location.href}`
   }
 }
