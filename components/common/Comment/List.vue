@@ -12,9 +12,9 @@
         <div class="comment-f">
           <div>
             <!-- 作者 -->
-            <div class="nickname author font-medium">{{item.nickName}}</div>
+            <div class="nickname author font-medium" v-if="item.belowReply">{{item.nickName}} <span style="opacity: 0.6">回复</span> {{item.belowReply}}</div>
+            <div class="nickname author font-medium" v-else>{{item.nickName}}</div>
             <div v-if="item.userId === authorId" class="icon author">{{label}}</div>
-            <div class="date">{{item.createDate}}</div>
           </div>
         </div>
 
@@ -25,13 +25,14 @@
         </div>
 
         <!-- 回复按钮 -->
-        <div  class="reply-content reply-fa">
+        <div class="reply-content reply-fa">
           <div class="reply-font" >
               <!-- <img src="./img/icon/reply.png" class="icon-reply" /> -->
               <font v-if="userId && item.userId !== userId"  class="icon-reply icon-hf" @click="doReply(index)">
                 <i class="el-icon-s-comment"></i>回复</font>
               <font v-if="item.userId === userId"  class="icon-reply icon-hf" @click="removeComment(item.id)">
                 <i class="el-icon-delete-solid"></i>删除</font>
+            <font  class="icon-reply icon-hf date">发布于{{item.createDate}}</font>
           </div>
           <!-- replyMap 是否显示回复框 -->
           <div class="comment" :style="{width:commentWidth}" v-if="replyMap[index]" >
@@ -85,7 +86,7 @@
       </div>
 
       <!-- 子级评论 -->
-      <el-card v-if="item.children" shadow="never" class="ml-12">
+      <el-card v-if="item.children && item.children.length>0" shadow="never" class="ml-12">
         <list class="-m-4"
               :commentList="item.children" :parentName="item.nickName"
               :userId="userId" :authorId="authorId" :doChildSend="doChildSend" :doRemove="doRemove"
@@ -1044,19 +1045,18 @@ div:focus {
   border-radius: 5px;
   padding: 3px 6px;
   font-size: 12px;
-  font-weight: 400px;
+  font-weight: 400;
 }
 .date {
-  font-size: 12px;
-  margin-top: 5px;
-  color: grey;
+  margin-left: 12px;
 }
 .reply-content {
   word-wrap: break-word;
   width: 90%;
   font-size: 15px;
   line-height: 25px;
-  margin-left: 56px;
+  margin-left: 52px;
+  margin-top: -16px;
 }
 
 .reply-fa {
@@ -1064,8 +1064,9 @@ div:focus {
 }
 .reply-font {
   margin-bottom: 5px;
-  color: grey;
+  color: rgb(136, 136, 136);
   cursor: pointer;
+  font-size: 12px;
 }
 .children {
   padding-left: 40px;

@@ -1,11 +1,13 @@
 <template>
     <el-card class="box-card" shadow="never">
-        <el-divider>目录</el-divider>
-        <el-tree 
-            style="height:300px; overflow-y:scroll"
+      <div class="title" style="border-bottom: 1px solid rgb(228, 230, 235);height: 36px;margin-bottom: 8px">
+        目录
+      </div>
+        <el-tree
+          style="margin-bottom: 12px"
             ref="tree"
             id="tree"
-            :data="directories" 
+            :data="directories"
             @node-click="goAnchor"
             highlight-current
             default-expand-all
@@ -81,7 +83,7 @@
         // 每次滚动 滚动条调用此方法，标识当前所在的目录项为 isActive=true
         handleScroll() {
             //当前滚动条到顶部距离
-            let scrollTop = document.documentElement.scrollTop 
+            let scrollTop = document.documentElement.scrollTop
             // 循环出所在目录节点高亮显示
             this.directories.forEach((dir, index) => {
                  // 当前滚动距离大于某一目录项时，则高亮此节点
@@ -96,11 +98,11 @@
                         this.$refs.tree.setCurrentKey(child.id)
                     }
                 })
-            })    
+            })
             // 移动目录滚动条
             let nodeTop = this.$refs.tree.getCurrentKey() ? document.getElementById(this.$refs.tree.getCurrentKey()).offsetTop: 0
             document.getElementById('tree').scrollTop = nodeTop-100
-            
+
         },
         check(a, b){
             console.log('check',a,b)
@@ -108,20 +110,24 @@
     },
  }
  </script>
- <style >
-.el-card__body {
-    padding: 10px 10px;
+ <style scoped>
+::v-deep.box-card .el-card__body {
+    padding: 10px 16px;
 }
 
 /* 点击后灰色背景色，移动它其他节点时去除这个灰色 */
-.el-tree-node:focus>.el-tree-node__content{
-    background-color: #fff;
+::v-deep.el-tree .el-tree-node:focus>.el-tree-node__content{
+  background: transparent;
 }
-.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
-    background-color: #345dc2;
-    color: #fff;
+::v-deep.el-tree .el-tree-node__expand-icon{
+  display: none;
+}
+::v-deep.el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content {
+    background-color: transparent;
+    color: rgb(0, 127, 255);
     font-weight: 500;
     border-radius: 4px;
     margin-right: 10px;
 }
+
  </style>

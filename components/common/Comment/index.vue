@@ -312,6 +312,7 @@ div:focus {
 .comment-avatar {
   display: inline-block;
   vertical-align: top;
+  margin-right: 10px;
 }
 .emoj {
   /*width: 560px;*/
@@ -978,7 +979,7 @@ div:focus {
   text-align: left;
 }
 .hbl-comm {
-  padding: 40px;
+  padding: 20px;
 }
 
 .reply {
