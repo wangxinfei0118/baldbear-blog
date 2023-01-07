@@ -1,9 +1,9 @@
 <template>
     <div>
       <div class="head">
-        <div class="background" style="width: 100%;display: flex;flex-direction: column;align-items: center">
+        <div class="background w-full flex flex-col items-center">
           <div class="bg-img"></div>
-          <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center;justify-content: center">
+          <div class="head-card">
             <div class="title -mt-6" style="font-size: 32px">
               {{$route.query.name}}
             </div>
@@ -62,5 +62,18 @@ export default {
   height: 350px;
   background-image: url("assets/img/detail-head.jpeg");
   background-size: cover;
+}
+.head-card{
+  width: 60%;
+  height: 180px;
+  box-sizing: border-box;
+  padding: 24px 24px 0;
+  color: #fff;
+  background-color: hsla(0,0%,100%,.5);
+  border: 1px solid #f0f0f0;margin-top: -180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center
 }
 </style>

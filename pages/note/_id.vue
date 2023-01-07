@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="head">
-      <div class="background" style="width: 100%;display: flex;flex-direction: column;align-items: center">
+    <div class="note-head">
+      <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center">
-          <div class="title" style="font-size: 32px;margin-bottom: 16px">
+        <div class="head-card">
+          <div class="title">
             {{ data.title }}
           </div>
           <div class="summary h-12">
@@ -30,7 +30,7 @@
       <el-col :xs="24" :sm="24" :md="17">
         <div class="article-left mt-4">
           <el-card shadow="never" class="content-box">
-            <!-- 内容 -->
+            <!-- 笔记内容 -->
             <div class="article-content">
               <div class="markdown-body" v-html="data.htmlContent"></div>
             </div>
@@ -47,15 +47,12 @@
                   <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
                 </div>
               </div>
-              <!-- userId 当前登录用户id，userImage 当前登录用户头像，showComment 显示评论区
-              doSend 公共评论事件函数，doChidSend 回复评论事件函数, doRemove 删除 -->
               <comment :userId="userId" :userImage="userImage"
                        :authorId="data.userId"
                        :showComment="$store.state.userInfo ? true : false"
                        @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
                        :commentList="commentList"
-              >
-              </comment>
+              ></comment>
               <div class="empty">
                 <el-empty v-if="commentList.length === 0" description="暂无回复，快来抢沙发吧~"></el-empty>
               </div>
@@ -63,7 +60,7 @@
           </div>
         </div>
       </el-col>
-      <!-- 右侧-->
+      <!-- 目录固钉 -->
       <el-col class="hidden-sm-and-down" :md="6">
         <el-row>
           <el-col>
@@ -197,5 +194,22 @@ export default {
 }
 ::v-deep.content-box .el-card__body {
   padding: 10px;
+}
+.head-card{
+  width: 60%;
+  height: 180px;
+  box-sizing: border-box;
+  padding: 24px 24px 0;
+  color: #fff;
+  background-color: hsla(0,0%,100%,.5);
+  border: 1px solid #f0f0f0;
+  margin-top: -180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  font-size: 32px;
+  margin-bottom: 16px;
 }
 </style>

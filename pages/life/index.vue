@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="head">
-      <div class="background" style="width: 100%;display: flex;flex-direction: column;align-items: center">
+      <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center">
-          <div class="title" style="font-size: 32px;margin-bottom: 16px">
+        <div class="head-card">
+          <div class="title">
             生活沉闷，但跑起来一定有风
           </div>
           <div class="summary">
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="line" style="width: 70%;margin: 20px auto;position: relative;left: -30px">
+    <div class="line" style="width: 70%;margin: 20px auto">
       <el-timeline>
         <el-timeline-item :timestamp="item.createDate" placement="top" v-for="(item, index) in lifeList" :key="index">
           <div class="float-right" v-if="userId == 1">
@@ -22,7 +22,7 @@
           </div>
           <el-card style="width: 80%;margin-left: 8%;margin-top: 20px" shadow="hover">
             <div class="mb-2 text-home-title text-large">{{item.title}}</div>
-            <div v-html="item.htmlContent"></div>
+            <div v-html="item.htmlContent" class="leading-24"></div>
           </el-card>
         </el-timeline-item>
       </el-timeline>
@@ -80,5 +80,22 @@ export default {
 ::v-deep.el-timeline-item .el-timeline-item__timestamp{
   font-size: 32px;
   color: rgb(8, 151, 156);
+}
+.head-card{
+  width: 60%;
+  height: 180px;
+  box-sizing: border-box;
+  padding: 24px 24px 0;
+  color: #fff;
+  background-color: hsla(0,0%,100%,.5);
+  border: 1px solid #f0f0f0;
+  margin-top: -180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  font-size: 32px;
+  margin-bottom: 16px;
 }
 </style>

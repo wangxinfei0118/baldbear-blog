@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="head">
-      <div class="background" style="width: 100%;display: flex;flex-direction: column;align-items: center">
+    <div class="message-head">
+      <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card" style="width: 60%;height: 180px;box-sizing: border-box;padding: 24px 24px 0;color: #fff;background-color: hsla(0,0%,100%,.5);border: 1px solid #f0f0f0;margin-top: -180px;display: flex;flex-direction: column;align-items: center">
-          <div class="title" style="font-size: 32px;margin-bottom: 16px">
+        <div class="head-card">
+          <div class="title">
             向海风许愿，在山海相见
           </div>
           <div class="summary">
@@ -29,14 +29,11 @@
                        @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
                        :commentList="commentList"
                        :isMessage="true"
-              >
-              </comment>
+              ></comment>
             </el-card>
           </div>
-
       </el-col>
-
-      <!-- 右侧-->
+      <!-- 右侧卡片 -->
       <el-col class="hidden-sm-and-down" :md="6">
         <el-row>
           <el-col>
@@ -52,7 +49,6 @@
           </el-col>
         </el-row>
       </el-col>
-
     </el-row>
   </div>
 </template>
@@ -89,7 +85,6 @@ export default {
       })
     },
 
-    // 删除评论
     doRemove(id) {
       console.log(`删除评论id${id}`)
       this.$deleteCommentById(id).then(res =>{
@@ -104,9 +99,7 @@ export default {
 
   },
   async asyncData({ app }) {
-
     const {data: commentList} = await app.$getMessage()
-
     return {commentList}
   }
 }
@@ -118,5 +111,22 @@ export default {
   height: 350px;
   background-image: url("assets/img/detail-head.jpeg");
   background-size: cover;
+}
+.head-card{
+  width: 60%;
+  height: 180px;
+  box-sizing: border-box;
+  padding: 24px 24px 0;
+  color: #fff;
+  background-color: hsla(0,0%,100%,.5);
+  border: 1px solid #f0f0f0;
+  margin-top: -180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.title{
+  font-size: 32px;
+  margin-bottom: 16px
 }
 </style>
