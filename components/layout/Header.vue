@@ -6,13 +6,13 @@
           <img src="@/assets/img/logo.png" style="width: 180px">
         </el-col>
         <el-col class="hidden-sm-and-down" :span="15" style="display: flex;justify-content: start;align-items: center;margin-left: 22px">
-          <el-menu :default-active="activeRoute" class="menu" mode="horizontal" router>
+          <el-menu :default-active="activeRoute" class="menu" mode="horizontal" @select="handleSelect">
             <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="/label">标签</el-menu-item>
             <el-menu-item index="/life">生活</el-menu-item>
             <el-menu-item index="/about">关于我</el-menu-item>
             <el-menu-item index="/message">留言板</el-menu-item>
-            <el-menu-item index="/hi" disabled @click="notOpen">Hi,同学！</el-menu-item>
+            <el-menu-item index="/hi">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
         <el-col :xs="18" :span="5" style="display: flex;justify-content: end;align-items: center">
@@ -48,11 +48,19 @@ export default {
     }
   },
   methods:{
+    handleSelect(key){
+      if (key !== '/hi'){
+        this.$router.push(key)
+      }
+      else {
+        this.notOpen()
+      }
+    },
     handleCommand(command){
       switch (command){
         case 'note':
           // 新窗口打开
-          // routeData = this.$router.resolve('/article/edit')
+          // routeData = this.$router.resolve('/note/edit')
           // window.open(routeData.href,'_blank')
           this.$router.push('/note/edit')
           break;
@@ -72,10 +80,13 @@ export default {
     notOpen(){
       this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
         confirmButtonText: '确定',
+        callback: ()=>{
+          location.reload()
+        }
       });
     },
     handleScroll () {
-      const whiteList = ['/user','/note/edit','/life/edit']
+      const whiteList = ['/user','/note/edit','/life/edit','/404']
       if (window.scrollY >= 200 || whiteList.includes(this.$route.path)){
         this.isTransparent = false
       }
