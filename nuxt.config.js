@@ -15,6 +15,9 @@ export default {
       { rel: 'icon', type: 'image/png', href: '/favicon.png' }
     ]
   },
+  router: {
+    middleware: '404'
+  },
   /*
   ** Customize the progress-bar color
   */
