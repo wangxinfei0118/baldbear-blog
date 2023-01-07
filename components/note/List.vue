@@ -6,7 +6,7 @@
             style="width: 100%">
             <el-table-column width="180">
                 <template slot-scope="scope">
-                        <img style="width: 100%" src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Flmg.jj20.com%2Fup%2Fallimg%2Ftp09%2F210F2130512J47-0-lp.jpg&refer=http%3A%2F%2Flmg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1674108919&t=9531c288f275ec1e9eb3fadc6a07a48d">
+                        <img style="width: 100%" :src="scope.row.imageUrl">
                 </template>
             </el-table-column>
             <el-table-column>
@@ -20,7 +20,7 @@
                       {{ scope.row.summary }}
                     </div>
                     <div class="info">
-                        <i class="el-icon-date"></i> {{ getDateFormat( scope.row.updateDate ) }}
+                        <i class="el-icon-date"></i> {{ scope.row.updateDate }}
                       <i class="el-icon-chat-line-round"></i> {{ scope.row.chatCount }}
                       <i class="el-icon-view"></i> {{ scope.row.viewCount }}
                     </div>
