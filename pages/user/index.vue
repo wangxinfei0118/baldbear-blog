@@ -1,11 +1,9 @@
 <template>
   <div class="pt-32 px-20">
-    <!-- 个人信息 -->
     <el-row class="w-9/12 mx-auto" type="flex" justify="space-between">
       <el-col :span="5">
         <el-menu
           default-active="1"
-          class=""
           @select="changeItem">
           <el-menu-item index="1">
             <i class="el-icon-document"></i>
@@ -18,6 +16,7 @@
         </el-menu>
       </el-col>
       <el-col :span="19" class="ml-4">
+        <!-- 个人资料 -->
         <el-card shadow="never" v-if="activeItem === '1'">
           <div>个人资料</div>
           <div class="flex">
@@ -39,24 +38,12 @@
             </div>
           </div>
         </el-card>
+        <!-- 修改密码 -->
         <el-card shadow="never" v-if="activeItem === '2'">
           <div>修改密码</div>
-          <div>
-            <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm"/>
-          </div>
+          <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm"/>
         </el-card>
       </el-col>
-
-<!--            <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm"/>-->
-
-<!--            <el-tabs value="user" tab-position="left" type="card">-->
-<!--              <el-tab-pane label="修改个人资料" name="user">-->
-<!--                <user-edit :loading="loading" :formData="userInfo" @submitForm="submitUserForm"/>-->
-<!--              </el-tab-pane>-->
-<!--              <el-tab-pane label="修改密码" name="password">-->
-<!--                <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm"/>-->
-<!--              </el-tab-pane>-->
-<!--            </el-tabs>-->
     </el-row>
   </div>
 </template>
@@ -67,7 +54,6 @@ import UserPassword from '@/components/user/Password'
 export default {
   components: {UserEdit, UserPassword},
   middleware: 'auth',
-
   data() {
     return {
       loading: false,
@@ -130,34 +116,18 @@ export default {
       this.loading = false
     },
     changeItem(item){
-      console.log(item,'item')
       this.activeItem = item
     }
   },
 
   async asyncData({app, store}) {
-    // 1. 查询用户信息
     const userId = store.state.userInfo && store.state.userInfo.uid
     const {data: userInfo} = await app.$getUserInfo(userId)
-
     return {userInfo}
   },
 
 }
 </script>
 <style scoped>
-.main-top {
-  padding: 30px 0;
-}
 
-.info .name {
-  font-size: 18px;
-  font-weight: 500;
-  padding-top: 10px;
-}
-
-.info .meta-block {
-  font-size: 14px;
-  color: #969696;
-}
 </style>

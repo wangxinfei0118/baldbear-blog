@@ -1,9 +1,19 @@
 <template>
-  <div class="pt-20 mb-4">
-    <el-form ref="formData" :rules="rules" :model="formData" label-width="100px" label-position="right" style="margin-right: 100px">
+  <div class="pt-20">
+    <el-form
+      ref="formData"
+      :rules="rules"
+      :model="formData"
+      label-width="100px"
+      label-position="right"
+      style="margin-right: 100px"
+    >
       <el-form-item label="标题:" prop="title" >
-        <el-input v-model="formData.title" placeholder="请输入标题"
-                  maxlength="50" show-word-limit/>
+        <el-input v-model="formData.title"
+                  placeholder="请输入标题"
+                  maxlength="50" s
+                  how-word-limit
+        />
       </el-form-item>
       <el-form-item label="是否公开:" prop="ispublic">
         <el-radio-group v-model="formData.ispublic">
@@ -12,8 +22,14 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="内容:" prop="content">
-        <!-- 主体内容 -->
-        <mavon-editor ref="md" v-model="formData.mdContent" @change="getMdHtml"  @imgAdd="uploadContentImg" @imgDel="delContentImg"></mavon-editor>
+        <!-- markdown编辑器 -->
+        <mavon-editor
+          ref="md"
+          v-model="formData.mdContent"
+          @change="getMdHtml"
+          @imgAdd="uploadContentImg"
+          @imgDel="delContentImg"
+        ></mavon-editor>
       </el-form-item>
     </el-form>
     <div class="flex justify-center">
@@ -34,16 +50,6 @@ export default {
   },
 
   data() {
-    const validateLabel = (rule, value, callback) => {
-      if(value && value.length>5){
-        this.labelDisabled = true // 禁止点击
-        callback(new Error('最多可选5个标签'))
-      }else{
-        this.labelDisabled = false
-        callback()
-      }
-    }
-
     const validateContent = (rule, value, callback) => {
       if( this.formData.mdContent && this.formData.htmlContent ){// 有内容则放行
         callback()
@@ -53,22 +59,10 @@ export default {
     }
 
     return {
-
       rules: {
         title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
-        labelIds: [
-          { required: true, message: '请选择标签', trigger: 'blur' },
-          { validator: validateLabel, trigger: 'change' },
-        ],
         ispublic: [{ required: true, message: '请选择是否公开', trigger: 'change' }],
         content: [{ validator: validateContent, trigger: 'change' }]
-      },
-
-      formData:{
-        imageUrl: null,
-        userId: this.$store.state.userInfo.uid,
-        userImage: this.$store.state.userInfo.imageUrl,
-        nickName: this.$store.state.userInfo.nickName
       }
     }
   },
@@ -77,11 +71,8 @@ export default {
     submitForm(formName){
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          console.log(this.formData)
-          // 校验通过，提交数据
           this.submitData()
         } else {
-          // 验证不通过
           return false
         }
       })
@@ -89,18 +80,14 @@ export default {
 
     async submitData(){
       let res = null
-      // 由文章id则是新增，没有则新增
-      if (this.formData.id){
-        // 编辑
-        res = await this.$editNote(this.formData)
+      if (this.$route.query.id){
+        res = await this.$editLife(this.formData)
       }else {
-        // 新增
-        res = await this.$addNote(this.formData)
+        res = await this.$addLife(this.formData)
       }
       if (res.code === 20000) {
         this.$message.success('提交成功')
-        // 跳转到详情页
-        this.$router.push(`/article/${res.data}`)
+        this.$router.push(`/life`)
       }
       else{
         this.$message.error('提交失败')
@@ -114,7 +101,6 @@ export default {
       }
     },
 
-    // mdContent: md 内容，htmlContent：转成后的html
     getMdHtml(mdContent, htmlContent){
       this.formData.mdContent = mdContent
       this.formData.htmlContent = htmlContent
@@ -139,11 +125,16 @@ export default {
   },
 
   async asyncData({app, query}){
+    let formData = null
     // 若已存在则查询详情
     if (query.id){
-      const {data: formData} = await app.$getNoteById(query.id)
-      return {formData}
+      const {data} = await app.$getLifeById(query.id)
+      formData = data
     }
+    else {
+      formData = {}
+    }
+    return {formData}
   }
 }
 </script>

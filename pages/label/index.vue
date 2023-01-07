@@ -1,7 +1,7 @@
 <template>
   <div class="label-main">
     <div class="background">
-      <img src="@/assets/img/1.jpg" class="top-left">
+      <img src="@/assets/img/label-background.jpg" class="top-left">
     </div>
     <div class="absolute top-10 w-full">
       <el-row :gutter="10">
@@ -12,7 +12,6 @@
               <span>{{ category.name }}</span>
             </div>
             <!-- 类别下的标签 -->
-            <div class="flex justify-center w-full">
               <div class="flex flex-wrap">
                 <nuxt-link v-for="label in category.labelList" :key="label.id" class="mb-2"
                            :to="{path: `/label/${label.id}`, query: {name: label.name}}">
@@ -21,7 +20,6 @@
                   </el-tag>
                 </nuxt-link>
               </div>
-            </div>
           </el-card>
         </el-col>
       </el-row>
@@ -47,6 +45,7 @@ export default {
   overflow: hidden;
 }
 .background img{
+  object-fit: cover;
   height: 100vh;
   width: 100vw;
 }
@@ -82,7 +81,6 @@ export default {
   height: 200px;
   background-color: rgba(119,136,153,0.5);
   color: white;
-  text-align: center;
 }
 
 </style>

@@ -26,9 +26,8 @@
 </template>
 <script>
 export default {
-  // 接收父组件传递的属性
   props: {
-    loading: { // 是否点击确定按钮
+    loading: {
       type: Boolean,
       default: false
     },
@@ -46,14 +45,11 @@ export default {
   },
 
   methods: {
-    //提交表单
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // 校验通过，提交数据
           this.$emit('submitForm')
         } else {
-          // 验证不通过
           return false;
         }
       })
@@ -62,7 +58,6 @@ export default {
 
 
   data() {
-    // 在 return 上面进行申明自定校验
     const validateOldPassword = (rule, value, callback) => {
       if (!value || value.length < 6) {
         callback(new Error('请输入正确的原密码'))
@@ -102,7 +97,6 @@ export default {
     };
 
     return {
-      // 校验
       rules: {
         oldPassword: [
           {required: true, message: '原密码不能为空', trigger: 'blur'},

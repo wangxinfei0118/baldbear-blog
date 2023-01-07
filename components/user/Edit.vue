@@ -50,14 +50,11 @@ export default {
   },
 
   methods: {
-    //提交表单
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          // 校验通过，提交数据
           this.$emit('submitForm')
         } else {
-          // 验证不通过
           return false;
         }
       })
