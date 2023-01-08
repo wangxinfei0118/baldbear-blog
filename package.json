@@ -5,9 +5,9 @@
   "author": "wxf",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "cross-env NODE_ENV=dev nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "start": "cross-env NODE_ENV=prod nuxt start",
     "generate": "nuxt generate"
   },
   "dependencies": {
@@ -19,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^4.2.1",
+    "cross-env": "^7.0.3",
     "prettier": "^2.8.2"
   }
 }
