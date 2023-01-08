@@ -6,19 +6,14 @@
       :model="formData"
       label-width="100px"
       label-position="right"
-      style="margin-right: 100px"
-    >
-      <el-form-item label="标题:" prop="title" >
-        <el-input v-model="formData.title"
-                  placeholder="请输入标题"
-                  maxlength="50" s
-                  how-word-limit
-        />
+      style="margin-right: 100px">
+      <el-form-item label="标题:" prop="title">
+        <el-input v-model="formData.title" placeholder="请输入标题" maxlength="50" s how-word-limit />
       </el-form-item>
       <el-form-item label="是否公开:" prop="ispublic">
         <el-radio-group v-model="formData.ispublic">
-          <el-radio :label="0" >不公开 </el-radio>
-          <el-radio :label="1" >公开 </el-radio>
+          <el-radio :label="0">不公开</el-radio>
+          <el-radio :label="1">公开</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="内容:" prop="content">
@@ -28,8 +23,7 @@
           v-model="formData.mdContent"
           @change="getMdHtml"
           @imgAdd="uploadContentImg"
-          @imgDel="delContentImg"
-        ></mavon-editor>
+          @imgDel="delContentImg"></mavon-editor>
       </el-form-item>
     </el-form>
     <div class="flex justify-center">
@@ -48,16 +42,15 @@ export default {
     }
     return true
   },
-
   data() {
     const validateContent = (rule, value, callback) => {
-      if( this.formData.mdContent && this.formData.htmlContent ){// 有内容则放行
+      if (this.formData.mdContent && this.formData.htmlContent) {
+        // 有内容则放行
         callback()
-      }else{
+      } else {
         callback(new Error('请求输入文章内容'))
       }
     }
-
     return {
       rules: {
         title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
@@ -66,9 +59,8 @@ export default {
       }
     }
   },
-
-  methods:{
-    submitForm(formName){
+  methods: {
+    submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.submitData()
@@ -77,64 +69,56 @@ export default {
         }
       })
     },
-
-    async submitData(){
+    async submitData() {
       let res = null
-      if (this.$route.query.id){
+      if (this.$route.query.id) {
         res = await this.$editLife(this.formData)
-      }else {
+      } else {
         res = await this.$addLife(this.formData)
       }
       if (res.code === 20000) {
         this.$message.success('提交成功')
         this.$router.push(`/life`)
-      }
-      else{
+      } else {
         this.$message.error('提交失败')
       }
     },
-
     // 删除主图, 上传成功和关闭窗口调用删除上一次上传的图片
     deleteImg() {
-      if (this.formData.imageUrl){
+      if (this.formData.imageUrl) {
         this.$deleteImg(this.formData.imageUrl)
       }
     },
-
-    getMdHtml(mdContent, htmlContent){
+    getMdHtml(mdContent, htmlContent) {
       this.formData.mdContent = mdContent
       this.formData.htmlContent = htmlContent
     },
-
-    uploadContentImg(pos, file){
-      const  fd = new FormData()
-      fd.append('file',file)
-      this.$uploadImg(fd).then(res =>{
-        if (res.code ===20000){
+    uploadContentImg(pos, file) {
+      const fd = new FormData()
+      fd.append('file', file)
+      this.$uploadImg(fd).then((res) => {
+        if (res.code === 20000) {
           //上传成功，回显图片
           this.$refs.md.$img2Url(pos, res.data)
         }
       })
     },
-
-    delContentImg(urlAndFileArr){
+    delContentImg(urlAndFileArr) {
       const fileUrl = urlAndFileArr[0] // 文件URL
       const file = urlAndFileArr[1] // File对象
       this.$deleteImg(fileUrl)
     }
   },
-
-  async asyncData({app, query}){
+  async asyncData({ app, query }) {
     let formData = null
     // 若已存在则查询详情
-    if (query.id){
-      const {data} = await app.$getLifeById(query.id)
+    if (query.id) {
+      const { data } = await app.$getLifeById(query.id)
       formData = data
-    }
-    else {
+    } else {
       formData = {}
     }
-    return {formData}
+    return { formData }
   }
 }
 </script>
@@ -148,7 +132,7 @@ export default {
   overflow: hidden;
 }
 .avatar-uploader .el-upload:hover {
-  border-color: #409EFF;
+  border-color: #409eff;
 }
 .avatar-uploader-icon {
   font-size: 28px;

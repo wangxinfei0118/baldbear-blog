@@ -1,13 +1,7 @@
 <template>
   <div>
-    <el-row type="flex" justify="center" style="padding-top:30px">
-      <el-form
-        :rules="rules"
-        ref="formData"
-        :model="formData"
-        label-width="100px"
-        style="width: 400px;"
-        status-icon>
+    <el-row type="flex" justify="center" style="padding-top: 30px">
+      <el-form :rules="rules" ref="formData" :model="formData" label-width="100px" style="width: 400px" status-icon>
         <el-form-item label="原密码：" prop="oldPassword">
           <el-input type="password" placeholder="请输入原密码" v-model="formData.oldPassword"></el-input>
         </el-form-item>
@@ -43,40 +37,38 @@ export default {
       }
     }
   },
-
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.$emit('submitForm')
         } else {
-          return false;
+          return false
         }
       })
     }
   },
-
-
   data() {
     const validateOldPassword = (rule, value, callback) => {
       if (!value || value.length < 6) {
         callback(new Error('请输入正确的原密码'))
       }
       // 发送请求校验原密码
-      const data = {userId: this.$store.state.userInfo.uid, oldPassword: value}
-      this.$checkOldPassword(data).then(response => {
-        // 校验通过
-        if (response.code === 20000) {
-          callback()
-        } else {
-          callback(new Error(response.message))
-        }
-      }).catch(error => {
-        // 校验失败
-        callback(new Error('原密码校验异常，请稍后重试'))
-      })
-    };
-
+      const data = { userId: this.$store.state.userInfo.uid, oldPassword: value }
+      this.$checkOldPassword(data)
+        .then((response) => {
+          // 校验通过
+          if (response.code === 20000) {
+            callback()
+          } else {
+            callback(new Error(response.message))
+          }
+        })
+        .catch((error) => {
+          // 校验失败
+          callback(new Error('原密码校验异常，请稍后重试'))
+        })
+    }
     // 校验新密码
     const validatePassword = (rule, value, callback) => {
       console.log('value', value)
@@ -85,8 +77,7 @@ export default {
       } else {
         callback()
       }
-    };
-
+    }
     // 校验确认密码是否一致
     const validateRepPassword = (rule, value, callback) => {
       if (value !== this.formData.newPassword) {
@@ -94,26 +85,23 @@ export default {
       } else {
         callback()
       }
-    };
-
+    }
     return {
       rules: {
         oldPassword: [
-          {required: true, message: '原密码不能为空', trigger: 'blur'},
-          {validator: validateOldPassword, trigger: 'blur'}
+          { required: true, message: '原密码不能为空', trigger: 'blur' },
+          { validator: validateOldPassword, trigger: 'blur' }
         ],
         newPassword: [
-          {required: true, message: '新密码不能为空', trigger: 'blur'},
-          {validator: validatePassword, trigger: 'blur'}
+          { required: true, message: '新密码不能为空', trigger: 'blur' },
+          { validator: validatePassword, trigger: 'blur' }
         ],
         repPassword: [
-          {required: true, message: '确认密码不能为空', trigger: 'blur'},
-          {validator: validateRepPassword, trigger: ['change', 'blur']}
+          { required: true, message: '确认密码不能为空', trigger: 'blur' },
+          { validator: validateRepPassword, trigger: ['change', 'blur'] }
         ]
       }
     }
-  },
-
+  }
 }
 </script>
-

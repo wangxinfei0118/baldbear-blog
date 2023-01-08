@@ -11,9 +11,18 @@
             {{ data.summary }}
           </div>
           <div class="mt-2">
-            <el-tag size="mini"><i class="el-icon-time"></i> {{ data.createDate }}</el-tag>
-            <el-tag size="mini" type="success"><i class="el-icon-chat-line-round"></i> {{ data.chatCount }}</el-tag>
-            <el-tag size="mini" type="warning"><i class="el-icon-view"></i> {{ data.viewCount }}</el-tag>
+            <el-tag size="mini">
+              <i class="el-icon-time"></i>
+              {{ data.createDate }}
+            </el-tag>
+            <el-tag size="mini" type="success">
+              <i class="el-icon-chat-line-round"></i>
+              {{ data.chatCount }}
+            </el-tag>
+            <el-tag size="mini" type="warning">
+              <i class="el-icon-view"></i>
+              {{ data.viewCount }}
+            </el-tag>
           </div>
         </div>
       </div>
@@ -43,16 +52,19 @@
               <div v-if="!$store.state.userInfo" class="flex flex-col items-center">
                 <div class="text-medium">登录后参与交流、获取后续更新提醒</div>
                 <div class="mt-2">
-                  <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" >登录</el-button>
+                  <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small">登录</el-button>
                   <el-button @click="$store.dispatch('toLoginPage')" type="primary" size="small" plain>注册</el-button>
                 </div>
               </div>
-              <comment :userId="userId" :userImage="userImage"
-                       :authorId="data.userId"
-                       :showComment="$store.state.userInfo ? true : false"
-                       @doSend="doSend" @doChildSend="doChildSend" @doRemove="doRemove"
-                       :commentList="commentList"
-              ></comment>
+              <comment
+                :userId="userId"
+                :userImage="userImage"
+                :authorId="data.userId"
+                :showComment="$store.state.userInfo ? true : false"
+                @doSend="doSend"
+                @doChildSend="doChildSend"
+                @doRemove="doRemove"
+                :commentList="commentList"></comment>
               <div class="empty">
                 <el-empty v-if="commentList.length === 0" description="暂无回复，快来抢沙发吧~"></el-empty>
               </div>
@@ -75,28 +87,28 @@
 </template>
 
 <script>
-import "assets/css/md/github-min.css";
-import "assets/css/md/github-markdown.css";
-import Comment from "@/components/common/Comment";
-import Affix from "@/components/common/Affix";
-import Directory from "@/components/common/Directory";
+import 'assets/css/md/github-min.css'
+import 'assets/css/md/github-markdown.css'
+import Comment from '@/components/common/Comment'
+import Affix from '@/components/common/Affix'
+import Directory from '@/components/common/Directory'
 
 export default {
-  components:{
+  components: {
     Comment,
     Affix,
     Directory
   },
   // 校验路由参数合法性
-  validate ({ params }) {
+  validate({ params }) {
     return /^\d+$/.test(params.id)
   },
-  head(){
+  head() {
     return {
       title: this.data.title
     }
   },
-  data(){
+  data() {
     return {
       // 当前登录用户id
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
@@ -109,7 +121,6 @@ export default {
       // 提交评论：评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
       this.doChildSend(content)
     },
-
     // 发布回复评论触发
     doChildSend(content, parentId = -1) {
       // 回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
@@ -120,95 +131,91 @@ export default {
         articleId: this.$route.params.id,
         userId: this.userId,
         userImage: this.userImage,
-        nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName,
+        nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName
       }
-      this.$addComment(data).then(res =>{
-        if (res.code === 20000){
+      this.$addComment(data).then((res) => {
+        if (res.code === 20000) {
           this.refreshComment()
         }
       })
     },
-
     // 删除评论
     doRemove(id) {
       console.log(`删除评论id${id}`)
-      this.$deleteCommentById(id).then(res =>{
+      this.$deleteCommentById(id).then((res) => {
         this.refreshComment()
       })
     },
-
-    async refreshComment(){
-      const {data} = await this.$getCommentListByNoteId(this.$route.params.id)
+    async refreshComment() {
+      const { data } = await this.$getCommentListByNoteId(this.$route.params.id)
       this.commentList = data
     },
-    editNote(){
+    editNote() {
       this.$router.push(`/note/edit?id=${this.$route.params.id}`)
     },
-    deleteNote(){
+    deleteNote() {
       this.$confirm('是否删除该笔记?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
-      }).then(() => {
-        this.$deleteNote(this.$route.params).then(()=>{
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
+      })
+        .then(() => {
+          this.$deleteNote(this.$route.params).then(() => {
+            this.$message({
+              type: 'success',
+              message: '删除成功!'
+            })
+          })
         })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        });
-      });
+        .catch(() => {
+          this.$message({
+            type: 'info',
+            message: '已取消删除'
+          })
+        })
     }
   },
-
   async asyncData({ params, app }) {
     // 获取笔记详情
-    const {data} = await app.$getNoteById(params.id)
+    const { data } = await app.$getNoteById(params.id)
     // 将文章id保存到cookie中并更新浏览数，判断cookie中是否由对应id，有则不继续更新
-    if (!app.$cookies.get(`article-view-${params.id}`)){
-      const {code} = await app.$updateNoteViewCount(params.id)
-      if (code === 20000){
+    if (!app.$cookies.get(`article-view-${params.id}`)) {
+      const { code } = await app.$updateNoteViewCount(params.id)
+      if (code === 20000) {
         data.viewCount++
-        app.$cookies.set(`article-view-${params.id}`,true)
+        app.$cookies.set(`article-view-${params.id}`, true)
       }
     }
-
-    const {data: commentList} = await app.$getCommentListByNoteId(params.id)
-
-    return {data, commentList}
+    const { data: commentList } = await app.$getCommentListByNoteId(params.id)
+    return { data, commentList }
   }
-
 }
 </script>
 
 <style scoped>
-.bg-img{
+.bg-img {
   width: 100%;
   height: 350px;
-  background-image: url("assets/img/detail-head.jpeg");
+  background-image: url('assets/img/detail-head.jpeg');
   background-size: cover;
 }
 ::v-deep.content-box .el-card__body {
   padding: 10px;
 }
-.head-card{
+.head-card {
   width: 60%;
   height: 180px;
   box-sizing: border-box;
   padding: 24px 24px 0;
   color: #fff;
-  background-color: hsla(0,0%,100%,.5);
+  background-color: hsla(0, 0%, 100%, 0.5);
   border: 1px solid #f0f0f0;
   margin-top: -180px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.title{
+.title {
   font-size: 32px;
   margin-bottom: 16px;
 }

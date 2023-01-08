@@ -4,12 +4,8 @@
       <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
         <div class="head-card">
-          <div class="title">
-            寂静生长，默然坚强
-          </div>
-          <div class="summary">
-            走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。
-          </div>
+          <div class="title">寂静生长，默然坚强</div>
+          <div class="summary">走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。</div>
         </div>
       </div>
     </div>
@@ -21,7 +17,7 @@
           </div>
           <el-divider></el-divider>
           <div class="title">
-            <img src="@/assets/img/jiaoyu.svg" width="20" class="inline mb-1">
+            <img src="@/assets/img/jiaoyu.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">教育经历</span>
             <el-collapse class="ml-3">
               <el-collapse-item>
@@ -41,7 +37,7 @@
             </el-collapse>
           </div>
           <div class="title mt-2">
-            <img src="@/assets/img/gongzuo.svg" width="20" class="inline mb-1">
+            <img src="@/assets/img/gongzuo.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">工作经历</span>
             <el-collapse class="ml-3">
               <el-collapse-item>
@@ -54,14 +50,16 @@
                 <ul style="list-style-type: circle">
                   <li>1. 参与 pc 端及 h5 项目新旧版功能迁移，根据需求完成新版相应页面及功能的开发任务</li>
                   <li>2. 使用 uniapp 结合 uview 进行 app 及小程序项目的跨端开发，兼容 Android 和 ios</li>
-                  <li>3. 维护项目的 ui 组件库及字体图标库，并基于 rollup 和 svg2 封装 svg 管理工具，实现 svg 格式转换，样式修改，
-                    stroke 转 fill 等功能，解决字体图标不支持 stroke 及 path 多色填充问题，使 svg 更好的兼容字体图标</li>
+                  <li>
+                    3. 维护项目的 ui 组件库及字体图标库，并基于 rollup 和 svg2 封装 svg 管理工具，实现 svg 格式转换，样式修改，
+                    stroke 转 fill 等功能，解决字体图标不支持 stroke 及 path 多色填充问题，使 svg 更好的兼容字体图标
+                  </li>
                 </ul>
               </el-collapse-item>
             </el-collapse>
           </div>
           <div class="title mt-2">
-            <img src="@/assets/img/xiangmu.svg" width="20" class="inline mb-1">
+            <img src="@/assets/img/xiangmu.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">项目经历</span>
             <el-collapse class="ml-3">
               <el-collapse-item>
@@ -71,12 +69,20 @@
                     <div>2022.11-2023.01</div>
                   </div>
                 </template>
-                <div>项目描述：该项目是基于nuxt.js的SSR个人博客，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化</div>
+                <div>
+                  项目描述：该项目是基于nuxt.js的SSR个人博客，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化
+                </div>
                 <div>项目职责：</div>
                 <div>1.引入mavon-editor进行md文档的编辑，并配置白名单进行html标签过滤处理来预防xss攻击</div>
-                <div>2.通过媒体查询实现页面的响应式布局，定义rem.js根据屏幕大小计算fontsize，并通过pxtorem实现rem自动转换，解决移动端适配问题</div>
-                <div>3.抽取目录固钉、评论区等公共组件，获取h1、h2标签生成目录对象，通过监听滚动条事件实现滚动高亮及文章锚点定位</div>
-                <div>4.代码整体优化，合理使用meta、语义化标签，alt、nofollow属性，并生成robots.txt与sitemap，进一步进行项目的seo优化</div>
+                <div>
+                  2.通过媒体查询实现页面的响应式布局，定义rem.js根据屏幕大小计算fontsize，并通过pxtorem实现rem自动转换，解决移动端适配问题
+                </div>
+                <div>
+                  3.抽取目录固钉、评论区等公共组件，获取h1、h2标签生成目录对象，通过监听滚动条事件实现滚动高亮及文章锚点定位
+                </div>
+                <div>
+                  4.代码整体优化，合理使用meta、语义化标签，alt、nofollow属性，并生成robots.txt与sitemap，进一步进行项目的seo优化
+                </div>
               </el-collapse-item>
               <el-collapse-item>
                 <template slot="title">
@@ -85,11 +91,15 @@
                     <div>2022.11-2022.12</div>
                   </div>
                 </template>
-                <div>项目描述：该项目是基于同域cookie的单点登录认证客户端，多应用可以在认证客户端进行统一身份认证，实现用户状态在多个应用中共享</div>
+                <div>
+                  项目描述：该项目是基于同域cookie的单点登录认证客户端，多应用可以在认证客户端进行统一身份认证，实现用户状态在多个应用中共享
+                </div>
                 <div>项目职责：</div>
                 <div>1.实现多应用统一登录、注册、退出功能，拦截页面跳转进行身份认证，并重定向指定页面</div>
                 <div>2.封装cookie.js管理cookie，根据执行环境将cookie存储到顶级域名下，实现token及用户状态在子域中的共享</div>
-                <div>3.通过拦截401状态码，发送refresh_token进行token刷新，并用promise.all缓冲用户请求队列，实现用户状态的无感刷新</div>
+                <div>
+                  3.通过拦截401状态码，发送refresh_token进行token刷新，并用promise.all缓冲用户请求队列，实现用户状态的无感刷新
+                </div>
               </el-collapse-item>
               <el-collapse-item>
                 <template slot="title">
@@ -98,8 +108,10 @@
                     <div>2022.08-2022.11</div>
                   </div>
                 </template>
-                <div>项目描述：该项目是基于vue3+typescript+element-plus+vant开发的校园生活网站，主要功能包括校园
-                  小调查、每日新鲜事、失物招领、跳瘙市场，校园讨论区等，为学生提供一个服务与交流的平台</div>
+                <div>
+                  项目描述：该项目是基于vue3+typescript+element-plus+vant开发的校园生活网站，主要功能包括校园
+                  小调查、每日新鲜事、失物招领、跳瘙市场，校园讨论区等，为学生提供一个服务与交流的平台
+                </div>
                 <div>项目职责：</div>
                 <div>1.配置postcss，结合tailwind实现项目样式主题自定义，并配置postcss-pxtorem 实现h5rem适配</div>
                 <div>2.使用自定义指令绑定权限，对用户操作进行限制，封装自定义hooks，实现组合式函数封装与复用</div>
@@ -112,49 +124,59 @@
         </el-col>
         <el-col :span="12">
           <div class="flex justify-around flex-wrap">
-            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
+            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
               <div>Vue</div>
-              <div class="text-home-title text-medium h-28">掌握vue及其相关生态，熟悉vue2内部原理，掌握vue3组合式api及setup语法糖，有多个完整的vue项目开发经验</div>
+              <div class="text-home-title text-medium h-28">
+                掌握vue及其相关生态，熟悉vue2内部原理，掌握vue3组合式api及setup语法糖，有多个完整的vue项目开发经验
+              </div>
               <div class="img-box">
-                <img src="@/assets/img/vue.svg">
-                <img src="@/assets/img/vuex.svg">
-                <img src="@/assets/img/pinia.svg">
+                <img src="@/assets/img/vue.svg" />
+                <img src="@/assets/img/vuex.svg" />
+                <img src="@/assets/img/pinia.svg" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
+            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
               <div>H5C3</div>
-              <div class="text-home-title text-medium h-28">掌握html5、css3，熟悉less、scss等预处理语言及tailwind、pxtorem等postcss插件的使用配置，掌握常用的前端页面布局</div>
+              <div class="text-home-title text-medium h-28">
+                掌握html5、css3，熟悉less、scss等预处理语言及tailwind、pxtorem等postcss插件的使用配置，掌握常用的前端页面布局
+              </div>
               <div class="img-box">
-                <img src="@/assets/img/html.svg">
-                <img src="@/assets/img/css.svg">
-                <img src="@/assets/img/postcss.svg">
+                <img src="@/assets/img/html.svg" />
+                <img src="@/assets/img/css.svg" />
+                <img src="@/assets/img/postcss.svg" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
+            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
               <div>小程序</div>
-              <div class="text-home-title text-medium h-28">熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历</div>
+              <div class="text-home-title text-medium h-28">
+                熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历
+              </div>
               <div class="img-box">
-                <img src="@/assets/img/mp-weixin.svg">
-                <img src="@/assets/img/uniapp.png">
-                <img src="@/assets/img/uview.png">
+                <img src="@/assets/img/mp-weixin.svg" />
+                <img src="@/assets/img/uniapp.png" />
+                <img src="@/assets/img/uview.png" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px" class="scale-up-center">
+            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
               <div>脚本语言</div>
-              <div class="text-home-title text-medium h-28">掌握js、es6语法、dom操作，熟悉typescript，了解node.js及express，可快速进行页面交互、接口及数据处理，并有npm包开发经历</div>
+              <div class="text-home-title text-medium h-28">
+                掌握js、es6语法、dom操作，熟悉typescript，了解node.js及express，可快速进行页面交互、接口及数据处理，并有npm包开发经历
+              </div>
               <div class="img-box">
-                <img src="@/assets/img/javascript.svg">
-                <img src="@/assets/img/typescript.svg">
-                <img src="@/assets/img/express.png">
+                <img src="@/assets/img/javascript.svg" />
+                <img src="@/assets/img/typescript.svg" />
+                <img src="@/assets/img/express.png" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px;width: 240px;margin-top: -360px" class="scale-up-center">
+            <el-card shadow="hover" style="height: 240px; width: 240px; margin-top: -360px" class="scale-up-center">
               <div>前端工程化</div>
-              <div class="text-home-title text-medium h-28">了解rollup、webpack及vite等打包工具，掌握loader、plugin原理及常见性能优化，能基于webpack搭建脚手架</div>
+              <div class="text-home-title text-medium h-28">
+                了解rollup、webpack及vite等打包工具，掌握loader、plugin原理及常见性能优化，能基于webpack搭建脚手架
+              </div>
               <div class="img-box">
-                <img src="@/assets/img/webpack.svg">
-                <img src="@/assets/img/rollup.svg">
-                <img src="@/assets/img/vite.svg">
+                <img src="@/assets/img/webpack.svg" />
+                <img src="@/assets/img/rollup.svg" />
+                <img src="@/assets/img/vite.svg" />
               </div>
             </el-card>
           </div>
@@ -165,51 +187,49 @@
 </template>
 
 <script>
-export default {
-
-}
+export default {}
 </script>
 
 <style scoped>
-.bg-img{
+.bg-img {
   width: 100%;
   height: 350px;
-  background-image: url("assets/img/detail-head.jpeg");
+  background-image: url('assets/img/detail-head.jpeg');
   background-size: cover;
 }
-.head-card{
+.head-card {
   width: 60%;
   height: 180px;
   box-sizing: border-box;
   padding: 24px 24px 0;
   color: #fff;
-  background-color: hsla(0,0%,100%,.5);
+  background-color: hsla(0, 0%, 100%, 0.5);
   border: 1px solid #f0f0f0;
   margin-top: -180px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.title{
+.title {
   font-size: 32px;
-  margin-bottom: 16px
+  margin-bottom: 16px;
 }
-.el-collapse{
+.el-collapse {
   border: none;
 }
-::v-deep.el-collapse-item .el-collapse-item__header{
+::v-deep.el-collapse-item .el-collapse-item__header {
   border: none;
 }
-.img-box{
+.img-box {
   display: flex;
   justify-content: space-between;
 }
-.img-box img{
+.img-box img {
   width: 64px;
   height: 64px;
 }
-.scale-up-center:hover{
-  animation: scale-up-center 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+.scale-up-center:hover {
+  animation: scale-up-center 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
 @keyframes scale-up-center {
   0% {

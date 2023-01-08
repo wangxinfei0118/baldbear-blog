@@ -2,10 +2,13 @@
   <div :class="isTransparent ? 'transparent header' : 'header'">
     <div class="nav">
       <el-row type="flex" justify="space-between" style="height: 100%">
-        <el-col :span="4" style="display: flex;justify-content: center;align-items: center">
-          <img src="@/assets/img/logo.png" style="width: 180px">
+        <el-col :span="4" style="display: flex; justify-content: center; align-items: center">
+          <img src="@/assets/img/logo.png" style="width: 180px" />
         </el-col>
-        <el-col class="hidden-sm-and-down" :span="15" style="display: flex;justify-content: start;align-items: center;margin-left: 22px">
+        <el-col
+          class="hidden-sm-and-down"
+          :span="15"
+          style="display: flex; justify-content: start; align-items: center; margin-left: 22px">
           <el-menu :default-active="activeRoute" class="menu" mode="horizontal" @select="handleSelect">
             <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="/label">标签</el-menu-item>
@@ -15,16 +18,16 @@
             <el-menu-item index="/hi">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
-        <el-col :xs="18" :span="5" style="display: flex;justify-content: end;align-items: center">
+        <el-col :xs="18" :span="5" style="display: flex; justify-content: end; align-items: center">
           <div class="nav-sign mr-4">
             <div v-if="!userInfo">
               <el-button type="text" @click="$store.dispatch('toLoginPage')">登录</el-button>
               <el-button type="primary" round size="small" @click="$store.dispatch('toLoginPage')">注册</el-button>
             </div>
             <el-dropdown trigger="click" @command="handleCommand" v-if="userInfo">
-            <span class="el-dropdown-link">
-             <el-avatar :src="userInfo.imageUrl"></el-avatar>
-            </span>
+              <span class="el-dropdown-link">
+                <el-avatar :src="userInfo.imageUrl"></el-avatar>
+              </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="note" v-if="userInfo.uid == 1">写笔记</el-dropdown-item>
                 <el-dropdown-item command="life" v-if="userInfo.uid == 1">写日常</el-dropdown-item>
@@ -41,77 +44,75 @@
 
 <script>
 export default {
-  name: "Header",
-  data(){
-    return{
-      isTransparent:true
+  name: 'Header',
+  data() {
+    return {
+      isTransparent: true
     }
   },
-  methods:{
-    handleSelect(key){
-      if (key !== '/hi'){
+  methods: {
+    handleSelect(key) {
+      if (key !== '/hi') {
         this.$router.push(key)
-      }
-      else {
+      } else {
         this.notOpen()
       }
     },
-    handleCommand(command){
-      switch (command){
+    handleCommand(command) {
+      switch (command) {
         case 'note':
           // 新窗口打开
           // routeData = this.$router.resolve('/note/edit')
           // window.open(routeData.href,'_blank')
           this.$router.push('/note/edit')
-          break;
+          break
         case 'life':
           this.$router.push('/life/edit')
-          break;
+          break
         case 'user':
           this.$router.push('/user')
-          break;
+          break
         case 'logout':
           this.$store.dispatch('toLogout')
-          break;
+          break
         default:
-          break;
+          break
       }
     },
-    notOpen(){
+    notOpen() {
       this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
         confirmButtonText: '确定',
-        callback: ()=>{
+        callback: () => {
           location.reload()
         }
-      });
+      })
     },
-    handleScroll () {
-      const whiteList = ['/user','/note/edit','/life/edit','/404']
-      if (window.scrollY >= 200 || whiteList.includes(this.$route.path)){
+    handleScroll() {
+      const whiteList = ['/user', '/note/edit', '/life/edit', '/404']
+      if (window.scrollY >= 200 || whiteList.includes(this.$route.path)) {
         this.isTransparent = false
-      }
-      else {
+      } else {
         this.isTransparent = true
       }
     }
   },
-  computed:{
-    userInfo(){
+  computed: {
+    userInfo() {
       return this.$store.state.userInfo
     },
-    activeRoute(){
+    activeRoute() {
       // 解决当访问子路由menu不选中的问题
       let routePath = this.$route.matched[0].path || '/'
       // 从第2个字符开始往后找是否存在 / , 有子路由，截取一级路由地址
-      if(routePath.indexOf('/', 1) !== -1) {
+      if (routePath.indexOf('/', 1) !== -1) {
         routePath = routePath.substring(0, routePath.indexOf('/', 1))
       }
       return routePath.indexOf('/note') !== -1 ? '/' : routePath
     }
   },
-  created () {
+  created() {
     if (process.client) {
-      window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('scroll', this.handleScroll)
     }
   },
   mounted() {
@@ -120,33 +121,33 @@ export default {
   updated() {
     this.handleScroll()
   },
-  destroyed () {
+  destroyed() {
     if (process.client) {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll)
     }
   }
 }
 </script>
 
 <style scoped>
-.header{
+.header {
   width: 100%;
   height: 62px;
-  background-color: rgba(76, 76, 76,0.9);
+  background-color: rgba(76, 76, 76, 0.9);
   z-index: 9999;
   position: fixed;
 }
-.nav{
+.nav {
   height: 100%;
 }
-.transparent{
+.transparent {
   background-color: transparent !important;
 }
-.el-menu{
+.el-menu {
   background-color: transparent;
   border-bottom: none;
 }
-.el-menu-item{
+.el-menu-item {
   background-color: transparent;
   border-radius: 0;
   font-size: 15px;
@@ -156,17 +157,19 @@ export default {
   width: 88px;
   text-align: center;
 }
-.el-menu-item.is-active{
+.el-menu-item.is-active {
   background-color: transparent;
   color: #fff;
   border-bottom: 2px solid #ffffff;
 }
 
-.el-menu-item:not(.is-disabled):focus, .el-menu-item:not(.is-disabled):hover, .el-submenu .el-submenu__title:hover{
+.el-menu-item:not(.is-disabled):focus,
+.el-menu-item:not(.is-disabled):hover,
+.el-submenu .el-submenu__title:hover {
   background-color: transparent;
   color: #fff;
 }
-.el-menu-item.is-disabled{
-  opacity: 1
+.el-menu-item.is-disabled {
+  opacity: 1;
 }
 </style>

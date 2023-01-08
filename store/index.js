@@ -1,19 +1,18 @@
 const state = () => ({
   userInfo: null,
   accessToken: null,
-  refreshToken: null,
+  refreshToken: null
 })
 
 const mutations = {
   // 重置用户状态
-  resetUserState(state){
+  resetUserState(state) {
     state.userInfo = null
     state.accessToken = null
     state.refreshToken = null
   },
-
   // 更新用户状态
-  updateUserState(state,userData){
+  updateUserState(state, userData) {
     state.userInfo = userData.userInfo
     state.accessToken = userData.accessToken
     state.refreshToken = userData.refreshToken
@@ -21,24 +20,21 @@ const mutations = {
 }
 
 const actions = {
-
-  nuxtServerInit({commit}, {app}){
+  nuxtServerInit({ commit }, { app }) {
     const userData = {}
     userData.userInfo = app.$cookies.get('userInfo')
     userData.accessToken = app.$cookies.get('accessToken')
     userData.refreshToken = app.$cookies.get('refreshToken')
-    commit('updateUserState',userData)
-
+    commit('updateUserState', userData)
   },
   // 跳转到认证客户端
-  toLoginPage({commit}){
+  toLoginPage({ commit }) {
     commit('resetUserState')
-    window.location.href = `http://localhost:7000?redirectURL=${window.location.href}`
+    window.location.href = `${process.env.authURL}/?redirectURL=${window.location.href}`
   },
-
   // 退出登录
-  toLogout(){
-    window.location.href = `http://localhost:7000/logout?redirectURL=${window.location.href}`
+  toLogout() {
+    window.location.href = `${process.env.authURL}/?redirectURL=${window.location.href}`
   }
 }
 export default {

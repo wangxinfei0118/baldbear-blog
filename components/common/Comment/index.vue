@@ -1,31 +1,28 @@
 <template>
   <div class="hbl-fa">
-
     <!-- 公共评论区域-->
-    <div  v-if="showComment">
+    <div v-if="showComment">
       <div class="hbl-comm">
         <!-- 是否显示头像 -->
         <div class="comment-avatar" v-if="showUserImage">
           <el-avatar icon="el-icon-user-solid" :src="userImage" />
         </div>
         <!-- 公共评论输入框 textareaMap[0] -->
-        <div class="comment" :style="{width:commentWidth}">
+        <div class="comment" :style="{ width: commentWidth }">
           <el-input
             @focus="showButton(0)"
             type="textarea"
-            :autosize="{ minRows: minRows, maxRows: maxRows}"
+            :autosize="{ minRows: minRows, maxRows: maxRows }"
             :placeholder="placeholder"
-            v-model="textareaMap[0]"
-          ></el-input>
+            v-model="textareaMap[0]"></el-input>
           <!--  公共评论 表情 -->
           <div v-if="buttonMap[0]" class="hbl-owo">
             <div
-              :class="pBodyMap[0]?'OwO':'OwO OwO-open'"
+              :class="pBodyMap[0] ? 'OwO' : 'OwO OwO-open'"
               @blur="pBodyClose(0)"
               tabindex="0"
               class="emoj publish"
-              :style="{width:emojiWidth}"
-            >
+              :style="{ width: emojiWidth }">
               <div class="OwO-logo" @click="pBodyStatus(0)">
                 <span>Emoji表情</span>
               </div>
@@ -33,15 +30,13 @@
                 <ul class="OwO-items OwO-items-show">
                   <li
                     class="OwO-item"
-                    v-for="(oitem,index) in OwOlist"
-                    :key="'oitem'+index"
-                    @click="choseEmoji(0,oitem.title)"
-                  >
-                    <img :src="require('./img/face/'+oitem.url)" alt />
+                    v-for="(oitem, index) in OwOlist"
+                    :key="'oitem' + index"
+                    @click="choseEmoji(0, oitem.title)">
+                    <img :src="require('./img/face/' + oitem.url)" alt />
                   </li>
                 </ul>
               </div>
-
             </div>
 
             <div class="publish publish-btn">
@@ -51,18 +46,24 @@
           </div>
         </div>
       </div>
-
-
     </div>
 
     <div class="font-semibold p-4">{{ isMessage ? '全部留言' : '全部评论' }}</div>
     <!-- 显示评论内容区域 -->
-    <list :commentList="commentList" :userId="userId" :authorId="authorId"
-        :doChildSend="doChildSend" :doRemove="doRemove" :showComment="showComment"
-        :emojiWidth="emojiWidth" :userImage="userImage"
-        :placeholder="placeholder" :minRows="minRows" :maxRows="maxRows"
-        :label="label" :commentWidth="commentWidth"
-    />
+    <list
+      :commentList="commentList"
+      :userId="userId"
+      :authorId="authorId"
+      :doChildSend="doChildSend"
+      :doRemove="doRemove"
+      :showComment="showComment"
+      :emojiWidth="emojiWidth"
+      :userImage="userImage"
+      :placeholder="placeholder"
+      :minRows="minRows"
+      :maxRows="maxRows"
+      :label="label"
+      :commentWidth="commentWidth" />
   </div>
 </template>
 
@@ -80,27 +81,29 @@ export default {
     userId: null, // 当前登录用户id
     authorId: {
       typ: String,
-      default:'1'
+      default: '1'
     }, // 当前文章作者id
-    showUserImage: { // 输入框左侧是否显示头像
+    showUserImage: {
+      // 输入框左侧是否显示头像
       type: Boolean,
       default: true
     },
-    showComment: { // 显示输入框
+    showComment: {
+      // 显示输入框
       type: Boolean,
       default: true
     },
     emojiWidth: {
       type: String,
-      default: "560px"
+      default: '560px'
     },
     userImage: {
       type: String,
-      default: ""
+      default: ''
     },
     placeholder: {
       type: String,
-      default: "写下你的评论……"
+      default: '写下你的评论……'
     },
     minRows: {
       type: Number,
@@ -116,7 +119,7 @@ export default {
     },
     label: {
       type: String,
-      default: "作者"
+      default: '作者'
     },
     commentList: {
       type: Array,
@@ -124,7 +127,7 @@ export default {
     },
     commentWidth: {
       type: String,
-      default: "80%"
+      default: '80%'
     }
   },
   data() {
@@ -135,97 +138,97 @@ export default {
       textareaMap: [],
       OwOlist: [
         //表情包和表情路径
-        { title: "微笑", url: "weixiao.gif" },
-        { title: "嘻嘻", url: "xixi.gif" },
-        { title: "哈哈", url: "haha.gif" },
-        { title: "可爱", url: "keai.gif" },
-        { title: "可怜", url: "kelian.gif" },
-        { title: "挖鼻", url: "wabi.gif" },
-        { title: "吃惊", url: "chijing.gif" },
-        { title: "害羞", url: "haixiu.gif" },
-        { title: "挤眼", url: "jiyan.gif" },
-        { title: "闭嘴", url: "bizui.gif" },
-        { title: "鄙视", url: "bishi.gif" },
-        { title: "爱你", url: "aini.gif" },
-        { title: "泪", url: "lei.gif" },
-        { title: "偷笑", url: "touxiao.gif" },
-        { title: "亲亲", url: "qinqin.gif" },
-        { title: "生病", url: "shengbing.gif" },
-        { title: "太开心", url: "taikaixin.gif" },
-        { title: "白眼", url: "baiyan.gif" },
-        { title: "右哼哼", url: "youhengheng.gif" },
-        { title: "左哼哼", url: "zuohengheng.gif" },
-        { title: "嘘", url: "xu.gif" },
-        { title: "衰", url: "shuai.gif" },
-        { title: "吐", url: "tu.gif" },
-        { title: "哈欠", url: "haqian.gif" },
-        { title: "抱抱", url: "baobao.gif" },
-        { title: "怒", url: "nu.gif" },
-        { title: "疑问", url: "yiwen.gif" },
-        { title: "馋嘴", url: "chanzui.gif" },
-        { title: "拜拜", url: "baibai.gif" },
-        { title: "思考", url: "sikao.gif" },
-        { title: "汗", url: "han.gif" },
-        { title: "困", url: "kun.gif" },
-        { title: "睡", url: "shui.gif" },
-        { title: "钱", url: "qian.gif" },
-        { title: "失望", url: "shiwang.gif" },
-        { title: "酷", url: "ku.gif" },
-        { title: "色", url: "se.gif" },
-        { title: "哼", url: "heng.gif" },
-        { title: "鼓掌", url: "guzhang.gif" },
-        { title: "晕", url: "yun.gif" },
-        { title: "悲伤", url: "beishang.gif" },
-        { title: "抓狂", url: "zhuakuang.gif" },
-        { title: "黑线", url: "heixian.gif" },
-        { title: "阴险", url: "yinxian.gif" },
-        { title: "怒骂", url: "numa.gif" },
-        { title: "互粉", url: "hufen.gif" },
-        { title: "书呆子", url: "shudaizi.gif" },
-        { title: "愤怒", url: "fennu.gif" },
-        { title: "感冒", url: "ganmao.gif" },
-        { title: "心", url: "xin.gif" },
-        { title: "伤心", url: "shangxin.gif" },
-        { title: "猪", url: "zhu.gif" },
-        { title: "熊猫", url: "xiongmao.gif" },
-        { title: "兔子", url: "tuzi.gif" },
-        { title: "喔克", url: "ok.gif" },
-        { title: "耶", url: "ye.gif" },
-        { title: "棒棒", url: "good.gif" },
-        { title: "不", url: "no.gif" },
-        { title: "赞", url: "zan.gif" },
-        { title: "来", url: "lai.gif" },
-        { title: "弱", url: "ruo.gif" },
-        { title: "草泥马", url: "caonima.gif" },
-        { title: "神马", url: "shenma.gif" },
-        { title: "囧", url: "jiong.gif" },
-        { title: "浮云", url: "fuyun.gif" },
-        { title: "给力", url: "geili.gif" },
-        { title: "围观", url: "weiguan.gif" },
-        { title: "威武", url: "weiwu.gif" },
-        { title: "话筒", url: "huatong.gif" },
-        { title: "蜡烛", url: "lazhu.gif" },
-        { title: "蛋糕", url: "dangao.gif" },
-        { title: "发红包", url: "fahongbao.gif" }
+        { title: '微笑', url: 'weixiao.gif' },
+        { title: '嘻嘻', url: 'xixi.gif' },
+        { title: '哈哈', url: 'haha.gif' },
+        { title: '可爱', url: 'keai.gif' },
+        { title: '可怜', url: 'kelian.gif' },
+        { title: '挖鼻', url: 'wabi.gif' },
+        { title: '吃惊', url: 'chijing.gif' },
+        { title: '害羞', url: 'haixiu.gif' },
+        { title: '挤眼', url: 'jiyan.gif' },
+        { title: '闭嘴', url: 'bizui.gif' },
+        { title: '鄙视', url: 'bishi.gif' },
+        { title: '爱你', url: 'aini.gif' },
+        { title: '泪', url: 'lei.gif' },
+        { title: '偷笑', url: 'touxiao.gif' },
+        { title: '亲亲', url: 'qinqin.gif' },
+        { title: '生病', url: 'shengbing.gif' },
+        { title: '太开心', url: 'taikaixin.gif' },
+        { title: '白眼', url: 'baiyan.gif' },
+        { title: '右哼哼', url: 'youhengheng.gif' },
+        { title: '左哼哼', url: 'zuohengheng.gif' },
+        { title: '嘘', url: 'xu.gif' },
+        { title: '衰', url: 'shuai.gif' },
+        { title: '吐', url: 'tu.gif' },
+        { title: '哈欠', url: 'haqian.gif' },
+        { title: '抱抱', url: 'baobao.gif' },
+        { title: '怒', url: 'nu.gif' },
+        { title: '疑问', url: 'yiwen.gif' },
+        { title: '馋嘴', url: 'chanzui.gif' },
+        { title: '拜拜', url: 'baibai.gif' },
+        { title: '思考', url: 'sikao.gif' },
+        { title: '汗', url: 'han.gif' },
+        { title: '困', url: 'kun.gif' },
+        { title: '睡', url: 'shui.gif' },
+        { title: '钱', url: 'qian.gif' },
+        { title: '失望', url: 'shiwang.gif' },
+        { title: '酷', url: 'ku.gif' },
+        { title: '色', url: 'se.gif' },
+        { title: '哼', url: 'heng.gif' },
+        { title: '鼓掌', url: 'guzhang.gif' },
+        { title: '晕', url: 'yun.gif' },
+        { title: '悲伤', url: 'beishang.gif' },
+        { title: '抓狂', url: 'zhuakuang.gif' },
+        { title: '黑线', url: 'heixian.gif' },
+        { title: '阴险', url: 'yinxian.gif' },
+        { title: '怒骂', url: 'numa.gif' },
+        { title: '互粉', url: 'hufen.gif' },
+        { title: '书呆子', url: 'shudaizi.gif' },
+        { title: '愤怒', url: 'fennu.gif' },
+        { title: '感冒', url: 'ganmao.gif' },
+        { title: '心', url: 'xin.gif' },
+        { title: '伤心', url: 'shangxin.gif' },
+        { title: '猪', url: 'zhu.gif' },
+        { title: '熊猫', url: 'xiongmao.gif' },
+        { title: '兔子', url: 'tuzi.gif' },
+        { title: '喔克', url: 'ok.gif' },
+        { title: '耶', url: 'ye.gif' },
+        { title: '棒棒', url: 'good.gif' },
+        { title: '不', url: 'no.gif' },
+        { title: '赞', url: 'zan.gif' },
+        { title: '来', url: 'lai.gif' },
+        { title: '弱', url: 'ruo.gif' },
+        { title: '草泥马', url: 'caonima.gif' },
+        { title: '神马', url: 'shenma.gif' },
+        { title: '囧', url: 'jiong.gif' },
+        { title: '浮云', url: 'fuyun.gif' },
+        { title: '给力', url: 'geili.gif' },
+        { title: '围观', url: 'weiguan.gif' },
+        { title: '威武', url: 'weiwu.gif' },
+        { title: '话筒', url: 'huatong.gif' },
+        { title: '蜡烛', url: 'lazhu.gif' },
+        { title: '蛋糕', url: 'dangao.gif' },
+        { title: '发红包', url: 'fahongbao.gif' }
       ]
-    };
+    }
   },
   methods: {
     //事件处理器
     pBodyClose(index) {
       //输入框获取焦点关闭弹窗
-      this.$set(this.pBodyMap, index, true);
+      this.$set(this.pBodyMap, index, true)
     },
     showButton(index) {
       //this.showFlag = true;
       // console.log(index + "index");
-      this.$set(this.buttonMap, index, true);
-      this.pBodyClose(index);
+      this.$set(this.buttonMap, index, true)
+      this.pBodyClose(index)
     },
     cancel(index) {
-      this.$set(this.buttonMap, index, false);
+      this.$set(this.buttonMap, index, false)
       if (index !== 0) {
-        this.$set(this.replyMap, index, false);
+        this.$set(this.replyMap, index, false)
       }
       // console.log(index + "index");
       //this.showFlag = false;
@@ -234,58 +237,58 @@ export default {
     doSend() {
       //console.log("====="+this.textarea);
       // textareaMap[0]公共评论区的内容
-      this.$emit("doSend", this.textareaMap[0]);
-      this.$set(this.textareaMap, 0, "");
+      this.$emit('doSend', this.textareaMap[0])
+      this.$set(this.textareaMap, 0, '')
     },
     // 回复
     doChildSend(content, parentId) {
       // 提交回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
-      this.$emit("doChildSend", content, parentId);
+      this.$emit('doChildSend', content, parentId)
     },
     // 删除
     doRemove(id) {
-      this.$emit("doRemove", id);
+      this.$emit('doRemove', id)
     },
     //选择表情包
-    choseEmoji: function(index, inner) {
-      var con = "";
+    choseEmoji: function (index, inner) {
+      var con = ''
       if (!this.textareaMap[index]) {
-        this.$set(this.textareaMap, index, "");
+        this.$set(this.textareaMap, index, '')
       }
-      con = this.textareaMap[index] += "[" + inner + "]";
-      this.$set(this.textareaMap, index, con);
+      con = this.textareaMap[index] += '[' + inner + ']'
+      this.$set(this.textareaMap, index, con)
       //关闭弹出
-      this.pBodyStatus(index);
+      this.pBodyStatus(index)
     },
-    analyzeEmoji: function(cont) {
+    analyzeEmoji: function (cont) {
       //编译表情替换成图片展示出来
-      var pattern1 = /\[[\u4e00-\u9fa5]+\]/g;
-      var pattern2 = /\[[\u4e00-\u9fa5]+\]/;
-      var content = cont.match(pattern1);
-      var str = cont;
+      var pattern1 = /\[[\u4e00-\u9fa5]+\]/g
+      var pattern2 = /\[[\u4e00-\u9fa5]+\]/
+      var content = cont.match(pattern1)
+      var str = cont
       if (content) {
         for (var i = 0; i < content.length; i++) {
           for (var j = 0; j < this.OwOlist.length; j++) {
-            if ("[" + this.OwOlist[j].title + "]" == content[i]) {
-              var src = this.OwOlist[j].url;
-              break;
+            if ('[' + this.OwOlist[j].title + ']' == content[i]) {
+              var src = this.OwOlist[j].url
+              break
             }
           }
-          var s = require("./img/face/" + src);
-          var imoj = "<img src='" + s + "'/>";
+          var s = require('./img/face/' + src)
+          var imoj = "<img src='" + s + "'/>"
 
-          str = str.replace(pattern2, imoj);
+          str = str.replace(pattern2, imoj)
         }
       }
-      return str;
+      return str
     },
     doReply(index) {
-      this.$set(this.replyMap, index, true);
+      this.$set(this.replyMap, index, true)
       // console.log(this.replyMap[index]);
     },
 
     pBodyStatus(index) {
-      this.$set(this.pBodyMap, index, !this.pBodyMap[index]);
+      this.$set(this.pBodyMap, index, !this.pBodyMap[index])
     }
   },
   watch: {
@@ -298,10 +301,9 @@ export default {
   mounted() {
     //页面加载完成后
   }
-};
+}
 </script>
 <style type="text/css" scoped>
-
 div:focus {
   outline: none;
 }
@@ -433,8 +435,7 @@ div:focus {
 }
 .OwO .OwO-items .OwO-item:hover {
   background: #eee;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
   animation: a 5s infinite ease-in-out;
   -webkit-animation: a 5s infinite ease-in-out;
 }
@@ -953,7 +954,7 @@ div:focus {
   margin: 10px 0;
   font-size: 12px;
   color: #64609e;
-  cursor: pointer;/*  */
+  cursor: pointer; /*  */
 }
 .hbl-owo {
   text-align: left;

@@ -13,18 +13,16 @@
   </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
 <script>
-import Footer from "~/components/layout/Footer";
-import Header from "~/components/layout/Header";
+import Footer from '~/components/layout/Footer'
+import Header from '~/components/layout/Header'
 export default {
-  components: {Header, Footer}
+  components: { Header, Footer }
 }
 </script>
 <style scoped>
-.main{
+.main {
   min-height: calc(100vh - 80px);
 }
 </style>
