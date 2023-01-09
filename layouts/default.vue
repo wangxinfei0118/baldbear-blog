@@ -7,7 +7,7 @@
       <nuxt />
     </div>
     <!--尾部-->
-    <Footer></Footer>
+    <Footer v-if="$route.path === '/'"></Footer>
     <!--回到顶部-->
     <el-backtop :bottom="80"></el-backtop>
   </div>
