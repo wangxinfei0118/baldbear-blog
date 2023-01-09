@@ -82,7 +82,6 @@ export default {
       })
     },
     doRemove(id) {
-      console.log(`删除评论id${id}`)
       this.$deleteCommentById(id).then((res) => {
         this.refreshComment()
       })

@@ -91,7 +91,6 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      console.log(this.formData)
       this.$refs[formName].validate((valid) => {
         if (valid) {
           this.submitData()

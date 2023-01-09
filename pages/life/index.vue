@@ -37,7 +37,6 @@ export default {
   },
   async asyncData({ app }) {
     const { data } = await app.$getLifeList()
-    console.log(data)
     return { lifeList: data.records }
   },
   methods: {

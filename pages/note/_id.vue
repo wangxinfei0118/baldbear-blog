@@ -124,7 +124,6 @@ export default {
     // 发布回复评论触发
     doChildSend(content, parentId = -1) {
       // 回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
-      console.log(`对父评论ID=${parentId} 发布的回复评论内容：${content}`)
       const data = {
         content,
         parentId,
@@ -141,7 +140,6 @@ export default {
     },
     // 删除评论
     doRemove(id) {
-      console.log(`删除评论id${id}`)
       this.$deleteCommentById(id).then((res) => {
         this.refreshComment()
       })

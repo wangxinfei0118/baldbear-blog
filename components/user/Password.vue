@@ -71,7 +71,6 @@ export default {
     }
     // 校验新密码
     const validatePassword = (rule, value, callback) => {
-      console.log('value', value)
       if (value.length < 6) {
         callback(new Error('新密码不能少于6位'))
       } else {
