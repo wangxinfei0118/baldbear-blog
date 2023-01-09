@@ -3,6 +3,9 @@
   <div class="main-box">
     <div class="background">
       <img src="@/assets/img/background.png" class="right-top" />
+      <div class="absolute bottom-20 left-2/4 w-6 -ml-3 bounce-top" @click="scrollDown">
+        <img src="@/assets/img/scroll-down.svg" />
+      </div>
     </div>
     <div class="info w-full pt-6">
       <div class="info-box">
@@ -87,6 +90,12 @@ export default {
         this.isMore = false
       }
       this.loading = false
+    },
+    scrollDown() {
+      window.scrollTo({
+        top: 630,
+        behavior: 'smooth'
+      })
     }
   },
   async asyncData({ app }) {
@@ -140,6 +149,25 @@ export default {
   100% {
     transform: scale(1.25) translateY(-15px);
     transform-origin: top;
+  }
+}
+.bounce-top {
+  animation: bounce-top 2s linear 5s infinite both;
+}
+@keyframes bounce-top {
+  0% {
+    transform: translateY(-8px);
+    opacity: 0;
+  }
+
+  50% {
+    transform: translateY(0px);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-8px);
+    opacity: 0;
   }
 }
 </style>
