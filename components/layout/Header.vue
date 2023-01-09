@@ -1,14 +1,11 @@
 <template>
-  <div :class="isTransparent ? 'transparent header' : 'header'">
+  <div :class="isTransparent ? 'transparent big-header' : 'header slide-in-blurred-top'">
     <div class="nav">
-      <el-row type="flex" justify="space-between" style="height: 100%">
-        <el-col :span="4" style="display: flex; justify-content: center; align-items: center">
-          <img src="@/assets/img/logo.png" style="width: 180px" />
+      <el-row type="flex" style="height: 100%">
+        <el-col :span="9" style="display: flex; justify-content: center; align-items: center">
+          <img src="@/assets/img/logo.png" class="logo" />
         </el-col>
-        <el-col
-          class="hidden-sm-and-down"
-          :span="15"
-          style="display: flex; justify-content: start; align-items: center; margin-left: 22px">
+        <el-col class="hidden-sm-and-down" :span="11" style="display: flex; justify-content: end; align-items: center">
           <el-menu :default-active="activeRoute" class="menu" mode="horizontal" @select="handleSelect">
             <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="/label">标签</el-menu-item>
@@ -18,11 +15,10 @@
             <el-menu-item index="/hi">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
-        <el-col :xs="18" :span="5" style="display: flex; justify-content: end; align-items: center">
+        <el-col :xs="18" :span="6" style="display: flex; justify-content: start; align-items: center">
           <div class="nav-sign mr-4">
             <div v-if="!userInfo">
-              <el-button type="text" @click="$store.dispatch('toLoginPage')">登录</el-button>
-              <el-button type="primary" round size="small" @click="$store.dispatch('toLoginPage')">注册</el-button>
+              <el-button click="$store.dispatch('toLoginPage')">立即登录</el-button>
             </div>
             <el-dropdown trigger="click" @command="handleCommand" v-if="userInfo">
               <span class="el-dropdown-link">
@@ -132,16 +128,57 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  height: 62px;
-  background-color: rgba(76, 76, 76, 0.9);
+  height: 68px;
+  background: rgba(52, 68, 76, 0.8);
   z-index: 9999;
   position: fixed;
+}
+.header .logo {
+  width: 180px;
+}
+.big-header {
+  width: 100%;
+  height: 80px;
+  background: rgba(52, 68, 76, 0.8);
+  z-index: 9999;
+  position: fixed;
+}
+.big-header .logo {
+  height: 100%;
+}
+.big-header .el-menu-item {
+  background-color: transparent !important;
+  border-radius: 0;
+  font-size: 15px;
+  color: #fff;
+  margin-right: 36px;
+  padding: 0;
+  text-align: center;
+  height: 32px;
+  line-height: 32px;
 }
 .nav {
   height: 100%;
 }
 .transparent {
   background-color: transparent !important;
+}
+.slide-in-blurred-top {
+  animation: slide-in-blurred-top 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes slide-in-blurred-top {
+  0% {
+    transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
+    transform-origin: 50% 0%;
+    filter: blur(40px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) scaleY(1) scaleX(1);
+    transform-origin: 50% 50%;
+    filter: blur(0);
+    opacity: 1;
+  }
 }
 .el-menu {
   background-color: transparent;
@@ -152,10 +189,11 @@ export default {
   border-radius: 0;
   font-size: 15px;
   color: #fff;
-  margin-right: 42px;
+  margin-right: 36px;
   padding: 0;
-  width: 88px;
   text-align: center;
+  height: 32px;
+  line-height: 32px;
 }
 .el-menu-item.is-active {
   background-color: transparent;
@@ -171,5 +209,11 @@ export default {
 }
 .el-menu-item.is-disabled {
   opacity: 1;
+}
+.el-button {
+  background: transparent;
+  color: white;
+  width: 120px;
+  border: 1px solid white;
 }
 </style>
