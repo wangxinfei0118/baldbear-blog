@@ -18,7 +18,7 @@
         <el-col :xs="18" :span="6" style="display: flex; justify-content: start; align-items: center">
           <div class="nav-sign mr-4">
             <div v-if="!userInfo">
-              <el-button click="$store.dispatch('toLoginPage')">立即登录</el-button>
+              <el-button @click="$store.dispatch('toLoginPage')">立即登录</el-button>
             </div>
             <el-dropdown trigger="click" @command="handleCommand" v-if="userInfo">
               <span class="el-dropdown-link">
