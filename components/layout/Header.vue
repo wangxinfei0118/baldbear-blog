@@ -1,5 +1,5 @@
 <template>
-  <div :class="isTransparent ? 'transparent big-header' : 'header slide-in-blurred-top'">
+  <div :class="isTransparent ? 'transparent big-header' : 'header'">
     <div class="nav">
       <el-row type="flex" style="height: 100%">
         <el-col :span="9" style="display: flex; justify-content: center; align-items: center">
@@ -85,7 +85,8 @@ export default {
     },
     handleScroll() {
       const whiteList = ['/user', '/note/edit', '/life/edit', '/404']
-      if (window.scrollY >= 200 || whiteList.includes(this.$route.path)) {
+      let offsetTop = this.$route.path === '/' ? '600' : '201'
+      if (window.scrollY >= offsetTop || whiteList.includes(this.$route.path)) {
         this.isTransparent = false
       } else {
         this.isTransparent = true
@@ -128,57 +129,45 @@ export default {
 <style scoped>
 .header {
   width: 100%;
-  height: 68px;
+  height: 72px;
   background: rgba(52, 68, 76, 0.8);
   z-index: 9999;
   position: fixed;
+  transition: all 0.6s ease;
 }
 .header .logo {
   width: 180px;
+  transition: all 0.6s ease;
 }
 .big-header {
   width: 100%;
-  height: 80px;
+  height: 88px;
   background: rgba(52, 68, 76, 0.8);
   z-index: 9999;
   position: fixed;
+  transition: all 0.6s ease;
 }
 .big-header .logo {
-  height: 100%;
+  width: 240px;
+  transition: all 0.6s ease;
 }
 .big-header .el-menu-item {
   background-color: transparent !important;
   border-radius: 0;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff;
   margin-right: 36px;
   padding: 0;
   text-align: center;
-  height: 32px;
-  line-height: 32px;
+  height: 28px;
+  line-height: 28px;
 }
 .nav {
   height: 100%;
 }
 .transparent {
   background-color: transparent !important;
-}
-.slide-in-blurred-top {
-  animation: slide-in-blurred-top 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-@keyframes slide-in-blurred-top {
-  0% {
-    transform: translateY(-1000px) scaleY(2.5) scaleX(0.2);
-    transform-origin: 50% 0%;
-    filter: blur(40px);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(0) scaleY(1) scaleX(1);
-    transform-origin: 50% 50%;
-    filter: blur(0);
-    opacity: 1;
-  }
 }
 .el-menu {
   background-color: transparent;
@@ -187,13 +176,14 @@ export default {
 .el-menu-item {
   background-color: transparent;
   border-radius: 0;
-  font-size: 15px;
+  font-size: 16px;
+  font-weight: 500;
   color: #fff;
   margin-right: 36px;
   padding: 0;
   text-align: center;
-  height: 32px;
-  line-height: 32px;
+  height: 28px;
+  line-height: 28px;
 }
 .el-menu-item.is-active {
   background-color: transparent;
