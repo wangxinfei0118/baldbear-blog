@@ -78,9 +78,7 @@ export default {
     notOpen() {
       this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
         confirmButtonText: '确定',
-        callback: () => {
-          location.reload()
-        }
+        callback: () => {}
       })
     },
     handleScroll() {
