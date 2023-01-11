@@ -7,8 +7,8 @@ module.exports = {
         'home-title': 'rgb(136, 136, 136)',
         'note-title': 'rgb(0, 153, 255)',
         'note-label': 'rgb(39, 175, 182)',
-        'notice' : 'rgb(255,127,80)',
-        'footer-bg' : 'rgb(244, 245, 245)'
+        notice: 'rgb(255,127,80)',
+        'footer-bg': 'rgb(244, 245, 245)'
       },
       fontSize: {
         small: '12px',
@@ -16,6 +16,7 @@ module.exports = {
         medium: '14px',
         'medium-x': '16px',
         large: '18px',
+        'large-title': '32px'
       },
       borderRadius: {
         small: '2px',
@@ -27,12 +28,12 @@ module.exports = {
         18: '18px',
         20: '20px',
         22: '22px',
-        24: '24px',
-      },
-    },
+        24: '24px'
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }
