@@ -194,7 +194,7 @@ export default {}
 .bg-img {
   width: 100%;
   height: 350px;
-  background-image: url('assets/img/detail-head.jpeg');
+  background-image: url('assets/img/about-header.jpg');
   background-size: cover;
 }
 .head-card {
