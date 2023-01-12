@@ -34,7 +34,7 @@ const actions = {
   },
   // 退出登录
   toLogout() {
-    window.location.href = `${process.env.authURL}/?redirectURL=${window.location.href}`
+    window.location.href = `${process.env.authURL}/logout?redirectURL=${window.location.href}`
   }
 }
 export default {
