@@ -128,7 +128,7 @@ export default {
 <style scoped>
 .main-box {
   background-image: url('assets/img/home-background.jpg');
-  background-size: 100% calc(100vh - 54px);
+  background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
