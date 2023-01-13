@@ -3,7 +3,7 @@
   <div class="main-box">
     <div class="box-header">
       <!--      <img src="@/assets/img/background.png" class="right-top" />-->
-      <div class="cloak flex flex-col justify-center items-center text-white text-large-title font-semibold">
+      <div class="cloak flex flex-col justify-center items-center text-white text-large-title font-semibold text-center">
         <div>找到你喜欢做的事，并努力成为这个领域里的顶尖人物。</div>
         <div>Figure out what you like. Try to become the best in the world of it</div>
       </div>
@@ -191,7 +191,7 @@ export default {
 .note-box {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
 }
 .note-card {
