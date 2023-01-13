@@ -8,12 +8,12 @@
       </el-table-column>
       <el-table-column>
         <template slot-scope="scope">
-          <h2 class="title" style="margin-bottom: 5px">
+          <h2 class="list-title">
             <nuxt-link :to="'/note/' + scope.row.id" target="_blank">
               {{ scope.row.title }}
             </nuxt-link>
           </h2>
-          <div style="margin-bottom: 12px">
+          <div class="list-summary" style="margin-bottom: 12px">
             {{ scope.row.summary }}
           </div>
           <div class="info">
@@ -107,5 +107,19 @@ a:hover {
 }
 .el-row {
   margin-top: 30px;
+}
+.list-title {
+  font-size: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.list-summary {
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 </style>
