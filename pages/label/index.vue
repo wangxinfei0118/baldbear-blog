@@ -43,11 +43,12 @@ export default {
 </script>
 <style scoped>
 .background {
+  position: fixed;
   overflow: hidden;
 }
 .background img {
   object-fit: cover;
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
 }
 .top-left {
@@ -66,6 +67,7 @@ export default {
 .el-row {
   width: 100%;
   padding: 96px 32px;
+  margin: 0 !important;
 }
 
 .el-col {
