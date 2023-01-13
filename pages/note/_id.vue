@@ -3,7 +3,7 @@
     <div class="note-head">
       <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card">
+        <div class="head-card min-head-card mini-head-card">
           <div class="title">
             {{ data.title }}
           </div>
@@ -35,7 +35,7 @@
         <el-button icon="el-icon-delete" circle @click="deleteNote"></el-button>
       </div>
     </div>
-    <el-row type="flex" class="mx-auto" justify="space-between" style="width: 79%">
+    <el-row type="flex" class="note-wrapper mx-auto" justify="space-between">
       <el-col :xs="24" :sm="24" :md="17">
         <div class="article-left mt-4">
           <el-card shadow="never" class="content-box">
@@ -46,7 +46,7 @@
           </el-card>
           <!-- 评论区 -->
           <div class="commentArea mt-4">
-            <el-card shadow="never">
+            <el-card class="comment-wrapper" shadow="never">
               <div class="font-semibold p-4">评论区</div>
               <!-- 未登录 -->
               <div v-if="!$store.state.userInfo" class="flex flex-col items-center">
@@ -196,6 +196,7 @@ export default {
   height: 350px;
   background-image: url('assets/img/note-header.jpg');
   background-size: cover;
+  background-position: center;
 }
 ::v-deep.content-box .el-card__body {
   padding: 10px;
@@ -214,7 +215,41 @@ export default {
   align-items: center;
 }
 .title {
+  width: 100%;
   font-size: 32px;
   margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.note-wrapper {
+  width: 79%;
+}
+@media only screen and (max-width: 992px) {
+  .min-head-card {
+    width: 80%;
+  }
+  .note-wrapper {
+    width: 100%;
+  }
+  ::v-deep.comment-wrapper .el-card__body {
+    padding: 20px 0;
+  }
+  ::v-deep.comment-wrapper > .el-card__body {
+    margin: 0 -10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .mini-head-card {
+    width: 100%;
+  }
 }
 </style>

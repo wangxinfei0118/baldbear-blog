@@ -3,8 +3,8 @@
     <div class="head">
       <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card">
-          <div class="title -mt-6" style="font-size: 32px">
+        <div class="head-card min-head-card mini-head-card">
+          <div class="title -mt-6">
             {{ $route.query.name }}
           </div>
         </div>
@@ -73,5 +73,27 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.title {
+  width: 100%;
+  font-size: 32px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+@media only screen and (max-width: 992px) {
+  .min-head-card {
+    width: 80%;
+  }
+  .note-box {
+    width: 100%;
+    @apply mb-4 mx-auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .mini-head-card {
+    width: 100%;
+  }
 }
 </style>
