@@ -3,20 +3,20 @@
     <div class="head">
       <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card">
+        <div class="head-card min-head-card mini-head-card">
           <div class="title">寂静生长，默然坚强</div>
           <div class="summary">走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。</div>
         </div>
       </div>
     </div>
     <div class="my-4 mx-auto" style="width: 78%">
-      <el-row>
-        <el-col :span="12">
+      <el-row class="min-box">
+        <el-col :xs="24" :sm="24" :md="12">
           <div class="text-home-title text-medium" style="text-indent: 2em">
             前端开发工程师，2023年毕业于天津工业大学，软件工程专业，大一开始接触网页设计，大二期间参与过小组数据可视化项目及商城项目的前端开发，大三开始系统学习前端，从前端基础，到开发框架，再到前端工程化以及项目的优化部署，期间做过pc、h5、小程序、跨端开发等相关项目，并在2022.6-2022.9参与企业实习，进行企业级项目开发。平时关注github，稀土掘金等社区了解更多优秀的前端技术及项目，对自己进行进一步的提升
           </div>
           <el-divider></el-divider>
-          <div class="title">
+          <div class="item-title">
             <img src="@/assets/img/jiaoyu.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">教育经历</span>
             <el-collapse class="ml-3">
@@ -36,7 +36,7 @@
               </el-collapse-item>
             </el-collapse>
           </div>
-          <div class="title mt-2">
+          <div class="item-title mt-2">
             <img src="@/assets/img/gongzuo.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">工作经历</span>
             <el-collapse class="ml-3">
@@ -58,7 +58,7 @@
               </el-collapse-item>
             </el-collapse>
           </div>
-          <div class="title mt-2">
+          <div class="item-title mt-2">
             <img src="@/assets/img/xiangmu.svg" width="20" class="inline mb-1" />
             <span class="text-medium-x">项目经历</span>
             <el-collapse class="ml-3">
@@ -122,11 +122,11 @@
             </el-collapse>
           </div>
         </el-col>
-        <el-col :span="12">
+        <el-col :xs="24" :sm="24" :md="12" class="skill-box">
           <div class="flex justify-around flex-wrap">
-            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
+            <el-card shadow="hover" class="skill-card scale-up-center">
               <div>Vue</div>
-              <div class="text-home-title text-medium h-28">
+              <div class="skill-title">
                 掌握vue及其相关生态，熟悉vue2内部原理，掌握vue3组合式api及setup语法糖，有多个完整的vue项目开发经验
               </div>
               <div class="img-box">
@@ -135,9 +135,9 @@
                 <img src="@/assets/img/pinia.svg" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
+            <el-card shadow="hover" class="skill-card scale-up-center">
               <div>H5C3</div>
-              <div class="text-home-title text-medium h-28">
+              <div class="skill-title">
                 掌握html5、css3，熟悉less、scss等预处理语言及tailwind、pxtorem等postcss插件的使用配置，掌握常用的前端页面布局
               </div>
               <div class="img-box">
@@ -146,20 +146,18 @@
                 <img src="@/assets/img/postcss.svg" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
+            <el-card shadow="hover" class="skill-card scale-up-center">
               <div>小程序</div>
-              <div class="text-home-title text-medium h-28">
-                熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历
-              </div>
+              <div class="skill-title">熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历</div>
               <div class="img-box">
                 <img src="@/assets/img/mp-weixin.svg" />
                 <img src="@/assets/img/uniapp.png" />
                 <img src="@/assets/img/uview.png" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px; width: 240px" class="scale-up-center">
+            <el-card shadow="hover" class="skill-card scale-up-center">
               <div>脚本语言</div>
-              <div class="text-home-title text-medium h-28">
+              <div class="skill-title">
                 掌握js、es6语法、dom操作，熟悉typescript，了解node.js及express，可快速进行页面交互、接口及数据处理，并有npm包开发经历
               </div>
               <div class="img-box">
@@ -168,9 +166,9 @@
                 <img src="@/assets/img/express.png" />
               </div>
             </el-card>
-            <el-card shadow="hover" style="height: 240px; width: 240px; margin-top: -360px" class="scale-up-center">
+            <el-card shadow="hover" style="margin-top: -360px" class="skill-card last-card scale-up-center">
               <div>前端工程化</div>
-              <div class="text-home-title text-medium h-28">
+              <div class="skill-title">
                 了解rollup、webpack及vite等打包工具，掌握loader、plugin原理及常见性能优化，能基于webpack搭建脚手架
               </div>
               <div class="img-box">
@@ -211,8 +209,20 @@ export default {}
   align-items: center;
 }
 .title {
+  width: 100%;
   font-size: 32px;
   margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
 }
 .el-collapse {
   border: none;
@@ -228,6 +238,13 @@ export default {}
   width: 64px;
   height: 64px;
 }
+.skill-card {
+  height: 240px;
+  width: 240px;
+}
+.skill-title {
+  @apply text-home-title text-medium h-28;
+}
 .scale-up-center:hover {
   animation: scale-up-center 0.6s cubic-bezier(0.39, 0.575, 0.565, 1) both;
 }
@@ -237,6 +254,42 @@ export default {}
   }
   100% {
     transform: scale(1.1);
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .min-head-card {
+    width: 80%;
+  }
+  .min-box {
+    @apply flex flex-col;
+  }
+  .last-card {
+    margin-top: 0 !important;
+  }
+  .skill-box {
+    margin-top: 16px;
+  }
+  .skill-card {
+    width: 100%;
+    height: 200px;
+  }
+  .skill-title {
+    @apply text-home-title text-medium h-16;
+  }
+  .img-box {
+    display: flex;
+    justify-content: left;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .mini-head-card {
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 1300px) {
+  .last-card {
+    margin-top: 0 !important;
   }
 }
 </style>

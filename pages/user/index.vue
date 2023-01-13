@@ -1,7 +1,7 @@
 <template>
-  <div class="pt-32 px-20">
-    <el-row class="w-9/12 mx-auto" type="flex" justify="space-between">
-      <el-col :span="5">
+  <div class="user-wrapper">
+    <el-row class="user-body" type="flex" justify="center">
+      <el-col :xs="24" :sm="5" :md="5" :lg="5">
         <el-menu default-active="1" @select="changeItem">
           <el-menu-item index="1">
             <i class="el-icon-document"></i>
@@ -13,13 +13,12 @@
           </el-menu-item>
         </el-menu>
       </el-col>
-      <el-col :span="19" class="ml-4">
+      <el-col :xs="24" :sm="19" :md="12" :lg="12">
         <!-- 个人资料 -->
         <el-card shadow="never" v-if="activeItem === '1'">
           <div>个人资料</div>
-          <div class="flex">
-            <user-edit :loading="loading" :formData="userInfo" @submitForm="submitUserForm" />
-            <div class="avatar ml-24">
+          <div class="flex flex-col items-center">
+            <div class="avatar">
               <el-tooltip content="点击上传头像" effect="light">
                 <el-upload accept="image/*" action="" :show-file-list="false" :http-request="uploadMainImg">
                   <el-avatar :size="60" :src="this.userInfo.imageUrl">{{ userInfo.nickName }}</el-avatar>
@@ -27,6 +26,7 @@
               </el-tooltip>
               <div class="text-small-x">我的头像</div>
             </div>
+            <user-edit :loading="loading" :formData="userInfo" @submitForm="submitUserForm" />
           </div>
         </el-card>
         <!-- 修改密码 -->
@@ -115,4 +115,24 @@ export default {
   }
 }
 </script>
-<style scoped></style>
+<style scoped>
+.user-wrapper {
+  @apply pt-32 px-20;
+}
+.user-body {
+  @apply w-9/12 mx-auto;
+}
+@media only screen and (max-width: 1200px) {
+  .user-wrapper {
+    @apply pt-32 px-0;
+  }
+  .user-body {
+    @apply w-full mx-auto;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .user-body {
+    @apply w-full mx-auto flex-col;
+  }
+}
+</style>

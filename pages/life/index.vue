@@ -3,7 +3,7 @@
     <div class="head">
       <div class="background w-full flex flex-col items-center">
         <div class="bg-img"></div>
-        <div class="head-card">
+        <div class="head-card min-head-card mini-head-card">
           <div class="title">生活沉闷，但跑起来一定有风</div>
           <div class="summary">
             曾在半夜开车时听了一路的电台音乐，尽管有风声、引擎声，但还是觉得很安静，窗外的夜景也很安静，从未有过的舒服自在，后来有人告诉我，那是热爱生活。
@@ -11,14 +11,14 @@
         </div>
       </div>
     </div>
-    <div class="line" style="width: 70%; margin: 20px auto">
+    <div class="line min-line">
       <el-timeline>
         <el-timeline-item :timestamp="item.createDate" placement="top" v-for="(item, index) in lifeList" :key="index">
           <div class="float-right" v-if="userId == 1">
             <el-button icon="el-icon-edit" circle @click="editLife(item.id)"></el-button>
             <el-button icon="el-icon-delete" circle @click="deleteLife(item.id)"></el-button>
           </div>
-          <el-card style="width: 80%; margin-left: 8%; margin-top: 20px" shadow="hover">
+          <el-card class="life-card min-life-card" shadow="hover">
             <div class="mb-2 text-home-title text-large">{{ item.title }}</div>
             <div v-html="item.htmlContent" class="leading-24"></div>
           </el-card>
@@ -93,7 +93,45 @@ export default {
   align-items: center;
 }
 .title {
+  width: 100%;
   font-size: 32px;
   margin-bottom: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+.summary {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+.line {
+  width: 70%;
+  margin: 20px auto;
+}
+.life-card {
+  width: 80%;
+  margin-left: 8%;
+  margin-top: 20px;
+}
+@media only screen and (max-width: 992px) {
+  .min-head-card {
+    width: 80%;
+  }
+  .min-line {
+    width: 90%;
+  }
+  .min-life-card {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .mini-head-card {
+    width: 100%;
+  }
 }
 </style>
