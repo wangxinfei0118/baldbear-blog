@@ -1,11 +1,11 @@
 <template>
   <div :class="isTransparent ? 'transparent big-header' : 'header'">
     <div class="nav">
-      <el-row type="flex" style="height: 100%">
-        <el-col :span="9" style="display: flex; justify-content: center; align-items: center">
-          <img src="@/assets/img/logo.png" class="logo" />
+      <el-row type="flex" style="height: 100%" justify="space-between">
+        <el-col :xs="12" :sm="12" :md="6" :lg="9" style="display: flex; justify-content: center; align-items: center">
+          <img src="@/assets/img/logo.png" class="logo left" />
         </el-col>
-        <el-col class="hidden-sm-and-down" :span="11" style="display: flex; justify-content: end; align-items: center">
+        <el-col :md="14" :lg="11" class="mid" style="display: flex; justify-content: end; align-items: center">
           <el-menu :default-active="activeRoute" class="menu" mode="horizontal" @select="handleSelect">
             <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="/label">标签</el-menu-item>
@@ -15,7 +15,7 @@
             <el-menu-item index="/hi">Hi,同学！</el-menu-item>
           </el-menu>
         </el-col>
-        <el-col :xs="18" :span="6" style="display: flex; justify-content: start; align-items: center">
+        <el-col :md="4" :lg="6" class="right" style="display: flex; justify-content: start; align-items: center">
           <div class="nav-sign mr-4">
             <div v-if="!userInfo">
               <el-button @click="$store.dispatch('toLoginPage')">立即登录</el-button>
@@ -29,6 +29,31 @@
                 <el-dropdown-item command="life" v-if="userInfo.uid == 1">写日常</el-dropdown-item>
                 <el-dropdown-item command="user">个人资料</el-dropdown-item>
                 <el-dropdown-item command="logout">退出</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </div>
+        </el-col>
+        <el-col :xs="8" :sm="8" class="min-right" style="display: flex; justify-content: center; align-items: center">
+          <div>
+            <el-dropdown trigger="click" @command="handleMenu">
+              <span class="el-dropdown-link">
+                <img src="@/assets/img/h5/menu.svg" width="40" />
+              </span>
+              <el-dropdown-menu slot="dropdown" class="min-menu">
+                <div class="mb-2">
+                  <div v-if="userInfo" @click="$router.push('/user')">
+                    <el-avatar :src="userInfo.imageUrl"></el-avatar>
+                    <div>{{ userInfo.nickName }}</div>
+                  </div>
+                  <el-button v-else plain type="text" @click="$store.dispatch('toLoginPage')">立即登录</el-button>
+                </div>
+                <el-dropdown-item command="/">首页</el-dropdown-item>
+                <el-dropdown-item command="/label">标签</el-dropdown-item>
+                <el-dropdown-item command="/life">生活</el-dropdown-item>
+                <el-dropdown-item command="/about">关于我</el-dropdown-item>
+                <el-dropdown-item command="/message">留言板</el-dropdown-item>
+                <!--                <el-dropdown-item command="/hi">Hi,同学</el-dropdown-item>-->
+                <el-dropdown-item v-if="userInfo" command="logout">退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </div>
@@ -73,6 +98,13 @@ export default {
           break
         default:
           break
+      }
+    },
+    handleMenu(command) {
+      if (command !== 'logout') {
+        this.$router.push(`${command}`)
+      } else {
+        this.$store.dispatch('toLogout')
       }
     },
     notOpen() {
@@ -198,10 +230,30 @@ export default {
 .el-menu-item.is-disabled {
   opacity: 1;
 }
-.el-button {
+.nav-sign .el-button {
   background: transparent;
   color: white;
   width: 120px;
   border: 1px solid white;
+}
+@media only screen and (max-width: 992px) {
+  .left {
+    width: 180px !important;
+  }
+  .mid {
+    display: none !important;
+  }
+  .right {
+    display: none !important;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .min-right {
+    display: none !important;
+  }
+}
+.min-menu {
+  top: 60px !important;
+  text-align: center;
 }
 </style>
