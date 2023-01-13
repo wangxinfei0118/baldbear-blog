@@ -74,6 +74,7 @@ export default {
   height: 350px;
   background-image: url('assets/img/life-header.jpg');
   background-size: cover;
+  background-position: center;
 }
 ::v-deep.el-timeline-item .el-timeline-item__timestamp {
   font-size: 32px;

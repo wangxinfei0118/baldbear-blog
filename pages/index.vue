@@ -131,6 +131,7 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  background-position: center;
 }
 .note .el-divider {
   width: 400px;

@@ -194,6 +194,7 @@ export default {}
   height: 350px;
   background-image: url('assets/img/about-header.jpg');
   background-size: cover;
+  background-position: center;
 }
 .head-card {
   width: 60%;
