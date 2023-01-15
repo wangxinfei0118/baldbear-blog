@@ -8,7 +8,8 @@
     "dev": "cross-env NODE_ENV=dev nuxt",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=prod nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "analyze": "nuxt build --analyze"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.13.6",
@@ -16,10 +17,13 @@
     "element-ui": "^2.15.12",
     "mavon-editor": "^2.10.4",
     "nuxt": "^2.0.0",
+    "nuxt-precompress": "^0.5.9",
     "vue-count-to": "^1.0.13"
   },
   "devDependencies": {
+    "@aceforth/nuxt-optimized-images": "^1.4.0",
     "@nuxtjs/tailwindcss": "^4.2.1",
+    "babel-plugin-component": "^1.1.1",
     "cross-env": "^7.0.3",
     "prettier": "^2.8.2"
   }
