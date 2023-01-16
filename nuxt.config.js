@@ -1,12 +1,8 @@
 export default {
   mode: 'universal',
   env: {
-    // 认证客户端url process.env.authURL
     authURL: process.env.NODE_ENV === 'dev' ? '//localhost:7000' : '//login.baldbear.cn'
   },
-  /*
-   ** Headers of the page
-   */
   head: {
     title: '秃头熊的个人博客',
     meta: [
@@ -19,17 +15,8 @@ export default {
   router: {
     middleware: '404'
   },
-  /*
-   ** Customize the progress-bar color
-   */
   loading: { color: '#fff' },
-  /*
-   ** Global CSS
-   */
-  css: ['element-ui/lib/theme-chalk/index.css', 'element-ui/lib/theme-chalk/display.css', 'mavon-editor/dist/css/index.css'],
-  /*
-   ** Plugins to load before mounting the App
-   */
+  css: ['element-ui/lib/theme-chalk/display.css', 'mavon-editor/dist/css/index.css'],
   plugins: [
     '@/plugins/element-ui',
     '@/api/note.js',
@@ -39,17 +26,39 @@ export default {
     '@/plugins/interceptor.js',
     { src: '@/plugins/mavon-editor', mode: 'client' }
   ],
-  /*
-   ** Nuxt.js dev-modules
-   */
   buildModules: [
-    // Doc: https://github.com/nuxt-community/nuxt-tailwindcss
     '@nuxtjs/tailwindcss'
+    // '@aceforth/nuxt-optimized-images'
   ],
-  /*
-   ** Nuxt.js modules
-   */
-  modules: ['@nuxtjs/axios', 'cookie-universal-nuxt'],
+  // optimizedImages: {
+  //   optimizeImages: true
+  // },
+  modules: ['@nuxtjs/axios', 'cookie-universal-nuxt', 'nuxt-precompress'],
+  nuxtPrecompress: {
+    gzip: {
+      enabled: true,
+      filename: '[path].gz[query]',
+      threshold: 10240,
+      minRatio: 0.8,
+      compressionOptions: { level: 9 },
+      deleteOriginalAssets: true
+    },
+    brotli: {
+      enabled: false,
+      filename: '[path].br[query]',
+      compressionOptions: { level: 11 },
+      threshold: 10240,
+      minRatio: 0.8
+    },
+    enabled: true,
+    report: false,
+    test: /\.(js|css|html|txt|xml)$/,
+    middleware: {
+      enabled: true,
+      enabledStatic: true,
+      encodingsPriority: ['br', 'gzip']
+    }
+  },
   axios: {
     proxy: true,
     prefix: '/api'
@@ -60,14 +69,50 @@ export default {
       pathRewrite: { '^/api': '' }
     }
   },
-  /*
-   ** Build configuration
-   */
   build: {
     transpile: [/^element-ui/],
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    babel: {
+      plugins: [
+        [
+          'component',
+          {
+            libraryName: 'element-ui',
+            styleLibraryName: 'theme-chalk'
+          }
+        ]
+      ]
+    },
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        automaticNameDelimiter: '.',
+        cacheGroups: {
+          'element-ui': {
+            test: /node_modules[\\/]element-ui/,
+            chunks: 'all',
+            priority: 20,
+            name: true
+          },
+          'mavon-editor': {
+            test: /node_modules[\\/]mavon-editor/,
+            chunks: 'all',
+            priority: 20,
+            name: true
+          }
+        }
+      }
+    },
+    extend(config, ctx) {
+      // config.module.rules.push({
+      //   test: /\.(png|jpe?g|gif|svg)/i,
+      //   loader: 'url-loader',
+      //   options: {
+      //     limit: 1000,
+      //     name: 'img/[name].[hash].[ext]',
+      //     esModule: false
+      //   }
+      // })
+      config.devtool = false
+    }
   }
 }
