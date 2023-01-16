@@ -25,6 +25,9 @@
     "@nuxtjs/tailwindcss": "^4.2.1",
     "babel-plugin-component": "^1.1.1",
     "cross-env": "^7.0.3",
-    "prettier": "^2.8.2"
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^9.0.2",
+    "prettier": "^2.8.2",
+    "url-loader": "^4.1.1"
   }
 }
