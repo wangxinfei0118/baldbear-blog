@@ -1,15 +1,16 @@
 <template>
   <div>
-    <div class="head">
-      <div class="background w-full flex flex-col items-center">
-        <div class="bg-img"></div>
-        <div class="head-card min-head-card mini-head-card">
-          <div class="title -mt-6">
-            {{ $route.query.name }}
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--    <div class="head">-->
+    <!--      <div class="background w-full flex flex-col items-center">-->
+    <!--        <div class="bg-img"></div>-->
+    <!--        <div class="head-card min-head-card mini-head-card">-->
+    <!--          <div class="title -mt-6">-->
+    <!--            {{ $route.query.name }}-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
+    <page-header bgName="label-header" :title="$route.query.name"></page-header>
     <div style="width: 100%">
       <div class="note-box">
         <note-list :page="page" :list-data="noteList" @fetch-data="fetchData"></note-list>
@@ -19,10 +20,11 @@
 </template>
 <script>
 import NoteList from '@/components/note/List'
-
+import PageHeader from '@/components/common/PageHeader'
 export default {
   components: {
-    NoteList
+    NoteList,
+    PageHeader
   },
   validate({ params }) {
     return /^\d+$/.test(params.id)
@@ -54,46 +56,10 @@ export default {
   width: 60%;
   @apply mb-4 mx-auto;
 }
-.bg-img {
-  width: 100%;
-  height: 350px;
-  background-image: url('assets/img/label-header.jpg');
-  background-size: cover;
-}
-.head-card {
-  width: 60%;
-  height: 180px;
-  box-sizing: border-box;
-  padding: 24px 24px 0;
-  color: #fff;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid #f0f0f0;
-  margin-top: -180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.title {
-  width: 100%;
-  font-size: 32px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
 @media only screen and (max-width: 992px) {
-  .min-head-card {
-    width: 80%;
-  }
   .note-box {
     width: 100%;
     @apply mb-4 mx-auto;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .mini-head-card {
-    width: 100%;
   }
 }
 </style>

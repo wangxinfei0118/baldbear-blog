@@ -1,14 +1,6 @@
 <template>
   <div>
-    <div class="head">
-      <div class="background w-full flex flex-col items-center">
-        <div class="bg-img"></div>
-        <div class="head-card min-head-card mini-head-card">
-          <div class="title">寂静生长，默然坚强</div>
-          <div class="summary">走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。</div>
-        </div>
-      </div>
-    </div>
+    <page-header bgName="about-header" :title="headerTitle" :summary="headerSummary"></page-header>
     <div class="my-4 mx-auto" style="width: 78%">
       <el-row class="min-box">
         <el-col :xs="24" :sm="24" :md="12">
@@ -185,46 +177,19 @@
 </template>
 
 <script>
-export default {}
+import PageHeader from '@/components/common/PageHeader'
+export default {
+  components: { PageHeader },
+  data() {
+    return {
+      headerTitle: '寂静生长，默然坚强',
+      headerSummary: '走过平湖烟雨，跨过岁月山河，我始终相信，那些历经劫数，尝遍百味的人，会更加生动而干净。'
+    }
+  }
+}
 </script>
 
 <style scoped>
-.bg-img {
-  width: 100%;
-  height: 350px;
-  background-image: url('assets/img/about-header.jpg');
-  background-size: cover;
-  background-position: center;
-}
-.head-card {
-  width: 60%;
-  height: 180px;
-  box-sizing: border-box;
-  padding: 24px 24px 0;
-  color: #fff;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid #f0f0f0;
-  margin-top: -180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.title {
-  width: 100%;
-  font-size: 32px;
-  margin-bottom: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-.summary {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
 .el-collapse {
   border: none;
 }
@@ -259,9 +224,6 @@ export default {}
 }
 
 @media only screen and (max-width: 992px) {
-  .min-head-card {
-    width: 80%;
-  }
   .min-box {
     @apply flex flex-col;
   }
@@ -281,11 +243,6 @@ export default {}
   .img-box {
     display: flex;
     justify-content: left;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .mini-head-card {
-    width: 100%;
   }
 }
 @media only screen and (max-width: 1300px) {

@@ -1,16 +1,6 @@
 <template>
   <div>
-    <div class="head">
-      <div class="background w-full flex flex-col items-center">
-        <div class="bg-img"></div>
-        <div class="head-card min-head-card mini-head-card">
-          <div class="title">生活沉闷，但跑起来一定有风</div>
-          <div class="summary">
-            曾在半夜开车时听了一路的电台音乐，尽管有风声、引擎声，但还是觉得很安静，窗外的夜景也很安静，从未有过的舒服自在，后来有人告诉我，那是热爱生活。
-          </div>
-        </div>
-      </div>
-    </div>
+    <page-header bgName="life-header" :title="headerTitle" :summary="headerSummary"></page-header>
     <div class="line min-line">
       <el-timeline>
         <el-timeline-item :timestamp="item.createDate" placement="top" v-for="(item, index) in lifeList" :key="index">
@@ -29,10 +19,15 @@
 </template>
 
 <script>
+import PageHeader from '@/components/common/PageHeader'
 export default {
+  components: { PageHeader },
   data() {
     return {
-      userId: this.$store.state.userInfo && this.$store.state.userInfo.uid
+      userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
+      headerTitle: '生活沉闷，但跑起来一定有风',
+      headerSummary:
+        '曾在半夜开车时听了一路的电台音乐，尽管有风声、引擎声，但还是觉得很安静，窗外的夜景也很安静，从未有过的舒服自在，后来有人告诉我，那是热爱生活。'
     }
   },
   async asyncData({ app }) {
@@ -69,45 +64,9 @@ export default {
 </script>
 
 <style scoped>
-.bg-img {
-  width: 100%;
-  height: 350px;
-  background-image: url('assets/img/life-header.jpg');
-  background-size: cover;
-  background-position: center;
-}
 ::v-deep.el-timeline-item .el-timeline-item__timestamp {
   font-size: 32px;
   color: rgb(8, 151, 156);
-}
-.head-card {
-  width: 60%;
-  height: 180px;
-  box-sizing: border-box;
-  padding: 24px 24px 0;
-  color: #fff;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid #f0f0f0;
-  margin-top: -180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.title {
-  width: 100%;
-  font-size: 32px;
-  margin-bottom: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-.summary {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
 }
 .line {
   width: 70%;
@@ -119,20 +78,12 @@ export default {
   margin-top: 20px;
 }
 @media only screen and (max-width: 992px) {
-  .min-head-card {
-    width: 80%;
-  }
   .min-line {
     width: 90%;
   }
   .min-life-card {
     width: 100%;
     margin-left: 0;
-  }
-}
-@media only screen and (max-width: 768px) {
-  .mini-head-card {
-    width: 100%;
   }
 }
 </style>

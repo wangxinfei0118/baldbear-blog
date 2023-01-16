@@ -1,14 +1,6 @@
 <template>
   <div>
-    <div class="message-head">
-      <div class="background w-full flex flex-col items-center">
-        <div class="bg-img"></div>
-        <div class="head-card min-head-card mini-head-card">
-          <div class="title">向海风许愿，在山海相见</div>
-          <div class="summary">这里风遇山止，船到岸停。 这里的一切都有始有终，却能容纳所有不期而遇和久别重逢。</div>
-        </div>
-      </div>
-    </div>
+    <page-header bgName="message-header" :title="headerTitle" :summary="headerSummary"></page-header>
     <el-row type="flex" class="message-body mx-auto mt-4" justify="space-between">
       <el-col :xs="24" :sm="24" :md="17">
         <div class="commentArea">
@@ -53,14 +45,17 @@
 </template>
 
 <script>
+import PageHeader from '@/components/common/PageHeader'
 import Comment from '@/components/common/Comment'
 export default {
-  components: { Comment },
+  components: { Comment, PageHeader },
   data() {
     return {
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
       userImage: this.$store.state.userInfo && this.$store.state.userInfo.imageUrl,
-      nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName
+      nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName,
+      headerTitle: '向海风许愿，在山海相见',
+      headerSummary: '这里风遇山止，船到岸停。 这里的一切都有始有终，却能容纳所有不期而遇和久别重逢。'
     }
   },
   methods: {
@@ -99,59 +94,18 @@ export default {
 </script>
 
 <style scoped>
-.bg-img {
-  width: 100%;
-  height: 350px;
-  background-image: url('assets/img/message-header.jpg');
-  background-size: cover;
-  background-position: center;
-}
-.head-card {
-  width: 60%;
-  height: 180px;
-  box-sizing: border-box;
-  padding: 24px 24px 0;
-  color: #fff;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid #f0f0f0;
-  margin-top: -180px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.title {
-  width: 100%;
-  font-size: 32px;
-  margin-bottom: 16px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-align: center;
-}
-.summary {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-}
 .message-body {
   width: 79%;
 }
 @media only screen and (max-width: 992px) {
-  .min-head-card {
-    width: 80%;
-  }
   .message-body {
     width: 100%;
   }
   ::v-deep.comment-card .el-card__body {
     padding: 20px 0;
   }
-}
-@media only screen and (max-width: 768px) {
-  .mini-head-card {
-    width: 100%;
+  ::v-deep.comment-card > .el-card__body {
+    margin: 0 -10px;
   }
 }
 </style>
