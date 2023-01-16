@@ -43,7 +43,7 @@
               <i class="el-icon-delete-solid"></i>
               删除
             </font>
-            <font class="icon-reply icon-hf date">发布于{{ item.createDate }}</font>
+            <font class="icon-reply icon-hf">发布于{{ item.createDate }}</font>
           </div>
           <!-- replyMap 是否显示回复框 -->
           <div class="comment" :style="{ width: commentWidth }" v-if="replyMap[index]">
@@ -1056,9 +1056,6 @@ div:focus {
   padding: 3px 6px;
   font-size: 12px;
   font-weight: 400;
-}
-.date {
-  margin-left: 12px;
 }
 .reply-content {
   word-wrap: break-word;
