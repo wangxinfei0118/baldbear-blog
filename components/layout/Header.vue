@@ -108,7 +108,7 @@ export default {
       }
     },
     notOpen() {
-      this.$alert('该模块暂时没有开放哦', 'Hi,同学!', {
+      this.$mb.alert('该模块暂时没有开放哦', 'Hi,同学!', {
         confirmButtonText: '确定',
         callback: () => {}
       })
@@ -201,31 +201,31 @@ export default {
 }
 .el-menu {
   background-color: transparent;
-  border-bottom: none;
+  border-bottom: none !important;
 }
 .el-menu-item {
   background-color: transparent;
   border-radius: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #fff;
-  margin-right: 36px;
+  color: #fff !important;
+  margin-right: 36px !important;
   padding: 0;
   text-align: center;
-  height: 28px;
-  line-height: 28px;
+  height: 28px !important;
+  line-height: 28px !important;
 }
 .el-menu-item.is-active {
-  background-color: transparent;
-  color: #fff;
-  border-bottom: 2px solid #ffffff;
+  background-color: transparent !important;
+  color: #fff !important;
+  border-bottom: 2px solid #ffffff !important;
 }
 
 .el-menu-item:not(.is-disabled):focus,
 .el-menu-item:not(.is-disabled):hover,
 .el-submenu .el-submenu__title:hover {
-  background-color: transparent;
-  color: #fff;
+  background-color: transparent !important;
+  color: #fff !important;
 }
 .el-menu-item.is-disabled {
   opacity: 1;
