@@ -7,7 +7,7 @@
         <div>找到你喜欢做的事，并努力成为这个领域里的顶尖人物。</div>
         <div>Figure out what you like. Try to become the best in the world of it</div>
       </div>
-      <div class="absolute bottom-20 left-2/4 w-6 -ml-3 bounce-top" @click="scrollDown">
+      <div class="scroll-down absolute bottom-20 left-2/4 w-6 -ml-3 bounce-top" @click="scrollDown">
         <img src="@/assets/img/scroll-down.svg" />
       </div>
     </div>
@@ -36,7 +36,12 @@
           </div>
         </div>
       </div>
-      <el-divider></el-divider>
+      <el-divider content-position="left">
+        <div class="skill-line"></div>
+        <div class="relative">
+          <img class="skill-img" src="@/assets/img/skill.png" />
+        </div>
+      </el-divider>
       <div class="note w-full mb-4">
         <div class="note-wrapper">
           <div class="text-large text-home-title my-2">我的笔记</div>
@@ -111,6 +116,7 @@ export default {
           window.scrollTo(0, scrollTop + stepLength)
           window.requestAnimationFrame(step)
         } else {
+          return
         }
       }
       window.requestAnimationFrame(step)
@@ -126,7 +132,9 @@ export default {
 </script>
 
 <style scoped>
-.main-box {
+.box-header {
+  width: 100%;
+  height: calc(100vh - 54px);
   background-image: url('assets/img/home-background.jpg');
   background-size: cover;
   background-repeat: no-repeat;
@@ -138,11 +146,6 @@ export default {
 }
 .note .el-divider__text {
   color: rgb(19, 194, 194);
-}
-.box-header {
-  height: calc(100vh - 54px);
-  width: 100%;
-  overflow: hidden;
 }
 .box-header .cloak {
   background: rgba(52, 68, 76, 0.5);
@@ -209,5 +212,22 @@ export default {
 .note-img {
   height: 140px;
   @apply object-cover w-full;
+}
+.skill-line {
+  @apply w-52 h-1;
+}
+.skill-img {
+  @apply w-52 max-w-none absolute -top-24 opacity-80;
+}
+@media only screen and (max-width: 992px) {
+  .scroll-down {
+    display: none;
+  }
+  .skill-line {
+    @apply w-44 h-1;
+  }
+  .skill-img {
+    @apply w-44 max-w-none absolute -top-24 opacity-80;
+  }
 }
 </style>
