@@ -15,7 +15,7 @@ export default {
   router: {
     middleware: '404'
   },
-  loading: { color: '#fff' },
+  loading: false,
   css: ['element-ui/lib/theme-chalk/display.css', 'mavon-editor/dist/css/index.css'],
   plugins: [
     '@/plugins/element-ui',
