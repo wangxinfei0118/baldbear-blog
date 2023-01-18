@@ -15,6 +15,7 @@ module.exports = {
         'small-x': '13px',
         medium: '14px',
         'medium-x': '16px',
+        'large-s': '17px',
         large: '18px',
         'large-title': '32px'
       },
