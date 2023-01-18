@@ -207,8 +207,8 @@ export default {
   box-sizing: border-box;
   padding: 24px 24px 0;
   color: #fff;
-  background-color: hsla(0, 0%, 100%, 0.5);
-  border: 1px solid #f0f0f0;
+  background-color: rgba(230, 230, 250, 0.4);
+  border: 1px solid rgb(230, 230, 250);
   margin-top: -180px;
   display: flex;
   flex-direction: column;
