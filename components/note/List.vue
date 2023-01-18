@@ -8,22 +8,22 @@
       </el-table-column>
       <el-table-column>
         <template slot-scope="scope">
-          <h2 class="list-title">
-            <nuxt-link :to="'/note/' + scope.row.id" target="_blank">
+          <nuxt-link :to="'/note/' + scope.row.id" target="_blank">
+            <h2 class="list-title">
               {{ scope.row.title }}
-            </nuxt-link>
-          </h2>
-          <div class="list-summary" style="margin-bottom: 12px">
-            {{ scope.row.summary }}
-          </div>
-          <div class="info">
-            <i class="el-icon-date"></i>
-            {{ scope.row.updateDate }}
-            <i class="el-icon-chat-line-round"></i>
-            {{ scope.row.chatCount }}
-            <i class="el-icon-view"></i>
-            {{ scope.row.viewCount }}
-          </div>
+            </h2>
+            <div class="list-summary" style="margin-bottom: 12px">
+              {{ scope.row.summary }}
+            </div>
+            <div class="info">
+              <i class="el-icon-date"></i>
+              {{ scope.row.updateDate }}
+              <i class="el-icon-chat-line-round"></i>
+              {{ scope.row.chatCount }}
+              <i class="el-icon-view"></i>
+              {{ scope.row.viewCount }}
+            </div>
+          </nuxt-link>
         </template>
       </el-table-column>
     </el-table>
@@ -121,5 +121,8 @@ a:hover {
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
+}
+a:hover {
+  text-decoration: none;
 }
 </style>
