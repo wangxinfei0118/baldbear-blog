@@ -53,15 +53,34 @@ export default {
   width: 100vw;
 }
 .top-left {
+  -webkit-animation: top-left 8s ease-out both;
   animation: top-left 8s ease-out both;
 }
-@keyframes top-left {
+@-webkit-keyframes top-left {
   0% {
+    -webkit-transform: scale(1.25);
     transform: scale(1.25);
+    -webkit-transform-origin: 16% 16%;
     transform-origin: 16% 16%;
   }
   100% {
+    -webkit-transform: scale(1);
     transform: scale(1);
+    -webkit-transform-origin: top left;
+    transform-origin: top left;
+  }
+}
+@keyframes top-left {
+  0% {
+    -webkit-transform: scale(1.25);
+    transform: scale(1.25);
+    -webkit-transform-origin: 16% 16%;
+    transform-origin: 16% 16%;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    -webkit-transform-origin: top left;
     transform-origin: top left;
   }
 }
@@ -70,7 +89,7 @@ export default {
   height: 80vh;
   padding: 8px 48px;
   margin: 0 !important;
-  background-color: rgba(119, 136, 153, 0.2);
+  /*background-color: rgba(119, 136, 153, 0.2);*/
 }
 
 .el-col {
@@ -90,7 +109,6 @@ export default {
   height: 76%;
   width: 96%;
   background-color: rgba(250, 250, 250, 0.2);
-  color: white;
   border-radius: 0;
   border: 0;
 }
@@ -108,9 +126,21 @@ export default {
   @apply absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-large;
 }
 .label-box:hover {
-  animation-name: fadeInLeft;
-  animation-duration: 1s;
-  animation-fill-mode: both;
+  -webkit-animation: fadeInLeft 1s both;
+  animation: fadeInLeft 1s both;
+}
+
+@-webkit-keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-20%, 0, 0);
+    transform: translate3d(-20%, 0, 0);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
 }
 @keyframes fadeInLeft {
   from {
@@ -118,7 +148,6 @@ export default {
     -webkit-transform: translate3d(-20%, 0, 0);
     transform: translate3d(-20%, 0, 0);
   }
-
   to {
     opacity: 1;
     -webkit-transform: translate3d(0, 0, 0);
