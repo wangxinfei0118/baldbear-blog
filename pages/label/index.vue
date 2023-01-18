@@ -3,27 +3,28 @@
     <div class="background">
       <img src="@/assets/img/label-background.jpg" class="top-left" />
     </div>
-    <div class="absolute top-10 w-full">
-      <el-row :gutter="10">
+    <div class="w-11/12 mx-auto pt-24">
+      <el-row>
         <el-col v-for="(category, index) in labelList" :key="index" :xs="24" :sm="24" :md="6">
-          <el-card shadow="hover">
+          <div class="category-box">
             <!-- 类别名 -->
-            <div slot="header">
-              <span>{{ category.name }}</span>
+            <div class="title-box">
+              <div class="mb-2 text-5xl"><i :class="category.iconName + ' category-icon'"></i></div>
+              <div class="text-large-s tracking-widest">{{ category.name }}</div>
+              <div class="text-large opacity-60"><i class="el-icon-minus"></i></div>
             </div>
-            <!-- 类别下的标签 -->
-            <div class="flex flex-wrap">
+            <div class="label-box">
               <nuxt-link
                 v-for="label in category.labelList"
                 :key="label.id"
                 class="mb-2"
                 :to="{ path: `/label/${label.id}`, query: { name: label.name } }">
-                <el-tag size="small" effect="plain" color="rgba(240,255,255,0.4)" class="text-white">
+                <div class="label-item">
                   {{ label.name }}
-                </el-tag>
+                </div>
               </nuxt-link>
             </div>
-          </el-card>
+          </div>
         </el-col>
       </el-row>
     </div>
@@ -66,12 +67,16 @@ export default {
 }
 .el-row {
   width: 100%;
-  padding: 96px 32px;
+  height: 80vh;
+  padding: 8px 48px;
   margin: 0 !important;
+  background-color: rgba(119, 136, 153, 0.2);
 }
 
 .el-col {
-  margin-bottom: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .el-tag {
@@ -80,9 +85,47 @@ export default {
   color: #f5fffa;
 }
 
-.el-card {
-  height: 200px;
-  background-color: rgba(119, 136, 153, 0.5);
+.category-box {
+  position: relative;
+  height: 76%;
+  width: 96%;
+  background-color: rgba(250, 250, 250, 0.2);
   color: white;
+  border-radius: 0;
+  border: 0;
+}
+.category-icon {
+  font-weight: 100 !important;
+  opacity: 0.6;
+}
+.title-box {
+  @apply text-center text-black w-full h-full flex flex-col items-center justify-center;
+}
+.label-box {
+  color: white;
+  opacity: 0;
+  background-color: rgba(26, 26, 26, 0.8);
+  @apply absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center text-large;
+}
+.label-box:hover {
+  animation-name: fadeInLeft;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(-20%, 0, 0);
+    transform: translate3d(-20%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+}
+.label-item {
+  height: 60px;
 }
 </style>
