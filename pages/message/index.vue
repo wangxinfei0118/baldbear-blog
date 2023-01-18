@@ -55,7 +55,8 @@ export default {
       userImage: this.$store.state.userInfo && this.$store.state.userInfo.imageUrl,
       nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName,
       headerTitle: '向海风许愿，在山海相见',
-      headerSummary: '这里风遇山止，船到岸停。 这里的一切都有始有终，却能容纳所有不期而遇和久别重逢。'
+      headerSummary:
+        '或许每个人心中都有一条塞纳河，她把我们的一颗心分作两边，左岸柔软，右岸冷硬；左岸感性，右岸理性。左岸住着我们的欲望，期盼，挣扎和所有的爱恨嗔怒，右岸住着这个世界的规则在我们心里打下的烙印――左岸是梦境，右岸是生活。'
     }
   },
   methods: {
