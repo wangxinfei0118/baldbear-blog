@@ -19,7 +19,7 @@
             前端开发工程师，2023年毕业于天津工业大学，软件工程专业，大一开始接触网页设计，大二期间参与过小组数据可视化项目及商城项目的前端开发，大三开始系统学习前端，从前端基础，到开发框架，再到前端工程化以及项目的优化部署，期间做过pc、h5、小程序、跨端开发等相关项目，并在2022.6-2022.9参与企业实习，进行企业级项目开发。平时关注github，稀土掘金等社区了解更多优秀的前端技术及项目，对自己进行进一步的提升
           </div>
           <div class="text-home-title self-end">
-            github：
+            github:
             <a href="https://github.com/wangxinfei0118" target="_blank">
               <img class="inline-block align-baseline" src="@/assets/img/github-mark.svg" width="32" height="32" />
             </a>
