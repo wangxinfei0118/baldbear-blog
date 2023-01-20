@@ -1,15 +1,5 @@
 <template>
   <div>
-    <!--    <div class="head">-->
-    <!--      <div class="background w-full flex flex-col items-center">-->
-    <!--        <div class="bg-img"></div>-->
-    <!--        <div class="head-card min-head-card mini-head-card">-->
-    <!--          <div class="title -mt-6">-->
-    <!--            {{ $route.query.name }}-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <page-header bgName="label-header" :title="$route.query.name"></page-header>
     <div style="width: 100%">
       <div class="note-box">
