@@ -1,7 +1,7 @@
 <template>
   <!-- 主体内容 -->
   <div class="main-box">
-    <div class="box-header">
+    <div class="box-header compatible">
       <!--      <img src="@/assets/img/background.png" class="right-top" />-->
       <div class="cloak flex flex-col justify-center items-center text-white text-large-title font-semibold text-center">
         <div>找到你喜欢做的事，并努力成为这个领域里的顶尖人物。</div>
@@ -139,7 +139,13 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: center;
+  background-position-x: center;
+}
+@media only screen and (max-width: 992px) {
+  .compatible {
+    background-size: auto calc(100vh - 54px);
+    background-position-x: 25%;
+  }
 }
 .note .el-divider {
   width: 400px;
