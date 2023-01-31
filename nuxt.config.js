@@ -23,6 +23,7 @@ export default {
     '@/api/common.js',
     '@/api/life.js',
     '@/api/user.js',
+    '@/api/message.js',
     '@/plugins/interceptor.js',
     { src: '@/plugins/mavon-editor', mode: 'client' }
   ],
