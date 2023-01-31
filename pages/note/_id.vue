@@ -13,7 +13,7 @@
           <div class="mt-2">
             <el-tag size="mini">
               <i class="el-icon-time"></i>
-              {{ data.createDate }}
+              {{ data.createDate.split(' ')[0] }}
             </el-tag>
             <el-tag size="mini" type="success">
               <i class="el-icon-chat-line-round"></i>

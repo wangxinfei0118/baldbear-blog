@@ -59,7 +59,7 @@
                   <div class="flex text-small">
                     <div class="w-6/12">
                       <i class="el-icon-time text-blue-300"></i>
-                      {{ item.createDate }}
+                      {{ item.createDate.split(' ')[0] }}
                     </div>
                     <div class="w-3/12 text-right">
                       <i class="el-icon-chat-line-round text-green-300"></i>
