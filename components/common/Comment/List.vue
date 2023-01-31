@@ -79,7 +79,9 @@
               <div class="publish publish-btn">
                 <!-- <button class="btn" @click="doChildSend(item.id,item.commentUser.id,item.id)">发送</button>
                 <button @click="cancel(item.id)" class="btn btn-cancel">取消</button>-->
-                <el-button @click="sendChild(index, item.id)" size="mini" type="primary" round>发 布</el-button>
+                <el-button @click="sendChild(index, item.id, item.pid, item.nickname)" size="mini" type="primary" round>
+                  发 布
+                </el-button>
                 <el-button @click="cancel(index)" size="mini" round>取 消</el-button>
               </div>
             </div>
@@ -92,13 +94,12 @@
         <list
           class="-m-4"
           :commentList="item.children"
-          :parentName="item.nickName"
+          :parentName="item.nickname"
           :userId="userId"
-          :authorId="authorId"
           :doChildSend="doChildSend"
           :doRemove="doRemove"
           :emojiWidth="emojiWidth"
-          :userImage="userImage"
+          :userPic="userPic"
           :showComment="showComment"
           :placeholder="placeholder"
           :minRows="minRows"
@@ -153,26 +154,7 @@ export default {
     },
     commentList: {
       type: Array,
-      default: () => [
-        {
-          id: '20',
-          userId: '1',
-          nickName: '小梦',
-          userImage: 'http://qzapp.qlogo.cn/qzapp/101483738/6637A2B6611592A44A7699D14E13F7F7/50',
-          content: '[害羞][害羞][害羞]<br/>',
-          createDate: '2019-9-23 17:36:02',
-          children: [
-            {
-              id: '30',
-              userId: '2',
-              userImage: 'http://qzapp.qlogo.cn/qzapp/101483738/6637A2B6611592A44A7699D14E13F7F7/50',
-              nickName: '梦学谷',
-              content: '真的就很棒！很Nice!',
-              createDate: '2019-9-23 17:45:26'
-            }
-          ]
-        }
-      ]
+      default: () => []
     },
     doChildSend: Function,
     doRemove: Function,
@@ -283,8 +265,18 @@ export default {
       // }
     },
     // 回复评论
-    sendChild(index, pid) {
-      this.doChildSend(this.textareaMap[index], pid)
+    sendChild(index, replyId, prePid, replyName) {
+      let pid = -1
+      let belowReplyId = -1
+      let belowReplyName = ''
+      if (prePid === -1) {
+        pid = replyId
+      } else {
+        pid = prePid
+        belowReplyId = replyId
+        belowReplyName = replyName
+      }
+      this.doChildSend(this.textareaMap[index], pid, belowReplyId, belowReplyName)
       // console.log(index, 'textareaMap', this.textareaMap)
       // this.$emit("doChildSend", this.textareaMap[index], pid);
       this.$set(this.textareaMap, index, '')

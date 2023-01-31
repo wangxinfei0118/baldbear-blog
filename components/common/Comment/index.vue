@@ -241,9 +241,9 @@ export default {
       this.$set(this.textareaMap, 0, '')
     },
     // 回复
-    doChildSend(content, parentId) {
+    doChildSend(content, pid, belowReplyId, belowReplyName) {
       // 提交回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
-      this.$emit('doChildSend', content, parentId)
+      this.$emit('doChildSend', content, pid, belowReplyId, belowReplyName)
     },
     // 删除
     doRemove(id) {

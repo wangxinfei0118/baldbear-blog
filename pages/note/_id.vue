@@ -122,26 +122,36 @@ export default {
       this.doChildSend(content)
     },
     // 发布回复评论触发
-    doChildSend(content, parentId = -1) {
+    doChildSend(content, pid = -1, belowReplyId = -1, belowReplyName = '') {
       // 回复评论：父评论ID，评论内容，文章ID，登录用户信息（用户id，用户头像，用户昵称，用户头像）
       const data = {
         content,
-        parentId,
-        articleId: this.$route.params.id,
+        pid,
+        belowReplyId,
+        belowReplyName,
+        noteId: this.$route.params.id,
         userId: this.userId,
-        userImage: this.userImage,
-        nickName: this.$store.state.userInfo && this.$store.state.userInfo.nickName
+        userPic: this.userPic,
+        nickname: this.$store.state.userInfo && this.$store.state.userInfo.nickname
       }
       this.$addComment(data).then((res) => {
         if (res.code === 20000) {
+          this.$message.success('评论成功！')
           this.refreshComment()
+        } else {
+          this.$message.error('评论失败！')
         }
       })
     },
     // 删除评论
     doRemove(id) {
       this.$deleteCommentById(id).then((res) => {
-        this.refreshComment()
+        if (res.code === 20000) {
+          this.$message.success('删除成功！')
+          this.refreshComment()
+        } else {
+          this.$message.error('删除失败！')
+        }
       })
     },
     async refreshComment() {

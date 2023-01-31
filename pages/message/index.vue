@@ -63,23 +63,33 @@ export default {
     doSend(content) {
       this.doChildSend(content)
     },
-    doChildSend(content, parentId = -1) {
+    doChildSend(content, pid = -1, belowReplyId = -1, belowReplyName = '') {
       const data = {
         content,
-        parentId,
+        pid,
+        belowReplyId,
+        belowReplyName,
         userId: this.userId,
-        userImage: this.userImage,
-        nickName: this.nickName
+        userPic: this.userPic,
+        nickname: this.nickname
       }
-      this.$addComment(data).then((res) => {
+      this.$addMessage(data).then((res) => {
         if (res.code === 20000) {
+          this.$message.success('评论成功！')
           this.refreshComment()
+        } else {
+          this.$message.error('评论失败！')
         }
       })
     },
     doRemove(id) {
-      this.$deleteCommentById(id).then((res) => {
-        this.refreshComment()
+      this.$deleteMessage(id).then((res) => {
+        if (res.code === 20000) {
+          this.$message.success('删除成功！')
+          this.refreshComment()
+        } else {
+          this.$message.error('评论失败！')
+        }
       })
     },
     async refreshComment() {
