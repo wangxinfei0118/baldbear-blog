@@ -4,6 +4,12 @@ export default ({ store, route, redirect, $axios }) => {
     if (accessToken) {
       // 针对每个请求，请求头带上令牌 Authorization: Bearer token
       config.headers.Authorization = 'Bearer ' + accessToken
+      if (config.headers['Content-Type'] !== 'multipart/form-data') {
+        config.headers['Content-Type'] = 'application/json'
+      }
+    }
+    if (config.data) {
+      config.data = JSON.stringify(config.data)
     }
     return config
   })
