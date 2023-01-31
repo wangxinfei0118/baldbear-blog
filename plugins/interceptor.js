@@ -36,13 +36,13 @@ let isLock = false
 const sendRefreshRequest = (store, route, redirect) => {
   if (!isLock && store.state.refreshToken) {
     isLock = true
-    redirect(`${process.env.authURL}/refresh?redirectURL=${redirectURL(route)}`)
+    redirect(`http:${process.env.authURL}/refresh?redirectURL=${redirectURL(route)}`)
   } else {
     isLock = false
     // 没有刷新令牌，跳转到登录页
     store.commit('RESET_USER_STATE')
     // 服务端帮我们跳转到登录页
-    redirect(`${process.env.authURL}?redirectURL=${redirectURL(route)}`)
+    redirect(`http:${process.env.authURL}?redirectURL=${redirectURL(route)}`)
   }
 }
 
