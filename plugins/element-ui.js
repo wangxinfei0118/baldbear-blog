@@ -14,6 +14,7 @@ import {
   Submenu,
   Radio,
   Card,
+  Message,
   MessageBox,
   Backtop,
   Divider,
@@ -32,7 +33,9 @@ import {
   RadioGroup,
   Avatar,
   Empty,
-  Popover
+  Popover,
+  Pagination,
+  Cascader
 } from 'element-ui'
 
 const components = [
@@ -50,6 +53,7 @@ const components = [
   Submenu,
   Radio,
   Card,
+  Message,
   MessageBox,
   Backtop,
   Divider,
@@ -68,7 +72,9 @@ const components = [
   RadioGroup,
   Avatar,
   Empty,
-  Popover
+  Popover,
+  Pagination,
+  Cascader
 ]
 const Element = {
   install(Vue) {
@@ -78,4 +84,33 @@ const Element = {
   }
 }
 Vue.prototype.$mb = MessageBox
+Vue.prototype.$message = Message
+Vue.prototype.$message.success = function (message) {
+  Message({
+    message,
+    type: 'success',
+    offset: 80
+  })
+}
+Vue.prototype.$message.error = function (message) {
+  Message({
+    message,
+    type: 'error',
+    offset: 80
+  })
+}
+Vue.prototype.$message.info = function (message) {
+  Message({
+    message,
+    type: 'info',
+    offset: 80
+  })
+}
+Vue.prototype.$message.warning = function (message) {
+  Message({
+    message,
+    type: 'warning',
+    offset: 80
+  })
+}
 Vue.use(Element)
