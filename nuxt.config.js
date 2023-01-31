@@ -18,12 +18,12 @@ export default {
   loading: false,
   css: ['element-ui/lib/theme-chalk/display.css', 'mavon-editor/dist/css/index.css'],
   plugins: [
-    '@/plugins/element-ui',
     '@/api/note.js',
     '@/api/common.js',
     '@/api/life.js',
     '@/api/user.js',
     '@/api/message.js',
+    '@/plugins/element-ui',
     '@/plugins/interceptor.js',
     { src: '@/plugins/mavon-editor', mode: 'client' }
   ],
