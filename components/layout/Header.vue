@@ -22,7 +22,7 @@
             </div>
             <el-dropdown trigger="click" @command="handleCommand" v-if="userInfo">
               <span class="el-dropdown-link">
-                <el-avatar :src="userInfo.imageUrl"></el-avatar>
+                <el-avatar :src="userInfo.userPic"></el-avatar>
               </span>
               <el-dropdown-menu slot="dropdown">
                 <el-dropdown-item command="note" v-if="userInfo.uid == 1">写笔记</el-dropdown-item>
@@ -42,8 +42,8 @@
               <el-dropdown-menu slot="dropdown" class="min-menu">
                 <div class="mb-2">
                   <div v-if="userInfo" @click="$router.push('/user')">
-                    <el-avatar :src="userInfo.imageUrl"></el-avatar>
-                    <div>{{ userInfo.nickName }}</div>
+                    <el-avatar :src="userInfo.userPic"></el-avatar>
+                    <div>{{ userInfo.nickname }}</div>
                   </div>
                   <el-button v-else plain type="text" @click="$store.dispatch('toLoginPage')">立即登录</el-button>
                 </div>

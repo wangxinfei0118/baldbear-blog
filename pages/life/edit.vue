@@ -72,7 +72,7 @@ export default {
     async submitData() {
       let res = null
       if (this.$route.query.id) {
-        res = await this.$editLife(this.formData)
+        res = await this.$editLife(this.formData, this.$route.query.id)
       } else {
         res = await this.$addLife(this.formData)
       }

@@ -47,7 +47,7 @@
           <div class="text-large text-home-title my-2">我的笔记</div>
           <el-divider>记录学习中的每一步脚印</el-divider>
           <div class="note-box">
-            <nuxt-link :to="`/note/${item.id}`" target="_blank" v-for="item in noteList" :key="item.id">
+            <nuxt-link :to="`/note/${item.noteId}`" target="_blank" v-for="item in noteList" :key="item.id">
               <el-card shadow="hover" class="note-card" :body-style="{ padding: '0px' }">
                 <img class="note-img" :src="item.imageUrl" />
                 <div class="note-content p-6">

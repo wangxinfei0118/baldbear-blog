@@ -2,11 +2,11 @@
   <div>
     <el-row type="flex" style="padding-top: 30px">
       <el-form :rules="rules" ref="formData" :model="formData" label-width="100px" style="width: 400px" status-icon>
-        <el-form-item label="昵称：" prop="nickName">
-          <el-input v-model="formData.nickName" maxlength="30" placeholder="真实姓名或昵称"></el-input>
+        <el-form-item label="昵称：" prop="nickname">
+          <el-input v-model="formData.nickname" maxlength="30" placeholder="真实姓名或昵称"></el-input>
         </el-form-item>
-        <el-form-item label="手机号：" prop="mobile">
-          <el-input v-model="formData.mobile" maxlength="11" placeholder="11 位手机号码"></el-input>
+        <el-form-item label="手机号：" prop="phone">
+          <el-input v-model="formData.phone" maxlength="11" placeholder="11 位手机号码"></el-input>
         </el-form-item>
         <el-form-item label="邮箱：" prop="email">
           <el-input v-model="formData.email" maxlength="40" placeholder="用于收取通知邮件"></el-input>
@@ -34,8 +34,8 @@ export default {
       default: () => {
         return {
           username: '',
-          nickName: '',
-          mobile: '',
+          nickname: '',
+          phone: '',
           email: ''
         }
       }
@@ -82,8 +82,8 @@ export default {
     }
     return {
       rules: {
-        nickName: [{ required: true, validator: checkNickName, trigger: 'blur' }],
-        mobile: [{ required: true, validator: checkMobile, trigger: 'blur' }],
+        nickname: [{ required: true, validator: checkNickName, trigger: 'blur' }],
+        phone: [{ required: true, validator: checkMobile, trigger: 'blur' }],
         email: [{ required: true, validator: checkEmail, trigger: 'blur' }]
       }
     }

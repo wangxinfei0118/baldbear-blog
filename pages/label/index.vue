@@ -9,7 +9,7 @@
           <div class="category-box">
             <!-- 类别名 -->
             <div class="title-box">
-              <div class="mb-2 text-5xl"><i :class="category.iconName + ' category-icon'"></i></div>
+              <div class="mb-2 text-5xl"><i :class="category.icon + ' category-icon'"></i></div>
               <div class="text-large-s tracking-widest">{{ category.name }}</div>
               <div class="text-large opacity-60"><i class="el-icon-minus"></i></div>
             </div>
