@@ -16,6 +16,11 @@ const mutations = {
     state.userInfo = userData.userInfo
     state.accessToken = userData.accessToken
     state.refreshToken = userData.refreshToken
+  },
+  // 更新用户信息
+  updateUserInfo(state, userInfo) {
+    state.userInfo = userInfo
+    this.$cookies.set('userInfo', userInfo)
   }
 }
 
