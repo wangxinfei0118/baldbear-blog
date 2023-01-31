@@ -79,13 +79,13 @@ export default {
     return {
       rules: {
         title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
-        labelIds: [{ required: true, message: '请选择标签', trigger: 'blur' }],
+        label: [{ required: true, message: '请选择标签', trigger: 'blur' }],
+        imageUrl: [{ required: true, message: '请添加主图', trigger: 'blur' }],
         ispublic: [{ required: true, message: '请选择是否公开', trigger: 'change' }],
         summary: [{ required: true, message: '请输入简介', trigger: 'blur' }],
         content: [{ validator: validateContent, trigger: 'change' }]
       },
       formData: {},
-      labelDisabled: false,
       labelOptions: []
     }
   },
@@ -102,7 +102,7 @@ export default {
     async submitData() {
       let res = null
       if (this.$route.query.id) {
-        res = await this.$editNote(this.formData)
+        res = await this.$editNote(this.formData, this.$route.query.id)
       } else {
         res = await this.$addNote(this.formData)
       }

@@ -58,8 +58,7 @@
               </div>
               <comment
                 :userId="userId"
-                :userImage="userImage"
-                :authorId="data.userId"
+                :userPic="userPic"
                 :showComment="$store.state.userInfo ? true : false"
                 @doSend="doSend"
                 @doChildSend="doChildSend"
@@ -113,7 +112,7 @@ export default {
       // 当前登录用户id
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
       // 当前登录用户头像，
-      userImage: this.$store.state.userInfo && this.$store.state.userInfo.imageUrl
+      userPic: this.$store.state.userInfo && this.$store.state.userInfo.userPic
     }
   },
   methods: {

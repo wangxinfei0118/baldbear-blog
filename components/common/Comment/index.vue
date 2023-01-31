@@ -4,8 +4,8 @@
     <div v-if="showComment">
       <div class="hbl-comm">
         <!-- 是否显示头像 -->
-        <div class="comment-avatar" v-if="showUserImage">
-          <el-avatar icon="el-icon-user-solid" :src="userImage" />
+        <div class="comment-avatar" v-if="showUserPic">
+          <el-avatar icon="el-icon-user-solid" :src="userPic" />
         </div>
         <!-- 公共评论输入框 textareaMap[0] -->
         <div class="comment" :style="{ width: commentWidth }">
@@ -53,12 +53,11 @@
     <list
       :commentList="commentList"
       :userId="userId"
-      :authorId="authorId"
       :doChildSend="doChildSend"
       :doRemove="doRemove"
       :showComment="showComment"
       :emojiWidth="emojiWidth"
-      :userImage="userImage"
+      :userPic="userPic"
       :placeholder="placeholder"
       :minRows="minRows"
       :maxRows="maxRows"
@@ -79,11 +78,7 @@ export default {
       default: false
     },
     userId: null, // 当前登录用户id
-    authorId: {
-      typ: String,
-      default: '1'
-    }, // 当前文章作者id
-    showUserImage: {
+    showUserPic: {
       // 输入框左侧是否显示头像
       type: Boolean,
       default: true
@@ -97,7 +92,7 @@ export default {
       type: String,
       default: '560px'
     },
-    userImage: {
+    userPic: {
       type: String,
       default: ''
     },

@@ -21,7 +21,7 @@
             <div class="avatar">
               <el-tooltip content="点击上传头像" effect="light">
                 <el-upload accept="image/*" action="" :show-file-list="false" :http-request="uploadMainImg">
-                  <el-avatar :size="60" :src="this.userInfo.imageUrl">{{ userInfo.nickName }}</el-avatar>
+                  <el-avatar :size="60" :src="userInfo.userPic">{{ userInfo.nickname }}</el-avatar>
                 </el-upload>
               </el-tooltip>
               <div class="text-small-x">我的头像</div>
@@ -48,12 +48,8 @@ export default {
   data() {
     return {
       loading: false,
-      userInfo: {
-        imageUrl: ''
-      },
-      passwordData: {
-        userId: this.$store.state.userInfo.uid
-      },
+      userInfo: null,
+      passwordData: {},
       activeItem: '1'
     }
   },
