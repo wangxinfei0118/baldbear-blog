@@ -65,7 +65,7 @@ export default {
   },
   proxy: {
     '/api': {
-      target: 'https://www.fastmock.site/mock/7bd9f6a21e18a9c791fd338a1a007d59/baldbear-blog',
+      target: 'http://localhost:3008',
       pathRewrite: { '^/api': '' }
     }
   },
