@@ -8,7 +8,7 @@
       </el-table-column>
       <el-table-column>
         <template slot-scope="scope">
-          <nuxt-link :to="'/note/' + scope.row.id" target="_blank">
+          <nuxt-link :to="'/note/' + scope.row.noteId" target="_blank">
             <h2 class="list-title">
               {{ scope.row.title }}
             </h2>
