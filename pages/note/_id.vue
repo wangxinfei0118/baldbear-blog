@@ -195,6 +195,7 @@ export default {
       }
     }
     const { data: commentList } = await app.$getCommentListByNoteId(params.id)
+    data.htmlContent = app.$handleEscape(data.htmlContent)
     return { data, commentList }
   }
 }

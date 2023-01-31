@@ -25,6 +25,7 @@ export default {
     '@/api/message.js',
     '@/plugins/element-ui',
     '@/plugins/interceptor.js',
+    '@/plugins/common.js',
     { src: '@/plugins/mavon-editor', mode: 'client' }
   ],
   buildModules: [

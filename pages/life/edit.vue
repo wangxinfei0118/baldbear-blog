@@ -114,6 +114,7 @@ export default {
     // 若已存在则查询详情
     if (query.id) {
       const { data } = await app.$getLifeById(query.id)
+      data.mdContent = app.$handleEscape(data.mdContent)
       formData = data
     } else {
       formData = {}

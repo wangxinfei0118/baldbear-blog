@@ -32,6 +32,9 @@ export default {
   },
   async asyncData({ app }) {
     const { data } = await app.$getLifeList()
+    data.records.forEach((item) => {
+      item.htmlContent = app.$handleEscape(item.htmlContent)
+    })
     return { lifeList: data.records }
   },
   methods: {

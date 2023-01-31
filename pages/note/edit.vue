@@ -155,13 +155,14 @@ export default {
   },
   async asyncData({ app, query }) {
     // 查询所有标签
-    const { data } = await app.$getCategoryAndLabel()
+    const { data: labelOptions } = await app.$getCategoryAndLabel()
     // 若已存在则查询详情
     if (query.id) {
       const { data: formData } = await app.$getNoteById(query.id)
-      return { labelOptions: data, formData }
+      formData.mdContent = app.$handleEscape(formData.mdContent)
+      return { labelOptions, formData }
     }
-    return { labelOptions: data }
+    return { labelOptions }
   }
 }
 </script>
