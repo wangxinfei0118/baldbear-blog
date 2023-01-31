@@ -6,19 +6,22 @@
       <!-- 一级评论 -->
       <div class="content">
         <div class="comment-f mr-2">
-          <el-avatar icon="el-icon-user-solid" :src="item.userImage" />
+          <el-avatar icon="el-icon-user-solid" :src="item.userPic" />
         </div>
 
         <div class="comment-f">
           <div>
             <!-- 作者 -->
-            <div class="nickname author font-medium" v-if="item.belowReply">
-              {{ item.nickName }}
-              <span style="opacity: 0.6">回复</span>
-              {{ item.belowReply }}
+            <div class="nickname author font-medium">
+              <span>{{ item.nickname }}</span>
+              <div v-if="item.userId === 1" class="icon author">{{ label }}</div>
+              <span style="opacity: 0.6" v-if="item.belowReplyId && item.belowReplyId !== -1">
+                回复 {{ item.belowReplyName }}
+                <div v-if="commentList.find((i) => i.id === item.belowReplyId).userId === 1" class="icon author">
+                  {{ label }}
+                </div>
+              </span>
             </div>
-            <div class="nickname author font-medium" v-else>{{ item.nickName }}</div>
-            <div v-if="item.userId === authorId" class="icon author">{{ label }}</div>
           </div>
         </div>
 
@@ -116,7 +119,6 @@ export default {
   name: 'List',
   props: {
     userId: null, // 当前登录用户id
-    authorId: null, // 当前文章作者id
     parentName: {
       // 父评论作者名
       type: String,
@@ -131,7 +133,7 @@ export default {
       type: String,
       default: '560px'
     },
-    userImage: {
+    userPic: {
       // 当前登录用户头像
       type: String,
       default: ''
