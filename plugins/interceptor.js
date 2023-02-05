@@ -1,21 +1,35 @@
+import Vue from 'vue'
+
 export default ({ store, route, redirect, $axios }) => {
   $axios.onRequest((config) => {
     const accessToken = store.state.accessToken
     if (accessToken) {
       // 针对每个请求，请求头带上令牌 Authorization: Bearer token
       config.headers.Authorization = 'Bearer ' + accessToken
-      if (config.headers['Content-Type'] !== 'multipart/form-data') {
-        config.headers['Content-Type'] = 'application/json'
-      }
     }
-    if (config.data) {
-      config.data = JSON.stringify(config.data)
+    if (config.headers['Content-Type'] !== 'multipart/form-data') {
+      config.headers['Content-Type'] = 'application/json'
+      if (config.data) {
+        config.data = JSON.stringify(config.data)
+      }
     }
     return config
   })
 
   $axios.onResponse((response) => {
-    return response
+    if (response.data.code === 40100) {
+      if (process.client) {
+        Vue.prototype.$message.error('登录已过期，清重新登录')
+      }
+      sendRefreshRequest(store, route, redirect)
+      return
+    }
+    if (response.data.code === 50002) {
+      // 未查询到数据 进入404
+      redirect('/404')
+    } else {
+      return response
+    }
   })
 
   $axios.onError((error) => {
@@ -23,8 +37,10 @@ export default ({ store, route, redirect, $axios }) => {
     if (error.response.status !== 401) {
       return Promise.reject(error)
     }
-
     // 401 发送刷新令牌请求
+    if (process.client) {
+      Vue.prototype.$message.error('登录已过期，清重新登录')
+    }
     sendRefreshRequest(store, route, redirect)
     return Promise.reject('令牌过期，重新登录')
   })
