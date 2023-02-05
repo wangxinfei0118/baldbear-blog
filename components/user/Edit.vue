@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row type="flex" style="padding-top: 30px">
+    <el-row style="padding-top: 30px; text-align: center">
       <el-form :rules="rules" ref="formData" :model="formData" label-width="100px" style="width: 400px" status-icon>
         <el-form-item label="昵称：" prop="nickname">
           <el-input v-model="formData.nickname" maxlength="30" placeholder="真实姓名或昵称"></el-input>
@@ -11,10 +11,8 @@
         <el-form-item label="邮箱：" prop="email">
           <el-input v-model="formData.email" maxlength="40" placeholder="用于收取通知邮件"></el-input>
         </el-form-item>
-        <el-form-item align="center">
-          <el-button size="mini" type="primary" :loading="loading" @click="submitForm('formData')">确 定</el-button>
-        </el-form-item>
       </el-form>
+      <el-button size="mini" type="primary" :loading="loading" @click="submitForm('formData')">确 定</el-button>
     </el-row>
   </div>
 </template>
