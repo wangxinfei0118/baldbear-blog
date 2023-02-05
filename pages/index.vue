@@ -74,7 +74,7 @@
               </el-card>
             </nuxt-link>
             <!--解决justify-content: space-between不足一行元素两侧问题-->
-            <div class="list" style="width: 280px" v-for="i in 4 - (6 % 4)" v-if="6 % 4 > 0"></div>
+            <div class="list" style="width: 280px" v-for="i in 4 - (noteList.length % 4)" v-if="noteList.length % 4 > 0"></div>
           </div>
           <el-button v-if="isMore" type="primary" :loading="loading" size="small" round @click="loadMore">
             {{ loading ? '加载中……' : '点击加载更多' }}
