@@ -177,7 +177,7 @@ body,
   top: 0;
   width: 51%;
   height: 100%;
-  background: rgba(98, 117, 144);
+  background: rgba(59, 73, 89);
   /* Old browsers */
   z-index: 1000;
   -webkit-transform: translateX(0);
@@ -199,7 +199,7 @@ body,
 /* Loaded */
 
 .loaded #loader-wrapper .loader-section.section-left {
-  background: rgba(98, 117, 144, 0.4);
+  background: rgba(59, 73, 89, 0.4);
   -webkit-transform: translateX(-100%);
   /* Chrome, Opera 15+, Safari 3.1+ */
   -ms-transform: translateX(-100%);
@@ -211,7 +211,7 @@ body,
 }
 
 .loaded #loader-wrapper .loader-section.section-right {
-  background: rgba(98, 117, 144, 0.4);
+  background: rgba(59, 73, 89, 0.4);
   -webkit-transform: translateX(100%);
   /* Chrome, Opera 15+, Safari 3.1+ */
   -ms-transform: translateX(100%);
