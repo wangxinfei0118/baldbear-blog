@@ -1,19 +1,17 @@
 <template>
   <div>
-    <el-row type="flex" justify="center" style="padding-top: 30px">
+    <el-row style="padding-top: 30px; text-align: center">
       <el-form :rules="rules" ref="formData" :model="formData" label-width="100px" style="width: 400px" status-icon>
-        <el-form-item label="原密码：" prop="oldPassword">
+        <el-form-item label="原密码：" prop="oldPwd">
           <el-input type="password" placeholder="请输入原密码" v-model="formData.oldPwd"></el-input>
         </el-form-item>
-        <el-form-item label="新密码：" prop="newPassword">
+        <el-form-item label="新密码：" prop="newPwd">
           <el-input type="password" placeholder="请输入新密码" v-model="formData.newPwd"></el-input>
         </el-form-item>
-        <el-form-item label="确认密码：" prop="repPassword">
+        <el-form-item label="确认密码：" prop="repPwd">
           <el-input type="password" placeholder="请输入确认密码" v-model="formData.repPwd"></el-input>
         </el-form-item>
-        <el-form-item align="center">
-          <el-button size="mini" type="primary" :loading="loading" @click="submitForm('formData')">确 定</el-button>
-        </el-form-item>
+        <el-button size="mini" type="primary" :loading="loading" @click="submitForm('formData')">确 定</el-button>
       </el-form>
     </el-row>
   </div>
@@ -29,7 +27,6 @@ export default {
       type: Object,
       default: () => {
         return {
-          userId: '',
           oldPwd: '',
           newPwd: '',
           repPwd: ''
@@ -72,7 +69,7 @@ export default {
           { required: true, message: '新密码不能为空', trigger: 'blur' },
           { validator: validatePassword, trigger: 'blur' }
         ],
-        rePwd: [
+        repPwd: [
           { required: true, message: '确认密码不能为空', trigger: 'blur' },
           { validator: validateRepPassword, trigger: ['change', 'blur'] }
         ]
