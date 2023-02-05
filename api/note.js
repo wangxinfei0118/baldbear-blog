@@ -9,7 +9,7 @@ export default ({ $axios }, inject) => {
   inject('addNote', (data) => $axios.$post(`/note/note`, data))
 
   // 编辑笔记
-  inject('editNote', (data, id) => $axios.$put(`/note/note${id}`, data))
+  inject('editNote', (data, id) => $axios.$put(`/note/note/${id}`, data))
 
   // 删除笔记
   inject('deleteNote', (id) => $axios.$delete(`/note/note/${id}`))
