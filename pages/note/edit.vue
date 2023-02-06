@@ -108,7 +108,7 @@ export default {
       }
       if (res.code === 20000) {
         this.$message.success('提交成功')
-        this.$router.push(`/note/${res.data}`)
+        this.$router.push(`/note/${this.$route.query.id ? this.$route.query.id : res.data}`)
       } else {
         this.$message.error('提交失败')
       }
