@@ -10,22 +10,20 @@
       <el-form-item label="标题:" prop="title">
         <el-input v-model="formData.title" placeholder="请输入标题" maxlength="50" show-word-limit />
       </el-form-item>
-      <el-form-item label="标签" prop="labelIds">
+      <el-form-item label="标签" prop="label">
         <el-cascader
-          :disabled="labelDisabled"
-          style="display: block"
-          :show-all-levels="false"
-          :options="labelOptions"
-          :props="{ emitPath: false, children: 'labelList', value: 'id', label: 'name' }"
-          filterable
           clearable
-          v-model="formData.labelIds"></el-cascader>
+          v-model="formData.label"
+          :options="labelOptions"
+          :show-all-levels="false"
+          :props="{ value: 'name', label: 'name', children: 'labelList', expandTrigger: 'hover', emitPath: false }"></el-cascader>
       </el-form-item>
       <el-form-item label="主图:" prop="imageUrl">
         <el-upload class="avatar-uploader" accept="image/*" action="" :show-file-list="false" :http-request="uploadMainImg">
           <img v-if="formData.imageUrl" :src="formData.imageUrl" class="avatar" />
           <i v-else class="el-icon-plus avatar-uploader-icon"></i>
         </el-upload>
+        <el-input v-model="formData.imageUrl" placeholder="图片url" />
       </el-form-item>
       <el-form-item label="是否公开:" prop="ispublic">
         <el-radio-group v-model="formData.ispublic">
@@ -85,7 +83,9 @@ export default {
         summary: [{ required: true, message: '请输入简介', trigger: 'blur' }],
         content: [{ validator: validateContent, trigger: 'change' }]
       },
-      formData: {},
+      formData: {
+        imageUrl: ''
+      },
       labelOptions: []
     }
   },
