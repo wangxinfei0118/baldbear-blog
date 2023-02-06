@@ -99,8 +99,7 @@ export default {
     // 修改密码
     async submitPasswordForm() {
       this.loading = true
-      this.passwordData.userId = this.$store.state.userInfo && this.$store.state.userInfo.uid
-      const { code, message } = await this.$updatePassword(this.passwordData)
+      const { code, message } = await this.$updatePassword(this.passwordData, this.userInfo.uid)
       if (code === 20000) {
         this.$message.success('修改成功')
         this.passwordData = {}
