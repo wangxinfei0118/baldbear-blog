@@ -22,20 +22,16 @@ export default {
   methods: {
     async fetchData(current) {
       this.page.current = current
-      const query = { ...this.page, labelId: this.$route.params.id }
-      const res = await this.$getNoteList(query)
+      const queryObj = { ...this.page, label: this.$route.query.name }
+      const res = await this.$getNoteList(queryObj)
       this.page.total = res.data.total
       this.noteList = res.data.records
     }
   },
-  async asyncData({ app, params }) {
-    const page = {
-      total: 0,
-      current: 1,
-      size: 20
-    }
-    const query = { ...page, labelId: params.id }
-    const { data } = await app.$getNoteList(query)
+  async asyncData({ app, query }) {
+    const page = { current: 1, size: 8 }
+    const queryObj = { ...page, label: query.name }
+    const { data } = await app.$getNoteList(queryObj)
     page.total = data.total
     return { page, noteList: data.records }
   }
