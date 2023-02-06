@@ -116,8 +116,10 @@ export default {
   },
   async asyncData({ app, store }) {
     const userId = store.state.userInfo && store.state.userInfo.uid
-    const { data: userInfo } = await app.$getUserInfo(userId)
-    return { userInfo }
+    const { code, data: userInfo } = await app.$getUserInfo(userId)
+    if (code === 20000) {
+      store.commit('updateUserInfo', Object.assign({}, userInfo))
+      return { userInfo }
     }
   }
 }
