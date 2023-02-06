@@ -50,7 +50,7 @@ export default {
   data() {
     return {
       loading: false,
-      userInfo: null,
+      userInfo: this.$store.state.userInfo,
       passwordData: {},
       activeItem: '1'
     }
