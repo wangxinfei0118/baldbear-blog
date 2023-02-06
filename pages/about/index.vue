@@ -57,23 +57,30 @@
               <el-collapse-item>
                 <template slot="title">
                   <div class="flex w-96 justify-between">
-                    <div>基于nuxt.js的SSR个人博客</div>
-                    <div>2022.11-2023.01</div>
+                    <div>基于node+nuxt.js的SSR前后端分离个人博客</div>
+                    <div>2022.11-2023.02</div>
                   </div>
                 </template>
                 <div>
-                  项目描述：该项目是基于nuxt.js的SSR个人博客，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化
+                  项目描述：该项目是基于node和nuxt.js的SSR前后端分离个人博客，前端由vue+nuxt.js+element搭建服务端渲染页面，后端由node+express提供restful接口，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化
                 </div>
                 <div>项目职责：</div>
-                <div>1.引入mavon-editor进行md文档的编辑，并配置白名单进行html标签过滤处理来预防xss攻击</div>
                 <div>
-                  2.通过媒体查询实现页面的响应式布局，定义rem.js根据屏幕大小计算fontsize，并通过pxtorem实现rem自动转换，解决移动端适配问题
+                  1.
+                  通过媒体查询及百分比布局实现页面的响应式，根据屏幕大小计算fontsize，并通过pxtorem实现rem自动转换，解决移动端适配问题
                 </div>
                 <div>
-                  3.抽取目录固钉、评论区等公共组件，获取h1、h2标签生成目录对象，通过监听滚动条事件实现滚动高亮及文章锚点定位
+                  2.
+                  抽取目录固钉、评论区等公共组件，通过获取h1、h2标签生成目录对象，并通过监听滚动条事件实现滚动高亮及文章锚点定位
                 </div>
                 <div>
-                  4.代码整体优化，合理使用meta、语义化标签，alt、nofollow属性，并生成robots.txt与sitemap，进一步进行项目的seo优化
+                  3.
+                  进行代码整体优化，从懒加载、按需引入、文件压缩与分包等方面进行性能优化，首屏加载时间由1.5s降低到0.7s，文件体积由9.8M降低到3.2M，
+                </div>
+                <div>4. 通过定义meta，使用语义化标签、alt、nofollow等属性，生成robots.txt与sitemap，进一步进行项目的seo优化</div>
+                <div>
+                  5.
+                  使用async/await编写express服务，对请求数据进行校验与bcrypt加密，封装xss过滤、变量命名转换与全局错误处理中间件，并通过编写router下swagger注释生成接口文档
                 </div>
               </el-collapse-item>
               <el-collapse-item>
@@ -150,7 +157,7 @@
             <el-card shadow="hover" class="skill-card scale-up-center">
               <div>脚本语言</div>
               <div class="skill-title">
-                掌握js、es6语法、dom操作，熟悉typescript，了解node.js及express，可快速进行页面交互、接口及数据处理，并有npm包开发经历
+                掌握js、es6语法、dom操作，熟悉typescript，熟悉node.js及express，可快速进行页面交互、接口联调及数据处理，并有npm包开发经历
               </div>
               <div class="img-box">
                 <img src="@/assets/img/javascript.svg" />
