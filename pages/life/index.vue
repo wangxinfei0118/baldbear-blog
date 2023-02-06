@@ -3,8 +3,12 @@
     <page-header bgName="life-header" :title="headerTitle" :summary="headerSummary"></page-header>
     <div class="line min-line">
       <el-timeline>
-        <el-timeline-item :timestamp="item.createDate" placement="top" v-for="(item, index) in lifeList" :key="index">
-          <div class="float-right" v-if="userId == 1">
+        <el-timeline-item
+          :timestamp="item.createDate.split(' ')[0]"
+          placement="top"
+          v-for="(item, index) in lifeList"
+          :key="index">
+          <div class="float-right" v-if="userRole === 1">
             <el-button icon="el-icon-edit" circle @click="editLife(item.id)"></el-button>
             <el-button icon="el-icon-delete" circle @click="deleteLife(item.id)"></el-button>
           </div>
@@ -25,6 +29,7 @@ export default {
   data() {
     return {
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
+      userRole: this.$store.state.userInfo && this.$store.state.userInfo.role,
       headerTitle: '生活沉闷，但跑起来一定有风',
       headerSummary:
         '曾在半夜开车时听了一路的电台音乐，尽管有风声、引擎声，但还是觉得很安静，窗外的夜景也很安静，从未有过的舒服自在，后来有人告诉我，那是热爱生活。'
