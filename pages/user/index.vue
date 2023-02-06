@@ -90,8 +90,9 @@ export default {
       const { code, message } = await this.$updateUserInfo(this.userInfo, this.userInfo.uid)
       if (code === 20000) {
         this.$message.success('修改成功')
+        this.$store.commit('updateUserInfo', Object.assign({}, this.userInfo))
       } else {
-        this.$message.error(message)
+        this.$message.error('修改失败！')
       }
       this.loading = false
     },
@@ -117,6 +118,7 @@ export default {
     const userId = store.state.userInfo && store.state.userInfo.uid
     const { data: userInfo } = await app.$getUserInfo(userId)
     return { userInfo }
+    }
   }
 }
 </script>
