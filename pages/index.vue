@@ -39,7 +39,7 @@
       <el-divider content-position="left">
         <div class="skill-line"></div>
         <div class="relative">
-          <img class="skill-img" src="@/assets/img/skill.png" />
+          <img class="bear" src="@/assets/img/bear.svg" />
         </div>
       </el-divider>
       <div class="note w-full mb-4">
