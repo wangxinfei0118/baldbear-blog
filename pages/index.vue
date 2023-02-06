@@ -7,8 +7,10 @@
         <div>找到你喜欢做的事，并努力成为这个领域里的顶尖人物。</div>
         <div>Figure out what you like. Try to become the best in the world of it</div>
       </div>
-      <div class="scroll-down absolute bottom-20 left-2/4 w-6 -ml-3 bounce-top" @click="scrollDown">
-        <img src="@/assets/img/scroll-down.svg" />
+      <div class="scroll-down absolute bottom-20 left-2/4 w-6 -ml-3" @click="scrollDown">
+        <button class="mouse">
+          <div class="scroll"></div>
+        </button>
       </div>
     </div>
     <div class="bg-white">
@@ -172,23 +174,39 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
 }
-.bounce-top {
-  animation: bounce-top 2s linear 1s infinite both;
+.mouse {
+  width: 25px;
+  height: 40px;
+  border: 1px solid rgb(196, 196, 196);
+  background-color: transparent;
+  border-radius: 13px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-@keyframes bounce-top {
+
+.scroll {
+  width: 3px;
+  height: 10px;
+  background-color: rgb(196, 196, 196);
+  border-radius: 2px;
+  position: absolute;
+  bottom: 9px;
+  animation: move_down 1.5s linear infinite;
+}
+
+@keyframes move_down {
   0% {
-    transform: translateY(-8px);
-    opacity: 0;
+    bottom: 9px;
   }
-
   50% {
-    transform: translateY(0px);
-    opacity: 0.8;
+    bottom: 5px;
   }
-
   100% {
-    transform: translateY(-8px);
-    opacity: 0;
+    bottom: 9px;
   }
 }
 .note-wrapper {
@@ -222,8 +240,8 @@ export default {
 .skill-line {
   @apply w-52 h-1;
 }
-.skill-img {
-  @apply w-52 max-w-none absolute -top-24 opacity-80;
+.bear {
+  @apply w-52 max-w-none absolute -top-24 -left-8 opacity-80;
 }
 @media only screen and (max-width: 992px) {
   .scroll-down {
@@ -232,7 +250,7 @@ export default {
   .skill-line {
     @apply w-44 h-1;
   }
-  .skill-img {
+  .bear {
     @apply w-44 max-w-none absolute -top-24 opacity-80;
   }
 }
