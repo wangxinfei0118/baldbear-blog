@@ -47,24 +47,27 @@ export default {
       this.$router.push(`/life/edit?id=${id}`)
     },
     deleteLife(id) {
-      this.$confirm('是否删除该笔记?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
+      this.$mb
+        .confirm('是否删除该日常?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
         .then(() => {
-          this.$deleteLife(this.$route.params).then(() => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
+          this.$deleteLife(id).then((res) => {
+            if (res.code === 20000) {
+              this.$message.success('删除成功！')
+              this.$getLifeList().then((res) => {
+                res.data.records.forEach((item) => {
+                  item.htmlContent = this.$handleEscape(item.htmlContent)
+                })
+                this.lifeList = res.data.records
+              })
+            } else this.$message.error('删除失败！')
           })
         })
         .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          })
+          this.$message.info('已取消删除')
         })
     }
   }

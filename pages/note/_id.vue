@@ -163,24 +163,20 @@ export default {
       this.$router.push(`/note/edit?id=${this.$route.params.id}`)
     },
     deleteNote() {
-      this.$confirm('是否删除该笔记?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      })
+      this.$mb
+        .confirm('是否删除该笔记?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        })
         .then(() => {
-          this.$deleteNote(this.$route.params).then(() => {
-            this.$message({
-              type: 'success',
-              message: '删除成功!'
-            })
+          this.$deleteNote(this.$route.params.id).then(() => {
+            this.$router.push('/')
+            this.$message.success('删除成功！')
           })
         })
         .catch(() => {
-          this.$message({
-            type: 'info',
-            message: '已取消删除'
-          })
+          this.$message.info('已取消删除')
         })
     }
   },
