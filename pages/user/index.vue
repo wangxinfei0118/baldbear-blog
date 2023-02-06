@@ -56,13 +56,20 @@ export default {
   methods: {
     uploadMainImg(file) {
       const data = new FormData()
-      data.append('file', file.file)
+      data.append('image', file.file)
       this.$uploadImg(data)
         .then((res) => {
-          if (res.code === 20000) {
+          if (res.data?.code === 20000) {
             this.deleteImg()
-            this.userInfo.imageUrl = res.data
-            this.$updateUserInfo(this.userInfo)
+            this.userInfo.userPic = res.data?.data
+            this.$updateUserInfo(this.userInfo, this.userInfo.uid).then((res) => {
+              if (res.code === 20000) {
+                this.$store.commit('updateUserInfo', Object.assign({}, this.userInfo))
+                this.$message.success('更新头像成功！')
+              }
+            })
+          } else {
+            this.$message.error('上图片传失败')
           }
         })
         .catch(() => {

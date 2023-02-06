@@ -91,9 +91,9 @@ export default {
       const fd = new FormData()
       fd.append('image', file)
       this.$uploadImg(fd).then((res) => {
-        if (res.data.code === 20000) {
+        if (res.data?.code === 20000) {
           //上传成功，回显图片
-          this.$refs.md.$img2Url(pos, res.data.data)
+          this.$refs.md.$img2Url(pos, res.data?.data)
         } else {
           this.$message.error('上图片传失败')
         }

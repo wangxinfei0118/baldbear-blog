@@ -115,12 +115,15 @@ export default {
     },
     uploadMainImg(file) {
       const data = new FormData()
-      data.append('file', file.file)
+      data.append('image', file.file)
       this.$uploadImg(data)
         .then((res) => {
-          if (res.code === 20000) {
+          if (res.data?.code === 20000) {
             this.deleteImg()
-            this.formData.imageUrl = res.data
+            this.formData.imageUrl = res.data?.data
+            this.$message.success('上传成功！')
+          } else {
+            this.$message.error('上图片传失败')
           }
         })
         .catch(() => {
@@ -139,11 +142,13 @@ export default {
     },
     uploadContentImg(pos, file) {
       const fd = new FormData()
-      fd.append('file', file)
+      fd.append('image', file)
       this.$uploadImg(fd).then((res) => {
-        if (res.code === 20000) {
+        if (res.data?.code === 20000) {
           //上传成功，回显图片
-          this.$refs.md.$img2Url(pos, res.data)
+          this.$refs.md.$img2Url(pos, res.data?.data)
+        } else {
+          this.$message.error('上图片传失败')
         }
       })
     },
