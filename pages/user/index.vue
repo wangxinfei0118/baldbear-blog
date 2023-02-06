@@ -32,7 +32,9 @@
         <!-- 修改密码 -->
         <el-card shadow="never" v-if="activeItem === '2'">
           <div>修改密码</div>
-          <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm" />
+          <div class="flex justify-center">
+            <user-password :loading="loading" :formData="passwordData" @submitForm="submitPasswordForm" />
+          </div>
         </el-card>
       </el-col>
     </el-row>
