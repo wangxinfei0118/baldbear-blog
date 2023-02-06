@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="fixed left-24 mt-5" v-if="userId == 1">
+    <div class="fixed left-24 mt-5" v-if="userRole === 1">
       <div>
         <el-button icon="el-icon-edit" circle @click="editNote"></el-button>
       </div>
@@ -112,7 +112,9 @@ export default {
       // 当前登录用户id
       userId: this.$store.state.userInfo && this.$store.state.userInfo.uid,
       // 当前登录用户头像，
-      userPic: this.$store.state.userInfo && this.$store.state.userInfo.userPic
+      userPic: this.$store.state.userInfo && this.$store.state.userInfo.userPic,
+      // 当前登录用户角色，
+      userRole: this.$store.state.userInfo && this.$store.state.userInfo.role
     }
   },
   methods: {
