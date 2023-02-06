@@ -83,23 +83,19 @@ export default {
         this.$message.error('提交失败')
       }
     },
-    // 删除主图, 上传成功和关闭窗口调用删除上一次上传的图片
-    deleteImg() {
-      if (this.formData.imageUrl) {
-        this.$deleteImg(this.formData.imageUrl)
-      }
-    },
     getMdHtml(mdContent, htmlContent) {
       this.formData.mdContent = mdContent
       this.formData.htmlContent = htmlContent
     },
     uploadContentImg(pos, file) {
       const fd = new FormData()
-      fd.append('file', file)
+      fd.append('image', file)
       this.$uploadImg(fd).then((res) => {
-        if (res.code === 20000) {
+        if (res.data.code === 20000) {
           //上传成功，回显图片
-          this.$refs.md.$img2Url(pos, res.data)
+          this.$refs.md.$img2Url(pos, res.data.data)
+        } else {
+          this.$message.error('上图片传失败')
         }
       })
     },
