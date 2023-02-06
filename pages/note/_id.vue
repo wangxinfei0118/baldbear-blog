@@ -182,7 +182,10 @@ export default {
   },
   async asyncData({ params, app }) {
     // 获取笔记详情
-    const { data } = await app.$getNoteById(params.id)
+    const { code, data } = await app.$getNoteById(params.id)
+    if (code === 20000) {
+      data.htmlContent = app.$handleEscape(data.htmlContent)
+    }
     // 将文章id保存到cookie中并更新浏览数，判断cookie中是否由对应id，有则不继续更新
     if (!app.$cookies.get(`article-view-${params.id}`)) {
       const { code } = await app.$updateNoteViewCount(params.id)
@@ -192,7 +195,6 @@ export default {
       }
     }
     const { data: commentList } = await app.$getCommentListByNoteId(params.id)
-    data.htmlContent = app.$handleEscape(data.htmlContent)
     return { data, commentList }
   }
 }
