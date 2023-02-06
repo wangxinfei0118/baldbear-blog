@@ -80,14 +80,14 @@ export default {
     },
     // 删除主图, 上传成功和关闭窗口调用删除上一次上传的图片
     deleteImg() {
-      if (this.userInfo.imageUrl) {
-        this.$deleteImg(this.userInfo.imageUrl)
+      if (this.userInfo.userPic) {
+        this.$deleteImg(this.userInfo.userPic)
       }
     },
     // 提交修改个人资料
     async submitUserForm() {
       this.loading = true
-      const { code, message } = await this.$updateUserInfo(this.userInfo)
+      const { code, message } = await this.$updateUserInfo(this.userInfo, this.userInfo.uid)
       if (code === 20000) {
         this.$message.success('修改成功')
       } else {
