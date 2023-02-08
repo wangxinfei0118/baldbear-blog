@@ -26,7 +26,8 @@ export default {
     '@/plugins/element-ui',
     '@/plugins/interceptor.js',
     '@/plugins/common.js',
-    { src: '@/plugins/mavon-editor', mode: 'client' }
+    { src: '@/plugins/mavon-editor', mode: 'client' },
+    { src: '@/plugins/vue-lazyload', mode: 'client' }
   ],
   buildModules: [
     '@nuxtjs/tailwindcss'
