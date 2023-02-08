@@ -51,7 +51,7 @@
           <div class="note-box">
             <nuxt-link :to="`/note/${item.noteId}`" target="_blank" v-for="item in noteList" :key="item.id">
               <el-card shadow="hover" class="note-card" :body-style="{ padding: '0px' }">
-                <img class="note-img" :src="item.imageUrl" />
+                <img class="note-img" v-lazy="item.imageUrl" />
                 <div class="note-content p-6">
                   <div class="text-note-title font-medium" style="margin-bottom: 10px">{{ item.title }}</div>
                   <div class="summary text-medium leading-22 h-16">
