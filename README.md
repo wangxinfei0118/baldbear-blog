@@ -4,7 +4,7 @@
 
 该项目是基于node和nuxt.js的SSR前后端分离个人博客，前端由vue+nuxt.js+element搭建服务端渲染页面，后端由node+express提供restful接口，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化
 
-[博客在线地址](http://baldbear.cn)   [node server仓库](https://github.com/wangxinfei0118/baldbear-node-api) 
+[博客在线地址](http://baldbear.cn)   [node接口仓库](https://github.com/wangxinfei0118/baldbear-node-api) 
 
 ## 项目特点
 
@@ -28,8 +28,9 @@ npm install
 
 # 启动开发服务器
 npm run dev
+# 访问地址：http://localhost:3000
 
-# 项目打包，并在生产环境运行
+# 项目打包，并在生产环境运行 推荐使用pm2管理进程
 npm run build
 npm run start
 
@@ -160,11 +161,30 @@ nuxtPrecompress: {
 }
 ```
 
+6.图片懒加载
+
+```javascript
+import Vue from 'vue'
+import VueLazyLoad from 'vue-lazyload'
+
+// 加载中的图片
+const loadimage = require('@/assets/img/loading.gif')
+// 加载图片出错展现的图片
+const errorimage = require('@/assets/img/logo.png')
+
+Vue.use(VueLazyLoad, {
+  loading: loadimage,
+  error: errorimage,
+  attempt: 1 // 加载失败尝试重新加载次数
+})
+
+```
+
 
 
 ## API文档
 
-接口文档可通过启动baldbear-node-api项目，访问`http://localhost:3008/docs`
+接口文档可通过启动[baldbear-node-api](https://github.com/wangxinfei0118/baldbear-node-api) 项目，访问`http://localhost:3008/docs`
 
 或 [点击查看在线接口文档](http://api.baldbear.cn/docs/) 
 
