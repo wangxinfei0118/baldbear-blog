@@ -20,7 +20,9 @@ const mutations = {
   // 更新用户信息
   updateUserInfo(state, userInfo) {
     state.userInfo = userInfo
-    this.$cookies.set('userInfo', userInfo)
+    this.$cookies.set('userInfo', userInfo, {
+      domain: '.baldbear.cn' // 修改主域上的cookies
+    })
   }
 }
 
