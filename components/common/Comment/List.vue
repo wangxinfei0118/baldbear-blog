@@ -6,7 +6,7 @@
       <!-- 一级评论 -->
       <div class="content">
         <div class="comment-f mr-2">
-          <el-avatar icon="el-icon-user-solid" :src="item.userPic ? item.userPic : this.$avatar" />
+          <el-avatar icon="el-icon-user-solid" :src="item.userPic ? item.userPic : $avatar" />
         </div>
 
         <div class="comment-f">
