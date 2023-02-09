@@ -21,7 +21,7 @@
             <div class="avatar">
               <el-tooltip content="点击上传头像" effect="light">
                 <el-upload accept="image/*" action="" :show-file-list="false" :http-request="uploadMainImg">
-                  <el-avatar :size="60" :src="userInfo.userPic">{{ userInfo.nickname }}</el-avatar>
+                  <el-avatar :size="60" :src="userInfo.userPic ? userInfo.userPic : this.$avatar"></el-avatar>
                 </el-upload>
               </el-tooltip>
               <div class="text-small-x">我的头像</div>

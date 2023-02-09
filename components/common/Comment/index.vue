@@ -5,7 +5,7 @@
       <div class="hbl-comm">
         <!-- 是否显示头像 -->
         <div class="comment-avatar" v-if="showUserPic">
-          <el-avatar icon="el-icon-user-solid" :src="userPic" />
+          <el-avatar icon="el-icon-user-solid" :src="userPic ? userPic : this.$avatar" />
         </div>
         <!-- 公共评论输入框 textareaMap[0] -->
         <div class="comment" :style="{ width: commentWidth }">
