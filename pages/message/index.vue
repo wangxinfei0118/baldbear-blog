@@ -88,7 +88,7 @@ export default {
           this.$message.success('删除成功！')
           this.refreshComment()
         } else {
-          this.$message.error('评论失败！')
+          this.$message.error('删除失败！')
         }
       })
     },
