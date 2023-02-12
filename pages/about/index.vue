@@ -5,7 +5,7 @@
       <el-row class="min-box">
         <el-col :xs="24" :sm="24" :md="12">
           <div class="text-home-title text-medium" style="text-indent: 2em">
-            前端开发工程师，2023年毕业于天津工业大学，软件工程专业，大一开始接触网页设计，大二期间参与过小组数据可视化项目及商城项目的前端开发，大三开始系统学习前端，从前端基础，到开发框架，再到前端工程化以及项目的优化部署，期间做过pc、h5、小程序、跨端开发等相关项目，并在2022.6-2022.9参与企业实习，进行企业级项目开发。平时关注github，稀土掘金等社区了解更多优秀的前端技术及项目，对自己进行进一步的提升
+            前端开发工程师，2023年毕业于天津工业大学，软件工程专业，大一开始接触网页设计，大二期间参与过小组数据可视化项目及商城项目的前端开发，大三开始系统学习前端，从前端基础，到开发框架，再到前端工程化以及项目的优化部署，期间做过pc、h5、小程序、跨端开发等相关项目，进行企业级项目开发。平时关注github，稀土掘金等社区了解更多优秀的前端技术及项目，对自己进行进一步的提升
           </div>
           <el-divider></el-divider>
           <div class="item-title">
@@ -65,22 +65,17 @@
                   项目描述：该项目是基于node和nuxt.js的SSR前后端分离个人博客，前端由vue+nuxt.js+element搭建服务端渲染页面，后端由node+express提供restful接口，主要包括技术笔记分享，生活分享，留言板等功能，并从性能及seo方面对项目进行整体的优化
                 </div>
                 <div>项目职责：</div>
+                <div>1. 通过媒体查询及百分比布局实现页面的响应式，使用CSS3动画及 requestAnimationFrame为项目添加动态效果</div>
                 <div>
-                  1.
-                  通过媒体查询及百分比布局实现页面的响应式，根据屏幕大小计算fontsize，并通过pxtorem实现rem自动转换，解决移动端适配问题
+                  2. 封装目录固钉、评论区等公共组件，通过获取h1、h2标签生成目录对象，并监听滚动条事件实现滚动高亮及文章锚点定位
                 </div>
                 <div>
-                  2.
-                  抽取目录固钉、评论区等公共组件，通过获取h1、h2标签生成目录对象，并通过监听滚动条事件实现滚动高亮及文章锚点定位
+                  3. 使用async/await构建express服务，编写生成restful Api，对请求数据进行校验与bcrypt加密，封装xss过滤、变量命名
+                  转换与全局错误处理中间件，并通过编写router下swagger注释生成接口文档，使用mp2对nuxt及node项目进行进程管理
                 </div>
                 <div>
-                  3.
-                  进行代码整体优化，从懒加载、按需引入、文件压缩与分包等方面进行性能优化，首屏加载时间由1.5s降低到0.7s，文件体积由9.8M降低到3.2M，
-                </div>
-                <div>4. 通过定义meta，使用语义化标签、alt、nofollow等属性，生成robots.txt与sitemap，进一步进行项目的seo优化</div>
-                <div>
-                  5.
-                  使用async/await编写express服务，对请求数据进行校验与bcrypt加密，封装xss过滤、变量命名转换与全局错误处理中间件，并通过编写router下swagger注释生成接口文档
+                  4. 进行代码整体优化，从懒加载、按需引入、文件压缩与分包等方面进行性能优化，首屏加载时间由1.2s降低到0.4s，文件体
+                  积由9.8M降低 到3.68M，实现首页毫秒级加载
                 </div>
               </el-collapse-item>
               <el-collapse-item>
@@ -147,7 +142,7 @@
             </el-card>
             <el-card shadow="hover" class="skill-card scale-up-center">
               <div>小程序</div>
-              <div class="skill-title">熟悉原生微信小程序，能够使用原生API开发小程序，有uniapp结合uview进行跨端开发经历</div>
+              <div class="skill-title">熟悉原生微信小程序，能够使用原生api开发小程序，有uniapp结合uview进行跨端开发经历</div>
               <div class="img-box">
                 <img src="@/assets/img/mp-weixin.svg" />
                 <img src="@/assets/img/uniapp.png" />
@@ -157,7 +152,7 @@
             <el-card shadow="hover" class="skill-card scale-up-center">
               <div>脚本语言</div>
               <div class="skill-title">
-                掌握js、es6语法、dom操作，熟悉typescript，熟悉node.js及express，可快速进行页面交互、接口联调及数据处理，并有npm包开发经历
+                掌握js、es6语法及dom操作，熟悉typescript，熟悉node.js及express，可快速进行页面交互、接口联调及数据处理
               </div>
               <div class="img-box">
                 <img src="@/assets/img/javascript.svg" />
@@ -168,7 +163,7 @@
             <el-card shadow="hover" style="margin-top: -360px" class="skill-card last-card scale-up-center">
               <div>前端工程化</div>
               <div class="skill-title">
-                了解rollup、webpack及vite等打包工具，掌握loader、plugin原理及常见性能优化，能基于webpack搭建脚手架
+                了解rollup、webpack及vite等打包工具，掌握loader、plugin的原理及，熟悉常见前端性能优化方案
               </div>
               <div class="img-box">
                 <img src="@/assets/img/webpack.svg" />
