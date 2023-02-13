@@ -116,8 +116,8 @@
             </el-collapse>
           </div>
         </el-col>
-        <el-col :xs="24" :sm="24" :md="12" class="skill-box">
-          <div class="flex justify-around flex-wrap">
+        <el-col :xs="24" :sm="24" :md="12">
+          <div class="flex justify-around flex-wrap skill-box">
             <el-card shadow="hover" class="skill-card scale-up-center">
               <div>Vue</div>
               <div class="skill-title">
@@ -207,6 +207,9 @@ export default {
   width: 64px;
   height: 64px;
 }
+.skill-box {
+  width: 500px;
+}
 .skill-card {
   height: 240px;
   width: 240px;
@@ -243,25 +246,28 @@ export default {
   .min-box {
     @apply flex flex-col;
   }
-  .last-card {
-    margin-top: 0 !important;
-  }
   .skill-box {
-    margin-top: 16px;
+    width: auto !important;
+    margin-left: 0 !important;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .skill-box {
+    margin-left: 20px;
   }
   .skill-card {
     width: 100%;
-    height: 200px;
+    height: 170px;
+  }
+  .el-card ::v-deep .el-card__body {
+    padding: 10px 20px;
   }
   .skill-title {
     @apply text-home-title text-medium h-16;
   }
   .img-box {
-    display: flex;
-    justify-content: left;
+    @apply flex justify-start;
   }
-}
-@media only screen and (max-width: 1300px) {
   .last-card {
     margin-top: 0 !important;
   }
