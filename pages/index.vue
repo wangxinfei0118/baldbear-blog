@@ -254,4 +254,19 @@ export default {
     @apply w-44 max-w-none absolute -top-24 opacity-80;
   }
 }
+@media only screen and (min-width: 1200px) {
+  .note-box {
+    width: 1200px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  .note-box {
+    width: 600px;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .note-box {
+    width: auto;
+  }
+}
 </style>
