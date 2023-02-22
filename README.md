@@ -131,7 +131,7 @@ build: {
 }
 ```
 
-5.开启gzip，项目使用的是[@aceforth/nuxt-optimized-images](https://github.com/juliomrqz/nuxt-optimized-images)
+5.开启gzip，项目使用的是[@aceforth/nuxt-optimized-images](https://github.com/juliomrqz/nuxt-optimized-images)，需要同时配置nginx
 
 ```javascript
 nuxtPrecompress: {
