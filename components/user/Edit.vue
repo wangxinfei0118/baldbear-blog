@@ -53,7 +53,7 @@ export default {
   data() {
     const checkNickName = (rule, value, callback) => {
       if (!value) {
-        callback(new Error('姓名不能为空'))
+        callback(new Error('昵称不能为空'))
       } else if (value.length > 30) {
         callback(new Error('最多30个字符'))
       } else {
