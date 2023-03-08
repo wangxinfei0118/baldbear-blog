@@ -6,6 +6,8 @@
 
 [博客在线地址](http://baldbear.cn)   [node接口仓库](https://github.com/wangxinfei0118/baldbear-node-api) 
 
+默认管理员账号：admin 123456 （仅管理员可以发表文章）
+
 ## 项目特点
 
 - PostCSS支持，[Tailwind](https://github.com/nuxt-modules/tailwindcss)功能类代替行内样式
